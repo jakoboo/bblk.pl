@@ -8,16 +8,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const blogPost = path.resolve(`./src/templates/blog-post/index.js`);
 
   // Get all markdown blog posts sorted by date
-  const result = await graphql(
+  const blogPostsQuery = await graphql(
     `
       {
         allMdx(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
+          filter: { fileAbsolutePath: { regex: "/content/blog/" } }
         ) {
           nodes {
             id
             tableOfContents
+            fileAbsolutePath
             fields {
               readingTime {
                 text
@@ -37,15 +39,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `
   );
 
-  if (result.errors) {
+  if (blogPostsQuery.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
-      result.errors
+      blogPostsQuery.errors
     );
     return;
   }
 
-  const posts = result.data.allMdx.nodes;
+  const posts = blogPostsQuery.data.allMdx.nodes;
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
@@ -76,12 +78,16 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode });
+    const relativeFilePath = createFilePath({
+      node,
+      getNode,
+      basePath: `content/blog`,
+    });
 
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: `/blog${relativeFilePath}`,
     });
   }
 };

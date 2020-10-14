@@ -33,7 +33,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
-        name: `blog-posts`,
+        name: `blog`,
       },
     },
     `gatsby-plugin-netlify-cms-paths`,
