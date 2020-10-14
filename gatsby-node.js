@@ -55,12 +55,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1];
       const next = index === 0 ? null : posts[index - 1];
 
-      // Resolve custom template tag or use default blog-post
+      // Resolve custom template key or use default blog-post
       createPage({
         path: post.fields.slug,
         component:
           path.resolve(
-            `./src/templates/${post.frontmatter.templateTag}/blog-post.js`
+            `./src/templates/${post.frontmatter.templateKey}/blog-post.js`
           ) || blogPost,
         context: {
           id: post.id,
@@ -99,7 +99,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type MdxFrontmatter {
-      templateTag: String
+      templateKey: String
       title: String
       date: Date @dateformat
       description: String
