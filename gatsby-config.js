@@ -36,19 +36,11 @@ module.exports = {
         name: `blog-posts`,
       },
     },
+    `gatsby-plugin-netlify-cms-paths`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
-          // gatsby-remark-relative-images must go before gatsby-remark-images
-          {
-            resolve: `gatsby-remark-relative-images`,
-            options: {
-              // The root of "media_folder" netlify static/admin/config.yml
-              // Defaults to "static"
-              staticFolderName: 'content',
-            },
-          },
           {
             resolve: `gatsby-remark-images`,
             options: {
