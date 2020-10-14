@@ -8,15 +8,16 @@ module.exports = {
     description: `Portfolio and personal blog about web dev`,
     siteUrl: `https://bblk.pl`,
     social: {
-      github: `jakoboo`,
-      twitter: `jbbabelek`,
+      github: `https://github.com/jakoboo`,
+      twitter: `https://twitter.com/jbbabelek`,
+      email: 'mailto:jakub@bblk.pl',
     },
   },
   plugins: [
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-180334181-1",
+        trackingId: 'UA-180334181-1',
         head: false,
         anonymize: true,
       },
@@ -39,6 +40,15 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
+          // gatsby-remark-relative-images must go before gatsby-remark-images
+          {
+            resolve: `gatsby-remark-relative-images`,
+            options: {
+              // The root of "media_folder" netlify static/admin/config.yml
+              // Defaults to "static"
+              staticFolderName: 'content',
+            },
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -57,10 +67,11 @@ module.exports = {
         ],
       },
     },
+    `gatsby-remark-reading-time`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-offline`,
   ],
-}
+};

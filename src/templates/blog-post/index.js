@@ -1,14 +1,18 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Bio from '../../components/bio';
+import Layout from '../../components/layout';
+import SEO from '../../components/seo';
 
-const BlogPostTemplate = ({ post: { mdx: data }, pageContext, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const { previous, next } = pageContext
+const BlogPostTemplate = ({
+  location,
+  data: { mdx: post, site },
+  pageContext,
+}) => {
+  const siteTitle = site.siteMetadata?.title || `Title`;
+  const { previous, next } = pageContext;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -17,15 +21,16 @@ const BlogPostTemplate = ({ post: { mdx: data }, pageContext, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <article
-        className="blog-post"
+        className='blog-post'
         itemScope
-        itemType="http://schema.org/Article"
+        itemType='http://schema.org/Article'
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
+          <h1 itemProp='headline'>{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
+          <span>{post.fields.readingTime.text}</span>
         </header>
-        <section itemProp="articleBody">
+        <section itemProp='articleBody'>
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
         <hr />
@@ -33,7 +38,7 @@ const BlogPostTemplate = ({ post: { mdx: data }, pageContext, location }) => {
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <nav className='blog-post-nav'>
         <ul
           style={{
             display: `flex`,
@@ -45,14 +50,14 @@ const BlogPostTemplate = ({ post: { mdx: data }, pageContext, location }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <Link to={previous.fields.slug} rel='prev'>
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link to={next.fields.slug} rel='next'>
                 {next.frontmatter.title} →
               </Link>
             )}
@@ -60,10 +65,10 @@ const BlogPostTemplate = ({ post: { mdx: data }, pageContext, location }) => {
         </ul>
       </nav>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostByID($id: String!) {
@@ -96,4 +101,4 @@ export const pageQuery = graphql`
       tableOfContents
     }
   }
-`
+`;

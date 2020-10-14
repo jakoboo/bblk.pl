@@ -60,7 +60,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         path: post.fields.slug,
         component:
           path.resolve(
-            `./src/templates/${post.frontmatter.templateKey}/blog-post.js`
+            `./src/templates/${post.frontmatter.templateKey}/index.js`
           ) || blogPost,
         context: {
           id: post.id,
@@ -86,8 +86,32 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
+exports.createSchemaCustomization = ({
+  actions: { createTypes, createFieldExtension },
+  createContentDigest,
+}) => {
+  createFieldExtension({
+    name: 'mdx',
+    extend() {
+      return {
+        type: 'String',
+        resolve(source, args, context, info) {
+          // Grab field
+          const value = source[info.fieldName];
+          // Isolate MDX
+          const mdxType = info.schema.getType('Mdx');
+          // Grab just the body contents of what MDX generates
+          const { resolve } = mdxType.getFields().body;
+          return resolve({
+            rawBody: value,
+            internal: {
+              contentDigest: createContentDigest(value), // Used for caching
+            },
+          });
+        },
+      };
+    },
+  });
 
   // Also explicitly define the Mdx frontmatter
   // This way the "Mdx" queries will return `null` even when no
@@ -102,9 +126,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       templateKey: String
       title: String
       date: Date @dateformat
-      description: String
-      featuredImage: Image!
-      socialImage: Image!
+      description: String @mdx
+      featuredImage: File!
+      socialImage: File!
       tags: [String!]!
     }
 
@@ -115,10 +139,6 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type ReadingTime {
       text: String
-    }
-
-    type Image {
-      publicURL: String
     }
   `);
 };
