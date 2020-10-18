@@ -1,69 +1,55 @@
+const _ = require(`lodash`);
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post/index.js`);
-
   // Get all markdown blog posts sorted by date
-  const blogPostsQuery = await graphql(
-    `
-      {
-        allMdx(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-          filter: { fileAbsolutePath: { regex: "/content/blog/" } }
-        ) {
-          nodes {
-            id
-            tableOfContents
-            fileAbsolutePath
-            fields {
-              readingTime {
-                text
-              }
-              slug
-            }
-            frontmatter {
-              templateKey
-              title
-              date
-              description
-              tags
-            }
+  const blogPostsResult = await graphql(`
+    {
+      allMdx(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { fields: { collection: { eq: "blog" } } }
+      ) {
+        nodes {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            templateKey
+            tags
           }
         }
       }
-    `
-  );
-
-  if (blogPostsQuery.errors) {
+    }
+  `);
+  if (blogPostsResult.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
-      blogPostsQuery.errors
+      blogPostsResult.errors
     );
     return;
   }
 
-  const posts = blogPostsQuery.data.allMdx.nodes;
+  const blogPosts = blogPostsResult.data.allMdx.nodes;
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1];
-      const next = index === 0 ? null : posts[index - 1];
+  if (blogPosts.length > 0) {
+    blogPosts.forEach((post, index) => {
+      const previous =
+        index === blogPosts.length - 1 ? null : blogPosts[index + 1];
+      const next = index === 0 ? null : blogPosts[index - 1];
 
-      // Resolve custom template key or use default blog-post
       createPage({
         path: post.fields.slug,
-        component:
-          path.resolve(
-            `./src/templates/${post.frontmatter.templateKey}/index.js`
-          ) || blogPost,
+        component: path.resolve(
+          `src/templates/${post.frontmatter.templateKey}/index.js`
+        ),
         context: {
           id: post.id,
           previous,
@@ -72,22 +58,67 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       });
     });
   }
+
+  // Get all blog post tags sorted by date
+  const tagsResult = await graphql(`
+    {
+      allMdx(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { fields: { collection: { eq: "blog" } } }
+      ) {
+        group(field: frontmatter___tags) {
+          fieldValue
+        }
+      }
+    }
+  `);
+  if (tagsResult.errors) {
+    reporter.panicOnBuild(`There was an error loading tags`, tagsResult.errors);
+    return;
+  }
+
+  const tags = tagsResult.data.allMdx.group;
+
+  tags.forEach(({ fieldValue: tag }) => {
+    const tagPath = `/tags/${_.kebabCase(tag)}/`;
+
+    createPage({
+      path: tagPath,
+      component: path.resolve(`src/templates/tag/index.js`),
+      context: {
+        tag,
+      },
+    });
+  });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+exports.onCreateNode = ({ node, actions: { createNodeField }, getNode }) => {
+  const parent = getNode(node.parent);
+
+  if (!parent) {
+    return;
+  }
+
+  // Collection name based on the 'name' property of gatsby-source-filesystem in gatsby-config.js
+  // used to set slug (/blog/<post> or /projects/<project>) and filter content
+  const collection = parent.sourceInstanceName;
 
   if (node.internal.type === `Mdx`) {
     const relativeFilePath = createFilePath({
       node,
       getNode,
-      basePath: `content/blog`,
+    });
+
+    createNodeField({
+      name: `collection`,
+      node,
+      value: collection,
     });
 
     createNodeField({
       name: `slug`,
       node,
-      value: `/blog${relativeFilePath}`,
+      value: `/${collection}${relativeFilePath}`,
     });
   }
 };
@@ -123,6 +154,10 @@ exports.createSchemaCustomization = ({
   // This way the "Mdx" queries will return `null` even when no
   // blog posts are stored inside "content/blog" instead of returning an error
   createTypes(`
+    type SiteSiteMetadata {
+      title: String
+    }
+
     type Mdx implements Node {
       frontmatter: MdxFrontmatter
       fields: Fields
@@ -141,6 +176,7 @@ exports.createSchemaCustomization = ({
     type Fields {
       readingTime: ReadingTime
       slug: String
+      collection: String
     }
 
     type ReadingTime {

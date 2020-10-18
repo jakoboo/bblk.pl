@@ -82,6 +82,12 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      fields {
+        readingTime {
+          text
+        }
+        slug
+      }
       frontmatter {
         date(formatString: "DD MMMM, YYYY")
         title
@@ -90,25 +96,11 @@ export const pageQuery = graphql`
         featuredImage {
           childImageSharp {
             fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        socialImage {
-          childImageSharp {
-            fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
         }
       }
-      fields {
-        readingTime {
-          text
-        }
-        slug
-      }
-      tableOfContents
     }
   }
 `;

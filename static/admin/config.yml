@@ -5,24 +5,24 @@ backend:
   branch: master
 
 slug:
-  encoding: "ascii"
+  encoding: 'ascii'
   clean_accents: true
-  sanitize_replacement: "-"
+  sanitize_replacement: '-'
 
-media_folder: "content/uploads"
-public_folder: "/uploads"
+media_folder: 'content/uploads'
+public_folder: '/uploads'
 
 collections:
-  - name: "blog-post"
-    label: "Blog post"
-    folder: "content/blog"
+  - label: 'Blog post'
+    name: 'blog-post'
+    folder: 'content/blog'
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    preview_path: "/blog/{{slug}}"
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    preview_path: '/blog/{{slug}}'
     extension: mdx
     format: frontmatter
     fields:
-      - label: "Template Key"
+      - label: 'Template Key'
         name: templateKey
         widget: hidden
         default: blog-post
@@ -31,25 +31,25 @@ collections:
         name: title
         widget: string
 
-      - label: "Publish Date"
+      - label: 'Publish Date'
         name: date
         widget: datetime
-        date_format: "DD.MM.YYYY"
-        time_format: "HH:mm"
+        date_format: 'DD MMMM, YYYY'
+        time_format: 'HH:mm'
 
       - label: Description
         name: description
         widget: text
 
-      - label: "Featured Image"
+      - label: 'Featured Image'
         name: featuredImage
         widget: image
         required: false
-
-      - label: "Social Image"
-        name: socialImage
-        widget: image
-        required: false
+        fields:
+          - label: 'Caption'
+            name: 'caption'
+            widget: string
+            required: false
 
       - label: Body
         name: body
