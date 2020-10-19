@@ -24,7 +24,7 @@ export const colors = {
   },
   secondary: {
     light: 'hsl(332deg, 80%, 65%)', // pink
-    dark: 'hsl(50deg, 100%, 60%)', // Yellow
+    dark: 'hsl(67deg, 60%, 55%)', // greenish-yellow
   },
   // Grays, scaling from least-noticeable to most-noticeable
   gray300: {
