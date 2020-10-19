@@ -2,17 +2,15 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Bio from '../../components/bio';
-import Layout from '../../components/layout';
 import SEO from '../../components/seo';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-const TagTemplate = ({ data, location, pageContext: { tag } }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`;
+const TagTemplate = ({ data, pageContext: { tag } }) => {
   const posts = data.allMdx.nodes;
 
   if (posts.length === 0) {
     return (
-      <Layout location={location} title={siteTitle}>
+      <>
         <SEO title='All posts' />
         <Bio />
         <p>
@@ -20,12 +18,12 @@ const TagTemplate = ({ data, location, pageContext: { tag } }) => {
           directory you specified for the "gatsby-source-filesystem" plugin in
           gatsby-config.js).
         </p>
-      </Layout>
+      </>
     );
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <>
       <SEO title={'"' + tag + '" - posts'} />
       <h1>All posts tagged with '{tag}'</h1>
       <ol style={{ listStyle: `none` }}>
@@ -48,16 +46,14 @@ const TagTemplate = ({ data, location, pageContext: { tag } }) => {
                   <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
-                  <MDXRenderer itemProp='description'>
-                    {post.frontmatter.description || post.excerpt}
-                  </MDXRenderer>
+                  {post.frontmatter.description || post.excerpt}
                 </section>
               </article>
             </li>
           );
         })}
       </ol>
-    </Layout>
+    </>
   );
 };
 

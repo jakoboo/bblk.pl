@@ -1,5 +1,17 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
 
+import classNames from 'classnames';
+
+const getClasses = ({ props, child }) => {
+  let childClassName;
+
+  if (child && child.props && child.props.className) {
+    childClassName = child.props.className;
+  }
+
+  return classNames(props.className, childClassName);
+};
+
 const Primitive = ({ ...props }) => {
   return Children.map(props.children, (child) => {
     if (isValidElement(child)) {
@@ -19,3 +31,5 @@ const Primitive = ({ ...props }) => {
     return <div className={getClasses({ props, child })}>{child}</div>;
   });
 };
+
+export default Primitive;

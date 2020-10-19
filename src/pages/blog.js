@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
-import SEO from '../../components/seo';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import SEO from '../components/SEO';
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`;
+const BlogIndex = ({ data }) => {
+  const siteTitle = `Blog`;
   const posts = data.allMdx.nodes;
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO />
+    <>
+      <SEO title={siteTitle} />
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
           const title = post.frontmatter.title || post.fields.slug;
@@ -31,17 +29,15 @@ const BlogIndex = ({ data, location }) => {
                   </h2>
                   <small>{post.frontmatter.date}</small>
                 </header>
-                <section>
-                  <MDXRenderer itemProp='description'>
-                    {post.frontmatter.description || post.excerpt}
-                  </MDXRenderer>
+                <section itemProp='description'>
+                  {post.frontmatter.description || post.excerpt}
                 </section>
               </article>
             </li>
           );
         })}
       </ol>
-    </Layout>
+    </>
   );
 };
 
@@ -49,11 +45,6 @@ export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { fields: { collection: { eq: "blog" } } }

@@ -1,32 +1,36 @@
-import React from `react`
-import styled from "styled-components"
+import React from 'react';
+import styled from 'styled-components';
 
-const Root = styled(<></>)`
+import Primitive from '../Primitive';
+
+const Root = styled(Primitive)`
   ${({ theme, all, vertical, horizontal, top, right, bottom, left }) => {
-    let str = ''
+    let str = '';
     if (all) {
-      str += `padding: ${theme.spacing[all]}`
+      str += `padding: ${theme.spacing[all]}`;
     }
     if (vertical) {
-      str += `padding-top: ${theme.spacing[vertical]}; padding-bottom: ${theme.spacing[vertical]};`
+      str += `padding-top: ${theme.spacing[vertical]}; padding-bottom: ${theme.spacing[vertical]};`;
     }
     if (horizontal) {
-      str += `padding-left: ${theme.spacing[horizontal]}; padding-right: ${theme.spacing[horizontal]};`
+      str += `padding-left: ${theme.spacing[horizontal]}; padding-right: ${theme.spacing[horizontal]};`;
     }
     if (top) {
-      str += `padding-top: ${theme.spacing[top]};`
+      str += `padding-top: ${theme.spacing[top]};`;
     }
     if (right) {
-      str += `padding-right: ${theme.spacing[right]};`
+      str += `padding-right: ${theme.spacing[right]};`;
     }
     if (bottom) {
-      str += `padding-bottom: ${theme.spacing[bottom]};`
+      str += `padding-bottom: ${theme.spacing[bottom]};`;
     }
     if (left) {
-      str += `padding-left: ${theme.spacing[left]};`
+      str += `padding-left: ${theme.spacing[left]};`;
     }
-    return str
+    return str;
   }}
 `;
 
-const Padded = ({...props}) => (<Root {...props}/>)
+const Padded = ({ ...props }) => <Root {...props} />;
+
+export default Padded;

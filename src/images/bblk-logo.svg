@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="159" height="59" viewBox="0 0 159 59">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 21px;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: Montserrat-Bold, Montserrat;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: #0386e6;
+        font-size: 37px;
+      }
+    </style>
+  </defs>
+  <g id="Group_2" data-name="Group 2" transform="translate(-87 -10)">
+    <text id="Jakub" class="cls-1" transform="translate(91 30)"><tspan x="0" y="0">Jakub</tspan></text>
+    <text id="Bąbelek" class="cls-2" transform="translate(87 60)"><tspan x="0" y="0">Bąbelek</tspan></text>
+  </g>
+</svg>

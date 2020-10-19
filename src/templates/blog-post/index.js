@@ -3,20 +3,14 @@ import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
 
-import Bio from '../../components/bio';
-import Layout from '../../components/layout';
-import SEO from '../../components/seo';
+import Bio from '../../components/Bio';
+import SEO from '../../components/SEO';
 
-const BlogPostTemplate = ({
-  location,
-  data: { mdx: post, site },
-  pageContext,
-}) => {
-  const siteTitle = site.siteMetadata?.title || `Title`;
+const BlogPostTemplate = ({ data: { mdx: post }, pageContext }) => {
   const { previous, next } = pageContext;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -31,7 +25,9 @@ const BlogPostTemplate = ({
           <p>{post.frontmatter.date}</p>
           <span>{post.fields.readingTime.text}</span>
         </header>
-        <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+        {post.frontmatter.featuredImage && (
+          <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+        )}
         <section itemProp='articleBody'>
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
@@ -66,7 +62,7 @@ const BlogPostTemplate = ({
           </li>
         </ul>
       </nav>
-    </Layout>
+    </>
   );
 };
 

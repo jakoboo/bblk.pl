@@ -1,10 +1,10 @@
 import React from 'react';
 import Terser from 'terser';
 
-import { THEME_KEY, INITIAL_THEME_ATTR } from './src/constants';
+import { THEME_KEY, INITIAL_THEME_ATTR } from './src/theme';
 import { createColorsCssString } from './src/utils';
 
-import { Layout } from './src/components/layout';
+import Layout from './src/components/layout';
 
 function setTheme() {
   const themeKey = '🔑';
@@ -51,12 +51,6 @@ export const onRenderBody = ({ setPreBodyComponents, setHeadComponents }) => {
   setPreBodyComponents(<ThemeScriptTag />);
 };
 
-export const wrapPageElement = ({ data, location, element }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`;
-
-  return (
-    <Layout location={location} title={siteTitle}>
-      {element}
-    </Layout>
-  );
+export const wrapPageElement = ({ element, props }) => {
+  return <Layout {...props}>{element}</Layout>;
 };

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Jakub Bąbelek Personal Website`,
+    title: `Jakub Bąbelek`,
     author: {
       name: `Jakub Bąbelek`,
       summary: `student and Full Stack Developer living in Poznań, PL`,
@@ -14,6 +14,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -41,6 +42,43 @@ module.exports = {
       options: {
         path: `${__dirname}/content/demos`,
         name: `demos`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            // Headings and large font
+            family: `Montserrat`,
+            variants: [`400`, `700`],
+            subsets: [`latin-ext`],
+          },
+          {
+            // Body text
+            family: `Roboto`,
+            variants: [`400`, `400i`, `500`, `700`],
+            subsets: [`latin-ext`],
+          },
+          {
+            family: 'DM Serif Display',
+            variants: ['400'],
+            subsets: ['latin-ext'],
+          },
+          {
+            family: 'DM Serif Text',
+            variants: ['400'],
+            subsets: ['latin-ext'],
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: `${__dirname}/src/images`,
+        },
       },
     },
     // Including in your Gatsby plugins will transform any paths in your frontmatter
@@ -82,11 +120,14 @@ module.exports = {
         ],
       },
     },
+    // When using mdx reading time must be outside remark plugins to work
     `gatsby-remark-reading-time`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-offline`,
   ],
 };
