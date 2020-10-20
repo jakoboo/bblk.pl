@@ -39,7 +39,7 @@ export const ThemeContext = createContext({
 });
 export const useTheme = () => useContext(ThemeContext);
 
-const getTheme = () => {
+const getTheme = (window) => {
   const root = window.document.documentElement;
   // Because colors matter so much for the initial page view, we're
   // doing a lot of the work in gatsby-ssr. That way it can happen before
@@ -49,7 +49,7 @@ const getTheme = () => {
 };
 
 export const ContextThemeProvider = ({ children }) => {
-  const [themeName, setThemeName] = useState(getTheme());
+  const [themeName, setThemeName] = useState(getTheme(window));
 
   const contextValue = useMemo(() => {
     function toggle() {
