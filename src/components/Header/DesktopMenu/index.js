@@ -68,7 +68,7 @@ const ThemeToggleButton = styled(Button)`
 `;
 
 const DesktopMenu = () => {
-  const { themeName, toggleTheme: toggle } = useTheme();
+  const { themeName, toggle: toggleTheme } = useTheme();
   const [visible, setVisibility] = useState(true);
 
   useEffect(() => {
