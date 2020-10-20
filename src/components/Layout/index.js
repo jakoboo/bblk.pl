@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MemThemeProvider } from '../../ui/ThemeProvider';
+import { ContextThemeProvider } from '../../ui/ThemeContext';
 
 import Header from '../Header';
 import ContentWrap from '../../ui/ContentWrap';
@@ -8,7 +8,7 @@ import Text from '../../ui/Text';
 
 const Layout = ({ children }) => {
   return (
-    <MemThemeProvider>
+    <ContextThemeProvider>
       <div className='global-wrapper'>
         <Header />
         <main>{children}</main>
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
           </ContentWrap>
         </footer>
       </div>
-    </MemThemeProvider>
+    </ContextThemeProvider>
   );
 };
 

@@ -39,19 +39,17 @@ export const ThemeContext = createContext({
 });
 export const useTheme = () => useContext(ThemeContext);
 
-export const MemThemeProvider = ({ children }) => {
-  const [themeName, setThemeName] = useState(undefined);
+const getTheme = () => {
+  const root = window.document.documentElement;
+  // Because colors matter so much for the initial page view, we're
+  // doing a lot of the work in gatsby-ssr. That way it can happen before
+  // the React component tree mounts.
+  const initialColorValue = root.getAttribute(INITIAL_THEME_ATTR);
+  return initialColorValue;
+};
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-    // Because colors matter so much for the initial page view, we're
-    // doing a lot of the work in gatsby-ssr. That way it can happen before
-    // the React component tree mounts.
-    const initialColorValue = root.getAttribute(INITIAL_THEME_ATTR);
-    setThemeName(initialColorValue);
-
-    console.log(themeName);
-  }, []);
+export const ContextThemeProvider = ({ children }) => {
+  const [themeName, setThemeName] = useState(getTheme());
 
   const contextValue = useMemo(() => {
     function toggle() {
@@ -69,14 +67,12 @@ export const MemThemeProvider = ({ children }) => {
     };
   }, [themeName]);
 
-  if (!themeName) return <></>;
-
   return (
-    <ThemeProvider theme={Themes[contextValue.themeName]}>
-      <ThemeContext.Provider value={contextValue}>
+    <ThemeContext.Provider value={contextValue}>
+      <ThemeProvider theme={Themes[themeName]}>
         <GlobalStyles />
         {children}
-      </ThemeContext.Provider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ThemeContext.Provider>
   );
 };

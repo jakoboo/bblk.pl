@@ -9,7 +9,7 @@ import { breakpoints } from '../../../ui/variables';
 import Text from '../../../ui/Text';
 import Spaced from '../../../ui/Spaced';
 import Button from '../../../ui/Button';
-import { useTheme } from '../../../ui/ThemeProvider';
+import { useTheme } from '../../../ui/ThemeContext';
 
 import { Sun, Moon } from '@styled-icons/feather';
 
