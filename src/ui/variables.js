@@ -1,4 +1,4 @@
-export const THEME_KEY = 'color-mode';
+export const THEME_KEY = 'theme';
 export const INITIAL_THEME_ATTR = 'data-theme';
 
 export const colors = {
@@ -6,17 +6,9 @@ export const colors = {
     light: 'hsl(0deg, 0%, 10%)', // near-black
     dark: 'hsl(0deg, 0%, 100%)', // white
   },
-  textInverted: {
-    light: 'hsl(0deg, 0%, 100%)', // white
-    dark: 'hsl(0deg, 0%, 10%)', // near-black
-  },
   background: {
     light: 'hsl(200deg, 10%, 95%)', // pale bluish-white
     dark: 'hsl(200deg, 5%, 15%)', // graphite
-  },
-  backgroundInverted: {
-    light: 'hsl(200deg, 5%, 15%)', // graphite
-    dark: 'hsl(200deg, 10%, 95%)', // pale bluish-white
   },
   primary: {
     light: 'hsl(205deg, 70%, 50%)', // light-blue
@@ -39,6 +31,12 @@ export const colors = {
     light: 'hsl(0deg, 0%, 30%)',
     dark: 'hsl(0deg, 0%, 70%)',
   },
+};
+
+export const elevations = {
+  low: '0 0 0 1px rgba(0,0,0,0.05),0 2px 5px rgba(0,0,0,0.2)',
+  medium: '0 0 0 1px rgba(0,0,0,0.05),0 5px 10px rgba(0,0,0,0.22)',
+  high: '0 0 0 1px rgba(0,0,0,0.05),0 10px 20px rgba(0,0,0,0.25)',
 };
 
 export const fonts = {
@@ -105,6 +103,7 @@ export const breakpoints = {
 
 export default {
   colors,
+  elevations,
   fonts,
   fontSizes,
   spacing,

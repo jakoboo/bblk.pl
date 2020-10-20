@@ -8,40 +8,35 @@ const getFontSize = (theme, breakpoint) => {
   return theme.fontSizes.m[breakpoint];
 };
 
-const getColor = (color) => {
-  if (color) return `var(--color-${color})`;
-  else return 'var(--color-text)';
-};
-
 const Root = styled.blockquote`
   position: relative;
-  margin-left: -${({ theme }) => theme.spacing.xl};
-  padding-left: ${({ theme }) => theme.spacing.xl};
+  margin-left: -${(p) => p.theme.spacing.xl};
+  padding-left: ${(p) => p.theme.spacing.xl};
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
-    left: calc(${({ theme }) => theme.spacing.xl} / 3);
-    width: calc(${({ theme }) => theme.spacing.xl} / 3);
+    left: calc(${(p) => p.theme.spacing.xl} / 3);
+    width: calc(${(p) => p.theme.spacing.xl} / 3);
 
-    background-color: var(--color-backgroundInverted);
+    background-color: ${(p) => p.theme.backgroundInverted};
   }
 `;
 
 const QuoteText = styled(Text)`
-  font-family: ${({ theme }) => theme.fonts.serif};
+  font-family: ${(p) => p.theme.fonts.serif};
   //font-style: italic;
-  font-size: ${({ theme }) => getFontSize(theme, 'mobile')};
-  color: ${({ color }) => getColor(color)};
+  font-size: ${(p) => getFontSize(p.theme, 'mobile')};
+  color: ${(p) => p.theme.textColor};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: ${({ theme }) => getFontSize(theme, 'tablet')};
+  @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
+    font-size: ${(p) => getFontSize(p.theme, 'tablet')};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: ${({ theme }) => getFontSize(theme, 'desktop')};
+  @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
+    font-size: ${(p) => getFontSize(p.theme, 'desktop')};
   }
 `;
 

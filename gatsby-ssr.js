@@ -1,8 +1,7 @@
 import React from 'react';
 import Terser from 'terser';
 
-import { THEME_KEY, INITIAL_THEME_ATTR } from './src/theme';
-import { createColorsCssString } from './src/utils';
+import { THEME_KEY, INITIAL_THEME_ATTR } from './src/ui/variables';
 
 import Layout from './src/components/layout';
 
@@ -21,7 +20,7 @@ function setTheme() {
   if (hasUsedToggle) {
     theme = persistedPreference;
   } else {
-    //colorMode = prefersDarkFromMQ ? "dark" : "light"
+    colorMode = prefersDarkFromMQ ? 'dark' : 'light';
   }
 
   let root = document.documentElement;
@@ -42,12 +41,7 @@ const ThemeScriptTag = () => {
   return <script dangerouslySetInnerHTML={{ __html: calledFunction }} />;
 };
 
-const ColorStyles = () => {
-  return <style>{createColorsCssString()}</style>;
-};
-
 export const onRenderBody = ({ setPreBodyComponents, setHeadComponents }) => {
-  //setHeadComponents(<ColorStyles />)
   setPreBodyComponents(<ThemeScriptTag />);
 };
 

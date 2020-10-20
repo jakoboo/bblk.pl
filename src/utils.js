@@ -1,25 +1,25 @@
-import { colors, INITIAL_THEME_ATTR } from "./theme"
+import { colors, INITIAL_THEME_ATTR } from './ui/variables';
 
-export const createColorsCssString = () => {
+export const createThemeColorsCssString = () => {
   const cssLightVariableString = Object.entries(colors).reduce(
     (acc, [name, colorByTheme]) => {
-      return `${acc}\n--color-${name}: ${colorByTheme.light};`
+      return `${acc}\n--theme-colors-${name}: ${colorByTheme.light};`;
     },
-    ""
-  )
+    ''
+  );
 
   const cssDarkVariableString = Object.entries(colors).reduce(
     (acc, [name, colorByTheme]) => {
-      return `${acc}\n--color-${name}: ${colorByTheme.dark};`
+      return `${acc}\n--theme-colors-${name}: ${colorByTheme.dark};`;
     },
-    ""
-  )
+    ''
+  );
 
   const wrappedInSelectors = `
     :root { ${cssLightVariableString} }
   
     :root[${INITIAL_THEME_ATTR}=dark] { ${cssDarkVariableString} }
-  `
+  `;
 
-  return wrappedInSelectors
-}
+  return wrappedInSelectors;
+};

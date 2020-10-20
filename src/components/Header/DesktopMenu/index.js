@@ -5,9 +5,13 @@ import debounce from 'lodash/debounce';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
-import { breakpoints } from '../../../theme';
+import { breakpoints } from '../../../ui/variables';
 import Text from '../../../ui/Text';
 import Spaced from '../../../ui/Spaced';
+import Button from '../../../ui/Button';
+import { useTheme } from '../../../ui/ThemeProvider';
+
+import { Sun, Moon } from '@styled-icons/feather';
 
 const DesktopMenuWrap = styled.div`
   display: flex;
@@ -29,12 +33,12 @@ const MenuLink = styled(Link)`
   &:hover,
   &:focus {
     > span {
-      color: var(--color-gray700);
+      color: ${(p) => p.theme.gray700Color};
     }
   }
 
   &.active > span {
-    color: var(--color-gray500);
+    color: ${(p) => p.theme.gray500Color};
   }
 `;
 
@@ -44,8 +48,27 @@ const SiteTools = styled.section`
   display: flex;
   align-items: center;
 `;
-const themeName = 'light';
+
+const ThemeToggleButton = styled(Button)`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: ${(p) => p.theme.gray300Color};
+
+  svg {
+    stroke: ${(p) => p.theme.gray300Color};
+  }
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
 const DesktopMenu = () => {
+  const { themeName, toggleTheme: toggle } = useTheme();
   const [visible, setVisibility] = useState(true);
 
   useEffect(() => {
@@ -98,18 +121,19 @@ const DesktopMenu = () => {
         </nav>
       </SiteNavigation>
       <SiteTools aria-label='Site tools'>
-        <button>
+        <ThemeToggleButton unstyled onClick={() => toggleTheme()}>
           <Tippy
             key={themeName}
             content={`Change theme to ${
               themeName === 'light' ? 'dark' : 'light'
             }`}
             placement='bottom'
+            offset={[0, 20]}
             animation='shift-away'
           >
-            <span>change {themeName}</span>
+            <span>{themeName === 'dark' ? <Sun /> : <Moon />}</span>
           </Tippy>
-        </button>
+        </ThemeToggleButton>
       </SiteTools>
     </DesktopMenuWrap>
   ) : null;

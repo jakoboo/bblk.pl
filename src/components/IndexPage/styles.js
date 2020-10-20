@@ -34,8 +34,8 @@ export const HeaderHeading = styled(Heading)`
 
   background: -webkit-linear-gradient(
     left,
-    var(--color-primary),
-    var(--color-secondary)
+    ${(p) => p.theme.primaryColor},
+    ${(p) => p.theme.secondaryColor}
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -51,8 +51,8 @@ export const HeaderCallToActionWrap = styled(ContentWrap)`
     bottom: 0;
     left: 0;
     transform: translateX(-100%);
-    width: calc((100vw - ${({ theme }) => theme.breakpoints.desktopLarge}) / 2);
-    background: var(--color-backgroundInverted);
+    width: calc((100vw - ${(p) => p.theme.breakpoints.desktopLarge}) / 2);
+    background: ${(p) => p.theme.backgroundInverted};
   }
 `;
 

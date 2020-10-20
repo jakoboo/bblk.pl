@@ -1,53 +1,71 @@
-import React, { forwardRef, useRef } from 'react';
-import styled from 'styled-components';
-import Padded from '../Padded';
-import Spaced from '../Spaced';
-import Text from '../Text';
+import React, { forwardRef } from 'react';
+import styled, { css } from 'styled-components';
 
 const ButtonWrap = styled.button`
-  font-family: ${({ theme }) => theme.fonts.roboto};
-  font-size: ${({ theme }) => theme.fontSizes.xl.mobile};
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: ${(p) => p.theme.textColor};
+  font-family: ${(p) => p.theme.fonts.roboto};
+  font-size: ${(p) => p.theme.fontSizes.xl.mobile};
   line-height: 1;
   font-weight: 400;
   text-align: center;
   text-decoration: none;
-  transition: all 200ms linear;
+  transition: all 50ms linear;
   cursor: pointer;
 
-  display: inline-block;
-  padding: 5px;
-  border: 0;
-  border-radius: 10px;
-  color: var(--color-primary);
-  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(
-    to right,
-    var(--color-primary),
-    var(--color-secondary)
-  );
-
-  &:hover:not(:active) {
-    transform: translateY(-5%);
-    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
+  @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
+    font-size: ${(p) => p.theme.fontSizes.xl.tablet};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: ${({ theme }) => theme.fontSizes.xl.tablet};
+  @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
+    font-size: ${(p) => p.theme.fontSizes.xl.desktop};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    font-size: ${({ theme }) => theme.fontSizes.xl.desktop};
-  }
+  ${({ unstyled }) =>
+    unstyled
+      ? null
+      : css`
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+          border-radius: 10px;
+          color: ${(p) => p.theme.primaryColor};
+          box-shadow: ${(p) => p.theme.elevations.low};
+          background: linear-gradient(
+            to right,
+            ${(p) => p.theme.primaryColor},
+            ${(p) => p.theme.secondaryColor}
+          );
+
+          &:hover:not(:active) {
+            transform: translateY(-5%) scale(1.01);
+            box-shadow: ${(p) => p.theme.elevations.medium};
+          }
+          &:active {
+            outline: 0;
+            transform: translateY(-5%) scale(0.9);
+          }
+        `}
 `;
 
 const ButtonContent = styled.div`
   border-radius: 5px;
-  background: var(--color-background);
+  background: ${(p) => p.theme.backgroundColor};
 `;
 
-const Button = forwardRef(({ element, children, ...props }, ref) => (
-  <ButtonWrap ref={ref} tabIndex={0} role='button' as={element} {...props}>
-    <ButtonContent>{children}</ButtonContent>
+const Button = forwardRef(({ unstyled, element, children, ...props }, ref) => (
+  <ButtonWrap
+    ref={ref}
+    tabIndex={0}
+    unstyled={unstyled}
+    role='button'
+    as={element}
+    {...props}
+  >
+    {unstyled ? children : <ButtonContent>{children}</ButtonContent>}
   </ButtonWrap>
 ));
 

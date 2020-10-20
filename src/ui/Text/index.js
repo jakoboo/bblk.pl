@@ -14,15 +14,13 @@ const getFontSize = (theme, order, breakpoint) => {
   }
 };
 
-const getColor = ({ order, color }) => {
-  if (color) return `var(--color-${color})`;
-
+const getColor = ({ theme, order }) => {
   switch (order) {
     case 'caption':
     case 'meta':
-      return 'var(--color-gray700)';
+      return theme.gray700Color;
     default:
-      return 'var(--color-text)';
+      return theme.textColor;
   }
 };
 
@@ -35,7 +33,8 @@ const Root = styled.p`
   font-weight: ${({ order }) => (order === 'meta' ? 500 : 400)};
   ${({ order }) => (order === 'meta' ? 'text-transform: uppercase' : null)};
 
-  color: ${({ order, color }) => getColor({ order, color })};
+  color: ${({ theme, order, color }) =>
+    color ? color : getColor({ theme, order })};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: ${({ theme, order }) => getFontSize(theme, order, 'tablet')};

@@ -54,11 +54,6 @@ const getFontWeight = (level) => {
   }
 };
 
-const getColor = (color) => {
-  if (color) return `var(--color-${color})`;
-  else return 'var(--color-text)';
-};
-
 export const Root = styled.h1`
   margin: 0;
 
@@ -68,13 +63,13 @@ export const Root = styled.h1`
   font-weight: ${({ level }) => getFontWeight(level)};
   ${({ level }) => (level === 6 ? 'text-transform: uppercase' : null)};
 
-  color: ${({ color }) => getColor(color)};
+  color: ${(p) => p.theme.textColor};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
     font-size: ${({ theme, level }) => getFontSize(theme, level, 'tablet')};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+  @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
     font-size: ${({ theme, level }) => getFontSize(theme, level, 'desktop')};
   }
 `;

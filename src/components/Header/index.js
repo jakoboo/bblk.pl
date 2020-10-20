@@ -35,10 +35,10 @@ const SiteTitle = styled(Heading)`
     width: auto;
 
     .cls-1 {
-      fill: var(--color-text);
+      fill: ${(p) => p.theme.textColor};
     }
     .cls-2 {
-      fill: var(--color-primary);
+      fill: ${(p) => p.theme.primaryColor};
     }
   }
 `;
