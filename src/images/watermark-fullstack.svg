@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="929" height="259" viewBox="0 0 929 259">
+  <defs>
+    <filter id="Full-Stack" x="10" y="10" width="919" height="249" filterUnits="userSpaceOnUse">
+      <feOffset dx="5" dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-opacity="0.063"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Full-Stack-2" x="0" y="0" width="919" height="249" filterUnits="userSpaceOnUse">
+      <feOffset dx="-5" dy="-5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur-2"/>
+      <feFlood flood-color="#fff" flood-opacity="0.608"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Watermark" transform="translate(27.499 27.848)">
+    <g transform="matrix(1, 0, 0, 1, -27.5, -27.85)" filter="url(#Full-Stack)">
+      <text id="Full-Stack-3" data-name="Full-Stack" transform="translate(27.5 189.5)" fill="#f0f0f0" font-size="167" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="0" y="0">Full-Stack</tspan></text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -27.5, -27.85)" filter="url(#Full-Stack-2)">
+      <text id="Full-Stack-4" data-name="Full-Stack" transform="translate(27.5 189.5)" fill="#f0f0f0" font-size="167" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="0" y="0">Full-Stack</tspan></text>
+    </g>
+  </g>
+</svg>

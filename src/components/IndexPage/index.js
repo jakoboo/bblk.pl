@@ -15,6 +15,8 @@ import {
 import Button from '../../ui/Button';
 import Padded from '../../ui/Padded';
 
+import WatermarkFullstack from '../../images/watermark-fullstack.svg';
+
 const Index = ({ data }) => {
   const siteTitle = `Portfolio`;
 

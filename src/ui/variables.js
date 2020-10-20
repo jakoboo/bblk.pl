@@ -12,16 +12,16 @@ export const colors = {
   },
   primary: {
     light: 'hsl(205deg, 70%, 50%)',
-    dark: 'hsl(190deg, 90%, 50%)',
+    dark: 'hsl(328deg, 81%, 65%)',
   },
   secondary: {
     light: 'hsl(332deg, 80%, 65%)',
-    dark: 'hsl(330deg, 65%, 70%)',
+    dark: 'hsl(50deg, 69%, 61%)',
   },
   // Grays, scaling from least-noticeable to most-noticeable
   gray300: {
-    light: 'hsl(0deg, 0%, 70%)',
-    dark: 'hsl(0deg, 0%, 30%)',
+    light: 'hsl(0deg, 0%, 80%)',
+    dark: 'hsl(0deg, 0%, 20%)',
   },
   gray500: {
     light: 'hsl(0deg, 0%, 50%)',

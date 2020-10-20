@@ -25,6 +25,7 @@ export const HeaderContentWrap = styled(ContentWrap)`
 `;
 
 export const HeaderTextWrap = styled.div`
+  position: relative;
   max-width: 40rem;
 `;
 

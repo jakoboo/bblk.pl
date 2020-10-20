@@ -12,7 +12,7 @@ const ButtonWrap = styled.button`
   font-weight: 400;
   text-align: center;
   text-decoration: none;
-  transition: all 50ms linear;
+  transition: transform 50ms linear, box-shadow 50ms linear;
   cursor: pointer;
 
   @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {

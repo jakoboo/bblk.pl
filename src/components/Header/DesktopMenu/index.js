@@ -53,10 +53,10 @@ const ThemeToggleButton = styled(Button)`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  color: ${(p) => p.theme.gray300Color};
+  color: ${(p) => p.theme.gray500Color};
 
   svg {
-    stroke: ${(p) => p.theme.gray300Color};
+    stroke: ${(p) => p.theme.gray500Color};
   }
   &:hover,
   &:focus {
@@ -122,6 +122,7 @@ const DesktopMenu = () => {
       </SiteNavigation>
       <SiteTools aria-label='Site tools'>
         <ThemeToggleButton unstyled onClick={() => toggleTheme()}>
+          {console.log(themeName)}
           <Tippy
             key={themeName}
             content={`Change theme to ${
@@ -131,7 +132,7 @@ const DesktopMenu = () => {
             offset={[0, 20]}
             animation='shift-away'
           >
-            <span>{themeName === 'dark' ? <Sun /> : <Moon />}</span>
+            <span>{themeName === 'light' ? <Sun /> : <Moon />}</span>
           </Tippy>
         </ThemeToggleButton>
       </SiteTools>

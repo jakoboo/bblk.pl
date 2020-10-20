@@ -20,7 +20,7 @@ function setTheme() {
   if (hasUsedToggle) {
     theme = persistedPreference;
   } else {
-    colorMode = prefersDarkFromMQ ? 'dark' : 'light';
+    theme = prefersDarkFromMQ ? 'dark' : 'light';
   }
 
   let root = document.documentElement;
