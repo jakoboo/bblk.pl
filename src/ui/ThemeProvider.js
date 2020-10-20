@@ -15,11 +15,11 @@ const rootTheme = {
 };
 
 const lightTheme = {
-  backgroundInverted: variables.colors.background.dark,
+  backgroundAccent: 'var(--theme-colors-gray700)',
 };
 
 const darkTheme = {
-  backgroundInverted: variables.colors.background.light,
+  backgroundAccent: 'var(--theme-colors-gray300)',
 };
 
 export const Themes = {

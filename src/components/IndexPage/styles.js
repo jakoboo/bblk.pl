@@ -52,7 +52,7 @@ export const HeaderCallToActionWrap = styled(ContentWrap)`
     left: 0;
     transform: translateX(-100%);
     width: calc((100vw - ${(p) => p.theme.breakpoints.desktopLarge}) / 2);
-    background: ${(p) => p.theme.backgroundInverted};
+    background: ${(p) => p.theme.backgroundAccent};
   }
 `;
 

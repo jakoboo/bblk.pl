@@ -3,20 +3,20 @@ export const INITIAL_THEME_ATTR = 'data-theme';
 
 export const colors = {
   text: {
-    light: 'hsl(0deg, 0%, 10%)', // near-black
-    dark: 'hsl(0deg, 0%, 100%)', // white
+    light: 'hsl(0deg, 0%, 10%)',
+    dark: 'hsl(0deg, 0%, 100%)',
   },
   background: {
-    light: 'hsl(200deg, 10%, 95%)', // pale bluish-white
-    dark: 'hsl(200deg, 5%, 15%)', // graphite
+    light: 'hsl(200deg, 10%, 95%)',
+    dark: 'hsl(200deg, 5%, 15%)',
   },
   primary: {
-    light: 'hsl(205deg, 70%, 50%)', // light-blue
-    dark: 'hsl(190deg, 100%, 50%)', // Cyan
+    light: 'hsl(205deg, 70%, 50%)',
+    dark: 'hsl(190deg, 90%, 50%)',
   },
   secondary: {
-    light: 'hsl(332deg, 80%, 65%)', // pink
-    dark: 'hsl(67deg, 60%, 55%)', // greenish-yellow
+    light: 'hsl(332deg, 80%, 65%)',
+    dark: 'hsl(330deg, 65%, 70%)',
   },
   // Grays, scaling from least-noticeable to most-noticeable
   gray300: {
