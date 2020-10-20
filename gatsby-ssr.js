@@ -3,7 +3,7 @@ import Terser from 'terser';
 
 import { THEME_KEY, INITIAL_THEME_ATTR } from './src/ui/variables';
 
-import Layout from './src/components/layout';
+import Layout from './src/components/Layout';
 
 function setTheme() {
   const themeKey = '🔑';
