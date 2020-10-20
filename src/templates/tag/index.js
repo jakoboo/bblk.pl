@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Bio from '../../components/bio';
-import SEO from '../../components/seo';
+import Bio from '../../components/Bio';
+import SEO from '../../components/SEO';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const TagTemplate = ({ data, pageContext: { tag } }) => {
