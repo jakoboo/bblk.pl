@@ -5,21 +5,32 @@ import ContentWrap from '../../ui/ContentWrap';
 
 export const HeaderWrap = styled.header`
   position: relative;
-  padding-top: 6rem;
+  padding-top: 10rem;
   overflow-x: hidden;
+  overflow-y: visible;
 
   svg {
     display: none;
     position: absolute;
     top: -10%;
-    right: -10%;
-    width: 50%;
-    height: 100%;
+    right: -20%;
+    width: 70%;
+    height: 120%;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    svg {
+      display: block;
+    }
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     svg {
       display: block;
+      top: -10%;
+      right: -20%;
+      //width: 50%;
+      height: 120%;
     }
   }
 `;
@@ -43,12 +54,8 @@ export const HeaderContentWrap = styled(ContentWrap)`
 export const HeaderTextWrap = styled.div`
   position: relative;
   max-width: 40rem;
-  text-align: center;
-  margin: auto;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    text-align: left;
-    margin: 0;
   }
 `;
 
