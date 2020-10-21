@@ -3,37 +3,37 @@ export const INITIAL_THEME_ATTR = 'data-theme';
 
 export const colors = {
   text: {
-    light: 'hsl(0deg, 0%, 10%)',
-    dark: 'hsl(0deg, 0%, 100%)',
+    light: 'hsl(0, 0%, 10%)',
+    dark: 'hsl(0, 0%, 100%)',
   },
   bgPrimary: {
-    light: 'hsl(200deg, 94%, 100%)',
-    dark: 'hsl(200deg, 5%, 10%)',
+    light: 'hsl(0, 0%, 94%)',
+    dark: 'hsl(200, 5%, 10%)',
   },
   bgSecondary: {
-    light: 'hsl(200deg, 5%, 90%)',
-    dark: 'hsl(200deg, 7%, 20%)',
+    light: 'hsl(0, 0%, 85%)',
+    dark: 'hsl(200, 7%, 20%)',
   },
   primary: {
-    light: 'hsl(205deg, 70%, 50%)',
-    dark: 'hsl(328deg, 81%, 65%)',
+    light: 'hsl(205, 70%, 50%)',
+    dark: 'hsl(328, 81%, 65%)',
   },
   secondary: {
-    light: 'hsl(332deg, 80%, 65%)',
-    dark: 'hsl(50deg, 69%, 61%)',
+    light: 'hsl(332, 80%, 65%)',
+    dark: 'hsl(50, 69%, 61%)',
   },
   // Grays, scaling from least-noticeable to most-noticeable
   gray300: {
-    light: 'hsl(0deg, 0%, 80%)',
-    dark: 'hsl(0deg, 0%, 20%)',
+    light: 'hsl(0, 0%, 80%)',
+    dark: 'hsl(0, 0%, 20%)',
   },
   gray500: {
-    light: 'hsl(0deg, 0%, 50%)',
-    dark: 'hsl(0deg, 0%, 50%)',
+    light: 'hsl(0, 0%, 50%)',
+    dark: 'hsl(0, 0%, 50%)',
   },
   gray700: {
-    light: 'hsl(0deg, 0%, 30%)',
-    dark: 'hsl(0deg, 0%, 70%)',
+    light: 'hsl(0, 0%, 30%)',
+    dark: 'hsl(0, 0%, 70%)',
   },
 };
 

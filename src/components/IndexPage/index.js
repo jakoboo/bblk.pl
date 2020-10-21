@@ -15,7 +15,7 @@ import {
 import Button from '../../ui/Button';
 import Padded from '../../ui/Padded';
 
-import WatermarkFullstack from '../../images/watermark-fullstack.svg';
+import Shapes from '../../images/Shapes.svg';
 
 const Index = ({ data }) => {
   const siteTitle = `Portfolio`;
@@ -24,6 +24,7 @@ const Index = ({ data }) => {
     <>
       <SEO title={siteTitle} />
       <HeaderWrap aria-labelledby='introduction-label'>
+        <Shapes />
         <HeaderContentWrap>
           <HeaderTextWrap>
             <HeaderHeading level={1} id='introduction-label'>

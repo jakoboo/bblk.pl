@@ -6,6 +6,22 @@ import ContentWrap from '../../ui/ContentWrap';
 export const HeaderWrap = styled.header`
   position: relative;
   padding-top: 6rem;
+  overflow-x: hidden;
+
+  svg {
+    display: none;
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 50%;
+    height: 100%;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    svg {
+      display: block;
+    }
+  }
 `;
 
 export const HeaderContentWrap = styled(ContentWrap)`
@@ -27,6 +43,13 @@ export const HeaderContentWrap = styled(ContentWrap)`
 export const HeaderTextWrap = styled.div`
   position: relative;
   max-width: 40rem;
+  text-align: center;
+  margin: auto;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    text-align: left;
+    margin: 0;
+  }
 `;
 
 export const HeaderHeading = styled(Heading)`
