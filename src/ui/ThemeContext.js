@@ -11,7 +11,7 @@ import variables, { THEME_KEY, INITIAL_THEME_ATTR } from './variables';
 
 const rootTheme = {
   ...variables,
-  backgroundColor: 'var(--theme-colors-background)',
+  backgroundColor: 'var(--theme-colors-bgPrimary)',
   textColor: 'var(--theme-colors-text)',
   primaryColor: 'var(--theme-colors-primary)',
   secondaryColor: 'var(--theme-colors-secondary)',
@@ -21,11 +21,11 @@ const rootTheme = {
 };
 
 const lightTheme = {
-  backgroundAccent: 'var(--theme-colors-gray300)',
+  backgroundSecondary: 'var(--theme-colors-bgSecondary)',
 };
 
 const darkTheme = {
-  backgroundAccent: 'var(--theme-colors-gray300)',
+  backgroundSecondary: 'var(--theme-colors-bgSecondary)',
 };
 
 export const Themes = {
@@ -39,17 +39,17 @@ export const ThemeContext = createContext({
 });
 export const useTheme = () => useContext(ThemeContext);
 
-const getTheme = (window) => {
-  const root = window.document.documentElement;
-  // Because colors matter so much for the initial page view, we're
-  // doing a lot of the work in gatsby-ssr. That way it can happen before
-  // the React component tree mounts.
-  const initialColorValue = root.getAttribute(INITIAL_THEME_ATTR);
-  return initialColorValue;
-};
-
 export const ContextThemeProvider = ({ children }) => {
-  const [themeName, setThemeName] = useState(getTheme(window));
+  const [themeName, setThemeName] = useState('light');
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    // Because colors matter so much for the initial page view, we're
+    // doing a lot of the work in gatsby-ssr. That way it can happen before
+    // the React component tree mounts.
+    const initialColorValue = root.getAttribute(INITIAL_THEME_ATTR);
+    setThemeName(initialColorValue);
+  }, []);
 
   const contextValue = useMemo(() => {
     function toggle() {

@@ -9,17 +9,13 @@ import Text from '../../ui/Text';
 const Layout = ({ children }) => {
   return (
     <ContextThemeProvider>
-      <div className='global-wrapper'>
-        <Header />
-        <main>{children}</main>
-        <footer>
-          <ContentWrap>
-            <Text order='meta'>
-              © {new Date().getFullYear()}, Jakub Bąbelek
-            </Text>
-          </ContentWrap>
-        </footer>
-      </div>
+      <Header />
+      <main>{children}</main>
+      <footer>
+        <ContentWrap>
+          <Text order='meta'>© {new Date().getFullYear()}, Jakub Bąbelek</Text>
+        </ContentWrap>
+      </footer>
     </ContextThemeProvider>
   );
 };

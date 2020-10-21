@@ -21,7 +21,7 @@ const Root = styled.blockquote`
     left: calc(${(p) => p.theme.spacing.xl} / 3);
     width: calc(${(p) => p.theme.spacing.xl} / 3);
 
-    background-color: ${(p) => p.theme.backgroundAccent};
+    background-color: ${(p) => p.theme.backgroundSecondary};
   }
 `;
 

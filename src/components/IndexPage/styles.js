@@ -33,6 +33,7 @@ export const HeaderHeading = styled(Heading)`
   display: inline-block;
   font-weight: 700;
 
+  /*
   background: -webkit-linear-gradient(
     left,
     ${(p) => p.theme.primaryColor},
@@ -40,6 +41,7 @@ export const HeaderHeading = styled(Heading)`
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  */
 `;
 
 export const HeaderCallToActionWrap = styled(ContentWrap)`
@@ -53,7 +55,7 @@ export const HeaderCallToActionWrap = styled(ContentWrap)`
     left: 0;
     transform: translateX(-100%);
     width: calc((100vw - ${(p) => p.theme.breakpoints.desktopLarge}) / 2);
-    background: ${(p) => p.theme.backgroundAccent};
+    background: ${(p) => p.theme.backgroundSecondary};
   }
 `;
 

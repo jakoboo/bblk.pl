@@ -122,7 +122,6 @@ const DesktopMenu = () => {
       </SiteNavigation>
       <SiteTools aria-label='Site tools'>
         <ThemeToggleButton unstyled onClick={() => toggleTheme()}>
-          {console.log(themeName)}
           <Tippy
             key={themeName}
             content={`Change theme to ${

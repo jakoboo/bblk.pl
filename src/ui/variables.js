@@ -6,9 +6,13 @@ export const colors = {
     light: 'hsl(0deg, 0%, 10%)',
     dark: 'hsl(0deg, 0%, 100%)',
   },
-  background: {
-    light: 'hsl(200deg, 10%, 95%)',
+  bgPrimary: {
+    light: 'hsl(200deg, 94%, 100%)',
     dark: 'hsl(200deg, 5%, 10%)',
+  },
+  bgSecondary: {
+    light: 'hsl(200deg, 5%, 90%)',
+    dark: 'hsl(200deg, 7%, 20%)',
   },
   primary: {
     light: 'hsl(205deg, 70%, 50%)',
