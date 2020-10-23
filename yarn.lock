@@ -976,7 +976,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.5":
+"@babel/runtime@^7.10.5", "@babel/runtime@^7.3.1":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
   integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
@@ -4640,15 +4640,15 @@ command-exists@^1.2.4:
   resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.2.9.tgz#c50725af3808c8ab0260fd60b01fbfa25b954f69"
   integrity sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==
 
+commander@2, commander@^2.20.0, commander@^2.20.3, commander@^2.8.1:
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
 commander@2.17.x:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
-
-commander@^2.20.0, commander@^2.20.3, commander@^2.8.1:
-  version "2.20.3"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
-  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
 commander@~2.19.0:
   version "2.19.0"
@@ -5335,6 +5335,16 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
+d3-array@^1.2.0:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
+  integrity sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
+
+d3-polygon@^1.0.3:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/d3-polygon/-/d3-polygon-1.0.6.tgz#0bf8cb8180a6dc107f518ddf7975e12abbfbd38e"
+  integrity sha512-k+RF7WvI08PC8reEoXa/w2nSg5AUMTi+peBD9cmFc+0ixHfbs4QmxxkarVal1IkVkgxVuk9JSHhJURHiyHKAuQ==
+
 damerau-levenshtein@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.6.tgz#143c1641cb3d85c60c32329e26899adea8701791"
@@ -5944,6 +5954,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+earcut@^2.1.1:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.2.2.tgz#41b0bc35f63e0fe80da7cddff28511e7e2e80d11"
+  integrity sha512-eZoZPPJcUHnfRZ0PjLvx2qBordSiO8ofC3vt+qACLM95u+4DovnbYNpQtJh0DNsWj8RnxrQytD4WA8gj5cRIaQ==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -7024,6 +7039,18 @@ flatted@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.1.0.tgz#a5d06b4a8b01e3a63771daa5cb7a1903e2e57067"
   integrity sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
+
+flubber@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/flubber/-/flubber-0.4.2.tgz#14452d4a838cc3b9f2fb6175da94e35acd55fbaa"
+  integrity sha512-79RkJe3rA4nvRCVc2uXjj7U/BAUq84TS3KHn6c0Hr9K64vhj83ZNLUziNx4pJoBumSPhOl5VjH+Z0uhi+eE8Uw==
+  dependencies:
+    d3-array "^1.2.0"
+    d3-polygon "^1.0.3"
+    earcut "^2.1.1"
+    svg-path-properties "^0.2.1"
+    svgpath "^2.2.1"
+    topojson-client "^3.0.0"
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -13955,6 +13982,14 @@ react-split-pane@^0.1.85:
     react-lifecycles-compat "^3.0.4"
     react-style-proptype "^3.2.2"
 
+react-spring@^8.0.27:
+  version "8.0.27"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.27.tgz#97d4dee677f41e0b2adcb696f3839680a3aa356a"
+  integrity sha512-nDpWBe3ZVezukNRandTeLSPcwwTMjNVu1IDq9qA/AMiUqHuRN4BeSWvKr3eIxxg1vtiYiOLy4FqdfCP5IoP77g==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    prop-types "^15.5.8"
+
 react-style-proptype@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-3.2.2.tgz#d8e998e62ce79ec35b087252b90f19f1c33968a0"
@@ -16150,6 +16185,11 @@ supports-color@^7.0.0, supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+svg-path-properties@^0.2.1:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/svg-path-properties/-/svg-path-properties-0.2.2.tgz#b073d81be7292eae0e233ab8a83f58dc27113296"
+  integrity sha1-sHPYG+cpLq4OIzq4qD9Y3CcRMpY=
+
 svg-react-loader@^0.4.4:
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/svg-react-loader/-/svg-react-loader-0.4.6.tgz#b263efb3e3d2fff4c682a729351aba5f185051a1"
@@ -16185,6 +16225,11 @@ svgo@1.3.2, svgo@^1.0.0:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+svgpath@^2.2.1:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/svgpath/-/svgpath-2.3.0.tgz#efc76705deab6bd1774e9f0ed038bb661b5e4d23"
+  integrity sha512-N/4UDu3Y2ICik0daMmFW1tplw0XPs1nVIEVYkTiQfj9/JQZeEtAKaSYwheCwje1I4pQ5r22fGpoaNIvGgsyJyg==
 
 swap-case@^1.1.0:
   version "1.1.2"
@@ -16528,6 +16573,13 @@ topbar@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/topbar/-/topbar-0.1.4.tgz#d050e536ef5053d9629499ed71008b88cb2398fb"
   integrity sha512-P3n4WnN4GFd2mQXDo30rQmsAGe4V1bVkggtTreSbNyL50Fyc+eVkW5oatSLeGQmJoan2TLIgoXUZypN+6nw4MQ==
+
+topojson-client@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/topojson-client/-/topojson-client-3.1.0.tgz#22e8b1ed08a2b922feeb4af6f53b6ef09a467b99"
+  integrity sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==
+  dependencies:
+    commander "2"
 
 toposort@^1.0.0:
   version "1.0.7"

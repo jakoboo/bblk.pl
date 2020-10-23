@@ -2,37 +2,13 @@ import styled from 'styled-components';
 
 import Heading from '../../ui/Heading';
 import ContentWrap from '../../ui/ContentWrap';
+import GridPatternSVG from '../../images/circle_grid.svg';
 
 export const HeaderWrap = styled.header`
   position: relative;
   padding-top: 10rem;
   overflow-x: hidden;
   overflow-y: visible;
-
-  svg {
-    display: none;
-    position: absolute;
-    top: -10%;
-    right: -20%;
-    width: 70%;
-    height: 120%;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    svg {
-      display: block;
-    }
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    svg {
-      display: block;
-      top: -10%;
-      right: -20%;
-      //width: 50%;
-      height: 120%;
-    }
-  }
 `;
 
 export const HeaderContentWrap = styled(ContentWrap)`
@@ -53,7 +29,7 @@ export const HeaderContentWrap = styled(ContentWrap)`
 
 export const HeaderTextWrap = styled.div`
   position: relative;
-  max-width: 40rem;
+  max-width: 45rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
   }
@@ -74,21 +50,32 @@ export const HeaderHeading = styled(Heading)`
   */
 `;
 
-export const HeaderCallToActionWrap = styled(ContentWrap)`
-  position: relative;
+export const CallToActionWrap = styled.div`
+  text-align: center;
+`;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    transform: translateX(-100%);
-    width: calc((100vw - ${(p) => p.theme.breakpoints.desktopLarge}) / 2);
-    background: ${(p) => p.theme.backgroundSecondary};
+export const GridPattern = styled(GridPatternSVG)`
+  position: absolute;
+  z-index: -1;
+  transform: translate(-70%, -50%);
+
+  circle {
+    fill: ${(p) => p.theme.bgWatermark};
   }
 `;
 
-export const HeaderCallToActionContentWrap = styled(HeaderTextWrap)`
-  text-align: center;
+export const CircleWatermark = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  transform: translate(15%, -15%);
+  width: 25vw;
+  height: 25vw;
+  background: ${(p) => p.theme.bgWatermark};
+  border-radius: 100%;
+
+  @media (max-width: ${(p) => p.theme.breakpoints.desktop}) {
+    display: none;
+  }
 `;

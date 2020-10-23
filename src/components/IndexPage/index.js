@@ -9,13 +9,13 @@ import {
   HeaderContentWrap,
   HeaderTextWrap,
   HeaderHeading,
-  HeaderCallToActionWrap,
-  HeaderCallToActionContentWrap,
+  CallToActionWrap,
+  GridPattern,
+  CircleWatermark,
 } from './styles';
+import Blob from '../../ui/Blob';
 import Button from '../../ui/Button';
 import Padded from '../../ui/Padded';
-
-import Shapes from '../../images/Shapes.svg';
 
 const Index = ({ data }) => {
   const siteTitle = `Portfolio`;
@@ -24,9 +24,11 @@ const Index = ({ data }) => {
     <>
       <SEO title={siteTitle} />
       <HeaderWrap aria-labelledby='introduction-label'>
-        <Shapes />
+        <CircleWatermark />
         <HeaderContentWrap>
+          <Blob />
           <HeaderTextWrap>
+            <GridPattern />
             <HeaderHeading level={1} id='introduction-label'>
               Full Stack Developer
             </HeaderHeading>
@@ -45,19 +47,17 @@ const Index = ({ data }) => {
                 on my dev blog.
               </Text>
             </Spaced>
+            <Spaced vertical='5x'>
+              <CallToActionWrap>
+                <Button element={Link} to='/about'>
+                  <Padded vertical='m' horizontal='8x'>
+                    Learn more
+                  </Padded>
+                </Button>
+              </CallToActionWrap>
+            </Spaced>
           </HeaderTextWrap>
         </HeaderContentWrap>
-        <HeaderCallToActionWrap>
-          <HeaderCallToActionContentWrap>
-            <Spaced vertical='4x'>
-              <Button element={Link} to='/contact'>
-                <Padded vertical='s' horizontal='8x'>
-                  Hire me
-                </Padded>
-              </Button>
-            </Spaced>
-          </HeaderCallToActionContentWrap>
-        </HeaderCallToActionWrap>
       </HeaderWrap>
     </>
   );

@@ -11,7 +11,10 @@ import variables, { THEME_KEY, INITIAL_THEME_ATTR } from './variables';
 
 const rootTheme = {
   ...variables,
-  backgroundColor: 'var(--theme-colors-bgPrimary)',
+  bgColor: 'var(--theme-colors-bgPrimary)',
+  bgSecondary: 'var(--theme-colors-bgSecondary)',
+  bgWatermark: 'var(--theme-colors-bgWatermark)',
+  bgAccent: 'var(--theme-colors-bgAccent)',
   textColor: 'var(--theme-colors-text)',
   primaryColor: 'var(--theme-colors-primary)',
   secondaryColor: 'var(--theme-colors-secondary)',
@@ -20,13 +23,9 @@ const rootTheme = {
   gray300Color: 'var(--theme-colors-gray300)',
 };
 
-const lightTheme = {
-  backgroundSecondary: 'var(--theme-colors-bgSecondary)',
-};
+const lightTheme = {};
 
-const darkTheme = {
-  backgroundSecondary: 'var(--theme-colors-bgSecondary)',
-};
+const darkTheme = {};
 
 export const Themes = {
   light: { ...rootTheme, ...lightTheme },

@@ -53,7 +53,7 @@ const ButtonWrap = styled.button`
 
 const ButtonContent = styled.div`
   border-radius: 5px;
-  background: ${(p) => p.theme.backgroundColor};
+  background: ${(p) => p.theme.bgColor};
 `;
 
 const Button = forwardRef(({ unstyled, element, children, ...props }, ref) => (

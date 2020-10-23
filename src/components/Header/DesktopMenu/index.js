@@ -17,7 +17,7 @@ const DesktopMenuWrap = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const SiteNavigation = styled.section``;
@@ -116,12 +116,23 @@ const DesktopMenu = () => {
                   </MenuLinkText>
                 </MenuLink>
               </MenuLinkWrap>
+              <MenuLinkWrap>
+                <MenuLink to='/about' activeClassName='active'>
+                  <MenuLinkText order='body' element='span'>
+                    About
+                  </MenuLinkText>
+                </MenuLink>
+              </MenuLinkWrap>
             </Spaced>
           </ul>
         </nav>
       </SiteNavigation>
       <SiteTools aria-label='Site tools'>
-        <ThemeToggleButton unstyled onClick={() => toggleTheme()}>
+        <ThemeToggleButton
+          unstyled
+          aria-label='Theme toggle button'
+          onClick={() => toggleTheme()}
+        >
           <Tippy
             key={themeName}
             content={`Change theme to ${

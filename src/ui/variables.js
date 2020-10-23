@@ -3,16 +3,24 @@ export const INITIAL_THEME_ATTR = 'data-theme';
 
 export const colors = {
   text: {
-    light: 'hsl(0, 0%, 10%)',
+    light: 'hsl(0, 1%, 27%)',
     dark: 'hsl(0, 0%, 100%)',
   },
   bgPrimary: {
-    light: 'hsl(0, 0%, 94%)',
+    light: 'hsl(0, 0%, 100%)',
     dark: 'hsl(200, 5%, 10%)',
   },
   bgSecondary: {
-    light: 'hsl(0, 0%, 85%)',
+    light: 'hsl(220, 10%, 94%)',
     dark: 'hsl(200, 7%, 20%)',
+  },
+  bgWatermark: {
+    light: 'hsl(0, 0%, 97%)',
+    dark: 'hsl(0, 0%, 97%)',
+  },
+  bgAccent: {
+    light: 'hsl(0, 0%, 61%)',
+    dark: 'hsl(0, 0%, 97%)',
   },
   primary: {
     light: 'hsl(205, 70%, 50%)',
@@ -24,8 +32,8 @@ export const colors = {
   },
   // Grays, scaling from least-noticeable to most-noticeable
   gray300: {
-    light: 'hsl(0, 0%, 80%)',
-    dark: 'hsl(0, 0%, 20%)',
+    light: 'hsl(0, 0%, 70%)',
+    dark: 'hsl(0, 0%, 30%)',
   },
   gray500: {
     light: 'hsl(0, 0%, 50%)',
@@ -39,8 +47,8 @@ export const colors = {
 
 export const elevations = {
   low: '0 0 0 1px rgba(0,0,0,0.05),0 2px 5px rgba(0,0,0,0.2)',
-  medium: '0 0 0 1px rgba(0,0,0,0.05),0 5px 10px rgba(0,0,0,0.22)',
-  high: '0 0 0 1px rgba(0,0,0,0.05),0 10px 20px rgba(0,0,0,0.25)',
+  medium: '0 0 0 1px rgba(0,0,0,0.05),0 5px 10px rgba(0,0,0,0.18)',
+  high: '0 0 0 1px rgba(0,0,0,0.05),0 10px 20px rgba(0,0,0,0.15)',
 };
 
 export const fonts = {
@@ -52,9 +60,9 @@ export const fonts = {
 
 export const fontSizes = {
   xxxl: {
-    mobile: '2.125rem',
-    tablet: '2.5rem',
-    desktop: '2.875rem',
+    mobile: '3rem',
+    tablet: '3.5rem',
+    desktop: '4rem',
   },
   xxl: {
     mobile: '1.875rem',

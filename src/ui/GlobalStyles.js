@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
 
-    background-color: ${(p) => p.theme.backgroundColor};
+    background-color: ${(p) => p.theme.bgColor};
 
     color: ${(p) => p.theme.textColor};
     font-family: ${(p) => p.theme.fonts.roboto};
