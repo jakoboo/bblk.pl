@@ -13,17 +13,17 @@ const SVG = styled.svg`
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(40%, -60%) rotate(-45deg);
+  transform: translate(40%, -80%) rotate(-45deg);
   z-index: -1;
-  width: 40%;
+  width: 70%;
   height: auto;
 
   @media (max-width: ${(p) => p.theme.breakpoints.tablet}) {
-    display: none;
   }
 
   @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
     transform: translate(10%, 15%);
+    width: 40%;
   }
 `;
 

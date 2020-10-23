@@ -38,13 +38,12 @@ const Index = ({ data }) => {
                 understand answers from stack overflow.
               </Quote>
               <Text>
-                I'm a student majoring in physics at{' '}
+                I'm a full stack developer passionate about new technologies,
+                creating engaging user experience, and sharing what I've learned
+                on my dev blog. I’m majoring in physics at{' '}
                 <a href='https://www.put.poznan.pl' target='_blank'>
                   Poznań University of Technology
-                </a>{' '}
-                and full stack developer passionate about new technologies,
-                creating engaging user experience, and sharing what I've learned
-                on my dev blog.
+                </a>
               </Text>
             </Spaced>
             <Spaced vertical='5x'>
