@@ -3,21 +3,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as GatsbyLink } from 'gatsby';
 
-export const Link = (props) => {
-  const { exact, className, activeClassName, children } = props;
+export const Link = ({ to, href, ...props }) => {
+  const isExternal = () => {
+    if (href) return true;
+    if (!to.startsWith('/')) return true;
 
-  return (
-    <GatsbyLink
+    return false;
+  };
+
+  const externalLink = (
+    <a
       {...props}
-      getProps={({ isCurrent, isPartiallyCurrent }) => ({
-        className: [className, isCurrent ? activeClassName : '']
-          .join(' ')
-          .trim(),
-      })}
+      href={to || href}
+      target='_blank'
+      rel='nofollow noreferrer noopener'
     >
-      {children}
-    </GatsbyLink>
+      {props.children}
+    </a>
   );
+
+  if (isExternal()) return externalLink;
+  else
+    return (
+      <GatsbyLink to={to} {...props}>
+        {props.children}
+      </GatsbyLink>
+    );
 };
 
 Link.propTypes = {
@@ -25,12 +36,6 @@ Link.propTypes = {
   className: PropTypes.string,
   activeClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
-};
-
-Link.defaultProps = {
-  exact: false,
-  activeClassName: 'active',
-  className: '',
 };
 
 export default Link;

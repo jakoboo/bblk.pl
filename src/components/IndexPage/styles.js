@@ -90,6 +90,7 @@ export const CircleWatermark = styled.div`
     display: none;
   }
 
+  // Keep 1:1 aspect ratio with width in %
   &::before {
     content: '';
     display: block;

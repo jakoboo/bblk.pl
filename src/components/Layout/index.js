@@ -7,7 +7,6 @@ import ContentWrap from '../../ui/ContentWrap';
 import Text from '../../ui/Text';
 
 const Layout = ({ location, children }) => {
-  console.log(location);
   return (
     <ContextThemeProvider>
       <Header />

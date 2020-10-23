@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import SEO from '../../components/SEO';
 import Text from '../../ui/Text';
 import Spaced from '../../ui/Spaced';
@@ -13,6 +13,7 @@ import {
   GridPattern,
   CircleWatermark,
 } from './styles';
+import Link from '../../ui/Link';
 import Blob from '../../ui/Blob';
 import Button from '../../ui/Button';
 import Padded from '../../ui/Padded';
@@ -41,9 +42,9 @@ const Index = ({ data }) => {
                 I'm a full stack developer passionate about new technologies,
                 creating engaging user experience, and sharing what I've learned
                 on my dev blog. I’m majoring in physics at{' '}
-                <a href='https://www.put.poznan.pl' target='_blank'>
+                <Link href='https://www.put.poznan.pl'>
                   Poznań University of Technology
-                </a>
+                </Link>
               </Text>
             </Spaced>
             <CallToActionWrap>

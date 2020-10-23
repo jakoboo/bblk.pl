@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
 import { breakpoints } from '../../../ui/variables';
+import Link from '../../../ui/Link';
 import Text from '../../../ui/Text';
 import Spaced from '../../../ui/Spaced';
 import Button from '../../../ui/Button';
@@ -56,6 +56,7 @@ const ThemeToggleButton = styled(Button)`
   color: ${(p) => p.theme.gray500Color};
 
   svg {
+    vertical-align: top;
     stroke: ${(p) => p.theme.gray500Color};
   }
   &:hover,
