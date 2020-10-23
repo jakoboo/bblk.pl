@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     margin: 0;
+    overflow-x: hidden;
 
     background-color: ${(p) => p.theme.bgColor};
 

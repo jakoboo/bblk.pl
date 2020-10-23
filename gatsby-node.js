@@ -130,6 +130,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const relativeFilePath = createFilePath({
       node,
       getNode,
+      trailingSlash: false,
     });
 
     createNodeField({

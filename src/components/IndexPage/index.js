@@ -17,6 +17,7 @@ import Link from '../../ui/Link';
 import Blob from '../../ui/Blob';
 import Button from '../../ui/Button';
 import Padded from '../../ui/Padded';
+import RecentArticles from '../RecentArticles';
 
 const Index = ({ data }) => {
   const siteTitle = `Portfolio`;
@@ -57,6 +58,7 @@ const Index = ({ data }) => {
           </HeaderTextWrap>
         </HeaderContentWrap>
       </HeaderWrap>
+      <RecentArticles />
     </>
   );
 };

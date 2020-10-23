@@ -4,10 +4,9 @@ import Heading from '../../ui/Heading';
 import ContentWrap from '../../ui/ContentWrap';
 import GridPatternSVG from '../../images/circle_grid.svg';
 
-export const HeaderWrap = styled.header`
+export const HeaderWrap = styled.section`
   position: relative;
   padding-top: 10rem;
-  overflow-x: hidden;
   overflow-y: visible;
 `;
 

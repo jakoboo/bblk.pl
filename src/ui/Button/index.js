@@ -12,7 +12,7 @@ const ButtonWrap = styled.button`
   font-weight: 400;
   text-align: center;
   text-decoration: none;
-  transition: transform 50ms linear, box-shadow 50ms linear;
+  transition: transform 100ms ease-in-out, box-shadow 100ms ease-in-out;
   cursor: pointer;
 
   @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
@@ -41,7 +41,7 @@ const ButtonWrap = styled.button`
           );
 
           &:hover:not(:active) {
-            transform: translateY(-5%) scale(1.01);
+            transform: translateY(-5%) scale(1.05);
             box-shadow: ${(p) => p.theme.elevations.medium};
           }
           &:active {

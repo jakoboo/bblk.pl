@@ -11,11 +11,11 @@ export const colors = {
     dark: 'hsl(200, 5%, 10%)',
   },
   bgSecondary: {
-    light: 'hsl(220, 10%, 94%)',
+    light: 'hsl(220, 10%, 92%)',
     dark: 'hsl(200, 7%, 20%)',
   },
   bgWatermark: {
-    light: 'hsl(0, 0%, 95%)',
+    light: 'hsl(220, 5%, 95%)',
     dark: 'hsl(200, 5%, 15%)',
   },
   bgAccent: {
