@@ -52,6 +52,18 @@ export const HeaderHeading = styled(Heading)`
 
 export const CallToActionWrap = styled.div`
   text-align: center;
+  padding-top: ${({ theme }) => theme.spacing['2x']};
+  padding-bottom: ${({ theme }) => theme.spacing['2x']};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding-top: ${({ theme }) => theme.spacing['4x']};
+    padding-bottom: ${({ theme }) => theme.spacing['4x']};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-top: ${({ theme }) => theme.spacing['5x']};
+    padding-bottom: ${({ theme }) => theme.spacing['5x']};
+  }
 `;
 
 export const GridPattern = styled(GridPatternSVG)`

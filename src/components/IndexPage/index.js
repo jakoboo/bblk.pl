@@ -46,15 +46,13 @@ const Index = ({ data }) => {
                 </a>
               </Text>
             </Spaced>
-            <Spaced vertical='5x'>
-              <CallToActionWrap>
-                <Button element={Link} to='/about'>
-                  <Padded vertical='m' horizontal='l'>
-                    Learn more
-                  </Padded>
-                </Button>
-              </CallToActionWrap>
-            </Spaced>
+            <CallToActionWrap>
+              <Button element={Link} to='/about'>
+                <Padded vertical='m' horizontal='l'>
+                  Learn more
+                </Padded>
+              </Button>
+            </CallToActionWrap>
           </HeaderTextWrap>
         </HeaderContentWrap>
       </HeaderWrap>
