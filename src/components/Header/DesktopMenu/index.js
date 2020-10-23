@@ -29,20 +29,20 @@ const MenuLinkWrap = styled.li`
 
 const MenuLink = styled(Link)`
   text-decoration: none;
+`;
 
-  &:hover,
-  &:focus {
-    > span {
-      color: ${(p) => p.theme.gray700Color};
+const MenuLinkText = styled(Text)`
+  ${MenuLink}:hover &,
+  ${MenuLink}:focus {
+    & {
+      color: ${(p) => p.theme.gray500Color};
     }
   }
 
-  &.active > span {
-    color: ${(p) => p.theme.gray500Color};
+  ${MenuLink}.active & {
+    color: ${(p) => p.theme.secondaryColor};
   }
 `;
-
-const MenuLinkText = styled(Text)``;
 
 const SiteTools = styled.section`
   display: flex;
