@@ -63,7 +63,7 @@ const ThemeToggleButton = styled(Button)`
     transform: scale(1.05);
   }
   &:active {
-    transform: scale(0.98);
+    transform: scale(0.9);
   }
 `;
 
