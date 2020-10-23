@@ -1,6 +1,6 @@
 import React from 'react';
 import { animated, Keyframes } from 'react-spring/renderprops';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 const pathValues = [
   'M 90.82 34.37 C 161.61 12.18 251.44 -32.73 306.44 65.77 C 361.44 164.27 479.94 243.43 422.73 290.34 C 365.52 337.25 288.18 287.95 306.44 410.94 C 324.7 533.93 176.92 466.64 98.49 410.94 C 20.06 355.24 20.44 327.18 54.57 275.95 C 88.7 224.72 42.51 179.32 18.29 140.77 C -5.93 102.22 20.02 56.56 90.82 34.37 Z',
@@ -27,7 +27,7 @@ const SVG = styled.svg`
   }
 `;
 
-const Blob = () => {
+const Blob = ({ theme }) => {
   const Container = Keyframes.Spring(async (next) => {
     const config = { duration: 5000 };
 
@@ -65,8 +65,8 @@ const Blob = () => {
           y2='1'
           gradientUnits='objectBoundingBox'
         >
-          <stop offset='0' stopColor='#5da9e0' />
-          <stop offset='1' stopColor='#e57eae' />
+          <stop offset='0' stopColor={theme.primaryColor} />
+          <stop offset='1' stopColor={theme.secondaryColor} />
         </linearGradient>
       </defs>
       <Container>
@@ -81,4 +81,4 @@ const Blob = () => {
   );
 };
 
-export default Blob;
+export default withTheme(Blob);

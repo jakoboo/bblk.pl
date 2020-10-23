@@ -15,12 +15,12 @@ export const colors = {
     dark: 'hsl(200, 7%, 20%)',
   },
   bgWatermark: {
-    light: 'hsl(0, 0%, 97%)',
-    dark: 'hsl(0, 0%, 97%)',
+    light: 'hsl(0, 0%, 95%)',
+    dark: 'hsl(200, 5%, 15%)',
   },
   bgAccent: {
     light: 'hsl(0, 0%, 61%)',
-    dark: 'hsl(0, 0%, 97%)',
+    dark: 'hsl(200, 5%, 49%)',
   },
   primary: {
     light: 'hsl(205, 70%, 50%)',
