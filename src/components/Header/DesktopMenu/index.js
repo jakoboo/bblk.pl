@@ -96,28 +96,44 @@ const DesktopMenu = () => {
           <ul>
             <Spaced right='xxl'>
               <MenuLinkWrap>
-                <MenuLink to='/' activeClassName='active'>
+                <MenuLink
+                  to='/'
+                  partiallyActive={true}
+                  activeClassName='active'
+                >
                   <MenuLinkText order='body' element='span'>
                     Home
                   </MenuLinkText>
                 </MenuLink>
               </MenuLinkWrap>
               <MenuLinkWrap>
-                <MenuLink to='/blog' activeClassName='active'>
+                <MenuLink
+                  to='/blog'
+                  partiallyActive={true}
+                  activeClassName='active'
+                >
                   <MenuLinkText order='body' element='span'>
                     Blog
                   </MenuLinkText>
                 </MenuLink>
               </MenuLinkWrap>
               <MenuLinkWrap>
-                <MenuLink to='/demos' activeClassName='active'>
+                <MenuLink
+                  to='/demos'
+                  partiallyActive={true}
+                  activeClassName='active'
+                >
                   <MenuLinkText order='body' element='span'>
                     Demos
                   </MenuLinkText>
                 </MenuLink>
               </MenuLinkWrap>
               <MenuLinkWrap>
-                <MenuLink to='/about' activeClassName='active'>
+                <MenuLink
+                  to='/about'
+                  partiallyActive={true}
+                  activeClassName='active'
+                >
                   <MenuLinkText order='body' element='span'>
                     About
                   </MenuLinkText>
