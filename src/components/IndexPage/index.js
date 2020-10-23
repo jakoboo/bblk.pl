@@ -24,8 +24,8 @@ const Index = ({ data }) => {
     <>
       <SEO title={siteTitle} />
       <HeaderWrap aria-labelledby='introduction-label'>
-        <CircleWatermark />
         <HeaderContentWrap>
+          <CircleWatermark />
           <Blob />
           <HeaderTextWrap>
             <GridPattern />
@@ -49,7 +49,7 @@ const Index = ({ data }) => {
             <Spaced vertical='5x'>
               <CallToActionWrap>
                 <Button element={Link} to='/about'>
-                  <Padded vertical='m' horizontal='8x'>
+                  <Padded vertical='m' horizontal='l'>
                     Learn more
                   </Padded>
                 </Button>

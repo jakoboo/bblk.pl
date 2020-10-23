@@ -27,9 +27,9 @@ const ButtonWrap = styled.button`
     unstyled
       ? null
       : css`
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          display: inline-block;
+          width: 100%;
+          max-width: 350px;
           padding: 5px;
           border-radius: 10px;
           color: ${(p) => p.theme.primaryColor};
@@ -52,6 +52,11 @@ const ButtonWrap = styled.button`
 `;
 
 const ButtonContent = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   background: ${(p) => p.theme.bgColor};
 `;

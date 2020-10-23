@@ -13,8 +13,8 @@ export const HeaderWrap = styled.header`
 
 export const HeaderContentWrap = styled(ContentWrap)`
   position: relative;
-  padding-top: ${({ theme }) => theme.spacing['3x']};
-  padding-bottom: ${({ theme }) => theme.spacing['3x']};
+  //padding-top: ${({ theme }) => theme.spacing['m']};
+  //padding-bottom: ${({ theme }) => theme.spacing['m']};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-top: ${({ theme }) => theme.spacing['4x']};
@@ -69,13 +69,18 @@ export const CircleWatermark = styled.div`
   top: 0;
   right: 0;
   z-index: -1;
-  transform: translate(15%, -15%);
-  width: 25vw;
-  height: 25vw;
+  transform: translate(50%, -70%);
+  width: 50%;
   background: ${(p) => p.theme.bgWatermark};
   border-radius: 100%;
 
   @media (max-width: ${(p) => p.theme.breakpoints.desktop}) {
     display: none;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
   }
 `;
