@@ -11,8 +11,8 @@ export const HeaderWrap = styled.section`
 export const HeaderContentWrap = styled(ContentWrap)`
   position: relative;
 
-  padding-top: ${({ theme }) => theme.spacing['4x']};
-  padding-bottom: ${({ theme }) => theme.spacing['4x']};
+  padding-top: ${({ theme }) => theme.spacing['5x']};
+  padding-bottom: ${({ theme }) => theme.spacing['5x']};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding-top: ${({ theme }) => theme.spacing['8x']};
