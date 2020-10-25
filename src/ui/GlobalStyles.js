@@ -13,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     margin: 0;
-    overflow-x: hidden;
 
     background-color: ${(p) => p.theme.bgColor};
 
@@ -21,14 +20,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${(p) => p.theme.fonts.roboto};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  a {
-    color: ${(p) => p.theme.secondaryColor};
-
-    &.primary {
-      color: ${(p) => p.theme.primaryColor};
-    }
   }
 `;
 

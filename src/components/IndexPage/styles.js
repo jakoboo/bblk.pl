@@ -6,14 +6,14 @@ import GridPatternSVG from '../../images/circle_grid.svg';
 
 export const HeaderWrap = styled.section`
   position: relative;
-  padding-top: 10rem;
   overflow-y: visible;
 `;
 
 export const HeaderContentWrap = styled(ContentWrap)`
   position: relative;
-  //padding-top: ${({ theme }) => theme.spacing['m']};
-  //padding-bottom: ${({ theme }) => theme.spacing['m']};
+
+  padding-top: ${({ theme }) => theme.spacing['2x']};
+  padding-bottom: ${({ theme }) => theme.spacing['2x']};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-top: ${({ theme }) => theme.spacing['4x']};
@@ -21,8 +21,8 @@ export const HeaderContentWrap = styled(ContentWrap)`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-top: ${({ theme }) => theme.spacing['5x']};
-    padding-bottom: ${({ theme }) => theme.spacing['5x']};
+    padding-top: ${({ theme }) => theme.spacing['8x']};
+    padding-bottom: ${({ theme }) => theme.spacing['8x']};
   }
 `;
 
@@ -52,16 +52,13 @@ export const HeaderHeading = styled(Heading)`
 export const CallToActionWrap = styled.div`
   text-align: center;
   padding-top: ${({ theme }) => theme.spacing['2x']};
-  padding-bottom: ${({ theme }) => theme.spacing['2x']};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding-top: ${({ theme }) => theme.spacing['4x']};
-    padding-bottom: ${({ theme }) => theme.spacing['4x']};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding-top: ${({ theme }) => theme.spacing['5x']};
-    padding-bottom: ${({ theme }) => theme.spacing['5x']};
   }
 `;
 

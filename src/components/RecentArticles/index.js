@@ -16,17 +16,28 @@ const RecentArticlesWrap = styled.section`
   box-shadow: ${(p) => p.theme.elevations.medium};
 `;
 
-const RecentArticlesContentWrap = styled(ContentWrap)``;
+const RecentArticlesContentWrap = styled(ContentWrap)`
+  position: relative;
+`;
 
 const ArticlesList = styled.div`
   position: relative;
+  margin-top: ${({ theme }) => theme.spacing['xxl']};
+  margin-bottom: ${({ theme }) => theme.spacing['xxl']};
   display: grid;
   align-items: center;
   grid-template-columns: repeat(12, 1fr);
   gap: ${(p) => p.theme.spacing.xxl} 0;
 
   @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
+    margin-top: ${({ theme }) => theme.spacing['2x']};
+    margin-bottom: ${({ theme }) => theme.spacing['2x']};
     gap: ${({ theme }) => theme.spacing.xxl};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: ${({ theme }) => theme.spacing['3x']};
+    margin-bottom: ${({ theme }) => theme.spacing['3x']};
   }
 
   > *:nth-child(4) {
@@ -78,7 +89,11 @@ const GridPattern = styled(GridPatternSVG)`
   position: absolute;
   right: 0;
   bottom: 0;
-  transform: translate(35%, 50%);
+  transform: translate(35%, 25%);
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    transform: translate(35%, 50%);
+  }
 
   circle {
     fill: ${(p) => p.theme.secondaryColor};
@@ -116,43 +131,39 @@ const RecentArticles = () => {
 
   return (
     <RecentArticlesWrap>
-      <Padded top='5x' bottom='10x'>
+      <Padded vertical='4x'>
         <RecentArticlesContentWrap>
           <Heading level={2}>Recent articles</Heading>
-          <Spaced top='4x'>
-            <ArticlesList>
-              <GridPattern />
-              {articles.map((article) => {
-                return (
-                  <ArticleWrap>
-                    <ArticleLink to={article.fields.slug}>
-                      <ScreenReaderText>Go to article</ScreenReaderText>
-                    </ArticleLink>
-                    <Padded all='xl'>
-                      <div>
-                        <Spaced bottom='s'>
-                          <ArticlePublishDate order='meta'>
-                            <ScreenReaderText>
-                              Article published date&nbsp;
-                            </ScreenReaderText>
-                            {article.frontmatter.date}
-                          </ArticlePublishDate>
-                        </Spaced>
-                        <Spaced bottom='l'>
-                          <Heading level={4}>
-                            {article.frontmatter.title}
-                          </Heading>
-                        </Spaced>
-                        <Text>
-                          {article.frontmatter.description || article.excerpt}
-                        </Text>
-                      </div>
-                    </Padded>
-                  </ArticleWrap>
-                );
-              })}
-            </ArticlesList>
-          </Spaced>
+          <ArticlesList>
+            <GridPattern />
+            {articles.map((article) => {
+              return (
+                <ArticleWrap>
+                  <ArticleLink to={article.fields.slug}>
+                    <ScreenReaderText>Go to article</ScreenReaderText>
+                  </ArticleLink>
+                  <Padded all='xl'>
+                    <div>
+                      <Spaced bottom='s'>
+                        <ArticlePublishDate order='meta'>
+                          <ScreenReaderText>
+                            Article published date&nbsp;
+                          </ScreenReaderText>
+                          {article.frontmatter.date}
+                        </ArticlePublishDate>
+                      </Spaced>
+                      <Spaced bottom='l'>
+                        <Heading level={4}>{article.frontmatter.title}</Heading>
+                      </Spaced>
+                      <Text>
+                        {article.frontmatter.description || article.excerpt}
+                      </Text>
+                    </div>
+                  </Padded>
+                </ArticleWrap>
+              );
+            })}
+          </ArticlesList>
         </RecentArticlesContentWrap>
       </Padded>
     </RecentArticlesWrap>

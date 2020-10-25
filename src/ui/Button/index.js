@@ -41,7 +41,7 @@ const ButtonWrap = styled.button`
           );
 
           &:hover:not(:active) {
-            transform: translateY(-5%) scale(1.05);
+            transform: translateY(-5%) scale(1);
             box-shadow: ${(p) => p.theme.elevations.medium};
           }
           &:active {

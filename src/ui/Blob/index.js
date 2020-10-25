@@ -22,7 +22,7 @@ const SVG = styled.svg`
   }
 
   @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
-    transform: translate(20%, 5%);
+    transform: translate(20%, 15%);
     width: 40%;
   }
 `;

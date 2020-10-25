@@ -143,7 +143,7 @@ const DesktopMenu = () => {
             offset={[0, 20]}
             animation='shift-away'
           >
-            <span>{themeName === 'light' ? <Sun /> : <Moon />}</span>
+            {themeName === 'light' ? <Sun /> : <Moon />}
           </Tippy>
         </ThemeToggleButton>
       </SiteTools>

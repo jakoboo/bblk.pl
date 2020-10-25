@@ -2,6 +2,11 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link as GatsbyLink } from 'gatsby';
+import styled from 'styled-components';
+
+const Root = styled.a`
+  color: ${(p) => (p.primary ? p.theme.primaryColor : p.theme.secondaryColor)};
+`;
 
 export const Link = ({ to, href, ...props }) => {
   const isExternal = () => {
@@ -12,20 +17,20 @@ export const Link = ({ to, href, ...props }) => {
   };
 
   const externalLink = (
-    <a
+    <Root
       {...props}
       href={to || href}
       target='_blank'
       rel='nofollow noreferrer noopener'
     >
       {props.children}
-    </a>
+    </Root>
   );
 
   if (isExternal()) return externalLink;
   else
     return (
-      <GatsbyLink to={to} {...props}>
+      <GatsbyLink as={Root} to={to} {...props}>
         {props.children}
       </GatsbyLink>
     );
