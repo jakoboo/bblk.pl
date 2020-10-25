@@ -92,27 +92,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   });
 };
 
-async function fixIndex(page, { deletePage, createPage }) {
-  return new Promise((resolve) => {
-    // if the page component is the index page component
-    if (page.componentPath === `${__dirname}/src/pages/index/index.js`) {
-      deletePage(page);
-
-      // create a new page but with '/' as path
-      createPage({
-        ...page,
-        path: '/',
-      });
-    }
-
-    resolve();
-  });
-}
-
-exports.onCreatePage = async ({ page, actions }) => {
-  // Make index page appear on / instead of /index
-  await fixIndex(page, actions);
-};
+exports.onCreatePage = async ({ page, actions }) => {};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/jakoboo/bblk.pl/issues"
   },
-  "license": "0BSD",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jakoboo/bblk.pl.git"

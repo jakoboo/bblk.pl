@@ -14,7 +14,7 @@ import LinesSVG from '../../images/lines.svg';
 
 const RecentArticlesWrap = styled.section`
   background: ${(p) => p.theme.bgSecondary};
-  box-shadow: ${(p) => p.theme.elevations.medium};
+  box-shadow: ${(p) => p.theme.elevations.low};
 `;
 
 const RecentArticlesContentWrap = styled(ContentWrap)`

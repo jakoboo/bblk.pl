@@ -60,3 +60,42 @@ collections:
         widget: list
         required: false
         allow_add: true
+
+  - label: 'Demo'
+    name: 'demo'
+    folder: 'content/demos'
+    create: true
+    slug: '{{slug}}'
+    preview_path: '/demo/{{slug}}'
+    extension: mdx
+    format: frontmatter
+    fields:
+      - label: 'Template Key'
+        name: templateKey
+        widget: hidden
+        default: demo
+
+      - label: Title
+        name: title
+        widget: string
+
+      - label: 'Publish Date'
+        name: date
+        widget: datetime
+        date_format: 'DD MMMM, YYYY'
+        time_format: 'HH:mm'
+
+      - label: Description
+        name: description
+        widget: text
+
+      - label: 'Featured Image'
+        name: featuredImage
+        widget: image
+        required: false
+
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        allow_add: true
