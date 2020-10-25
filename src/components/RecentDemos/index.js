@@ -10,19 +10,15 @@ import ScreenReaderText from '../../ui/ScreenReaderText';
 import Text from '../../ui/Text';
 
 import GridPatternSVG from '../../images/circle_grid.svg';
-import LinesSVG from '../../images/lines.svg';
+import CirclesSVG from '../../images/circles.svg';
 
-const RecentArticlesWrap = styled.section`
-  background: ${(p) => p.theme.bgSecondary};
-  box-shadow: ${(p) => p.theme.elevations.medium};
-`;
+const RecentDemosWrap = styled.section``;
 
-const RecentArticlesContentWrap = styled(ContentWrap)`
+const RecentDemosContentWrap = styled(ContentWrap)`
   position: relative;
-  z-index: 0;
 `;
 
-const ArticlesList = styled.div`
+const DemosList = styled.div`
   position: relative;
   margin-top: ${({ theme }) => theme.spacing['3x']};
   margin-bottom: ${({ theme }) => theme.spacing['3x']};
@@ -55,7 +51,7 @@ const ArticlesList = styled.div`
   }
 `;
 
-const ArticleWrap = styled.article`
+const DemoWrap = styled.article`
   position: relative;
   grid-column: 1 / -1;
   height: 100%;
@@ -76,7 +72,7 @@ const ArticleWrap = styled.article`
   }
 `;
 
-const ArticleLink = styled(Link)`
+const DemoLink = styled(Link)`
   position: absolute;
   top: 0;
   left: 0;
@@ -85,27 +81,32 @@ const ArticleLink = styled(Link)`
   height: 100%;
 `;
 
-const ArticlePublishDate = styled(Text)``;
-
 const GridPattern = styled(GridPatternSVG)`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  transform: translate(35%, 50%);
-
-  circle {
-    fill: ${(p) => p.theme.secondaryColor};
-  }
-`;
-
-const Lines = styled(LinesSVG)`
   position: absolute;
   left: 0;
   top: 0;
   z-index: -1;
-  height: 30rem;
+  transform: translate(-35%, -25%);
+
+  circle {
+    fill: ${(p) => p.theme.primaryColor};
+  }
+`;
+
+const Circles = styled(CirclesSVG)`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 20rem;
   width: auto;
-  transform: translate(-25%, -25%);
+  transform: translate(30%, 50%) scaleX(-1);
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
+    top: 0;
+    bottom: auto;
+    transform: translate(50%, -30%);
+  }
 
   .gradient__primary {
     stop-color: ${(p) => p.theme.primaryColor};
@@ -114,16 +115,9 @@ const Lines = styled(LinesSVG)`
   .gradient__secondary {
     stop-color: ${(p) => p.theme.secondaryColor};
   }
-
-  #Rectangle_21 {
-    fill: ${(p) => p.theme.primaryColor};
-  }
-  #Rectangle_23 {
-    fill: ${(p) => p.theme.secondaryColor};
-  }
 `;
 
-const RecentArticles = () => {
+const RecentDemos = () => {
   const data = useStaticQuery(graphql`
     query {
       allMdx(
@@ -150,48 +144,38 @@ const RecentArticles = () => {
     }
   `);
 
-  const articles = data.allMdx.nodes;
+  const Demos = data.allMdx.nodes;
 
   return (
-    <RecentArticlesWrap>
+    <RecentDemosWrap>
       <Padded vertical='5x'>
-        <RecentArticlesContentWrap>
-          <Heading level={2}>Recent articles</Heading>
-          <ArticlesList>
+        <RecentDemosContentWrap>
+          <Heading level={2}>Recent Demos</Heading>
+          <DemosList>
             <GridPattern />
-            <Lines />
-            {articles.map((article) => {
+            <Circles />
+            {Demos.map((demo) => {
               return (
-                <ArticleWrap>
-                  <ArticleLink to={article.fields.slug}>
-                    <ScreenReaderText>Go to article</ScreenReaderText>
-                  </ArticleLink>
+                <DemoWrap>
+                  <DemoLink to={demo.fields.slug}>
+                    <ScreenReaderText>Go to demo</ScreenReaderText>
+                  </DemoLink>
                   <Padded all='xl'>
                     <div>
-                      <Spaced bottom='s'>
-                        <ArticlePublishDate order='meta'>
-                          <ScreenReaderText>
-                            Article published date&nbsp;
-                          </ScreenReaderText>
-                          {article.frontmatter.date}
-                        </ArticlePublishDate>
-                      </Spaced>
                       <Spaced bottom='l'>
-                        <Heading level={4}>{article.frontmatter.title}</Heading>
+                        <Heading level={4}>{demo.frontmatter.title}</Heading>
                       </Spaced>
-                      <Text>
-                        {article.frontmatter.description || article.excerpt}
-                      </Text>
+                      <Text>{demo.frontmatter.description}</Text>
                     </div>
                   </Padded>
-                </ArticleWrap>
+                </DemoWrap>
               );
             })}
-          </ArticlesList>
-        </RecentArticlesContentWrap>
+          </DemosList>
+        </RecentDemosContentWrap>
       </Padded>
-    </RecentArticlesWrap>
+    </RecentDemosWrap>
   );
 };
 
-export default RecentArticles;
+export default RecentDemos;

@@ -6,7 +6,6 @@ import GridPatternSVG from '../../images/circle_grid.svg';
 
 export const HeaderWrap = styled.section`
   position: relative;
-  overflow-y: visible;
 `;
 
 export const HeaderContentWrap = styled(ContentWrap)`
@@ -24,9 +23,6 @@ export const HeaderContentWrap = styled(ContentWrap)`
 export const HeaderTextWrap = styled.div`
   position: relative;
   max-width: 45rem;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-  }
 `;
 
 export const HeaderHeading = styled(Heading)`
