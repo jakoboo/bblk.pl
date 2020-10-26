@@ -56,12 +56,12 @@ const DemoWrap = styled.article`
   grid-column: 1 / -1;
   height: 100%;
   background: ${(p) => p.theme.bgWatermark};
-  box-shadow: ${(p) => p.theme.elevations.low};
+  box-shadow: ${(p) => p.theme.elevations['1dp']};
   transition: transform 100ms ease-in-out, box-shadow 100ms ease-in-out;
 
   &:hover {
     transform: translateY(-5%);
-    box-shadow: ${(p) => p.theme.elevations.medium};
+    box-shadow: ${(p) => p.theme.elevations['8dp']};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
