@@ -41,18 +41,6 @@ const ArticlesList = styled.div`
     margin-top: ${({ theme }) => theme.spacing['5x']};
     margin-bottom: ${({ theme }) => theme.spacing['5x']};
   }
-
-  > ${ArticleWrap}:nth-of-type(4) {
-    display: none;
-
-    @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
-      display: block;
-    }
-
-    @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
-      display: none;
-    }
-  }
 `;
 
 const ArticleWrap = styled.article`
@@ -73,6 +61,18 @@ const ArticleWrap = styled.article`
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     grid-column: auto / span 4;
+  }
+
+  ${ArticlesList} &:nth-of-type(4) {
+    display: none;
+
+    @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
+      display: block;
+    }
+
+    @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
+      display: none;
+    }
   }
 `;
 

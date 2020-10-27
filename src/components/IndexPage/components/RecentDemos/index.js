@@ -37,18 +37,6 @@ const RecentDemosListWrap = styled.div`
     margin-top: ${({ theme }) => theme.spacing['5x']};
     margin-bottom: ${({ theme }) => theme.spacing['5x']};
   }
-
-  > ${DemoWrap}:nth-of-type(4) {
-    display: none;
-
-    @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
-      display: block;
-    }
-
-    @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
-      display: none;
-    }
-  }
 `;
 
 const NoDemosHeading = styled(Heading)`
@@ -75,6 +63,18 @@ const DemoWrap = styled.article`
   }
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     grid-column: auto / span 4;
+  }
+
+  ${RecentDemosListWrap} &:nth-of-type(4) {
+    display: none;
+
+    @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
+      display: block;
+    }
+
+    @media (min-width: ${(p) => p.theme.breakpoints.desktop}) {
+      display: none;
+    }
   }
 `;
 
