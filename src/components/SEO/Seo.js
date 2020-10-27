@@ -63,7 +63,7 @@ const Seo = ({
       '@type': 'Person',
       ...author,
     },
-    'datePublished': '2020-11-01T10:30:00+01:00',
+    'datePublished': '2020-11-01',
     'dateModified': buildTime,
     'image': {
       '@type': 'ImageObject',
@@ -97,7 +97,7 @@ const Seo = ({
         '@type': 'Person',
         ...author,
       },
-      'copyrightYear': '2019',
+      'copyrightYear': '2020',
       'creator': {
         '@type': 'Person',
         ...author,

@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import Bio from '../../components/Bio';
 import SEO from '../../components/SEO';
 
-const BlogPostTemplate = ({ data: { mdx: post }, pageContext }) => {
+const BlogPostTemplate = ({ location, data: { mdx: post }, pageContext }) => {
   const { previous, next } = pageContext;
 
   return (
@@ -14,6 +14,10 @@ const BlogPostTemplate = ({ data: { mdx: post }, pageContext }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        pathname={location.pathname}
+        banner={post.frontmatter.featuredImage.publicURL || undefined}
+        publicationDate={post.frontmatter.date}
+        article
       />
       <article
         className='blog-post'

@@ -3,13 +3,16 @@ import { Link, graphql } from 'gatsby';
 
 import SEO from '../components/SEO';
 
-const BlogIndex = ({ data }) => {
-  const siteTitle = `Blog`;
+const BlogIndex = ({ location, data }) => {
   const posts = data.allMdx.nodes;
 
   return (
     <>
-      <SEO title={siteTitle} />
+      <SEO
+        title='Blog'
+        description="Stay up to date with my latest experiments and discoveries. Jakub Bąbelek's blog on web development and technology."
+        pathname={location.pathname}
+      />
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
           const title = post.frontmatter.title || post.fields.slug;
