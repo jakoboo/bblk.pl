@@ -15,7 +15,7 @@ const BlogPostTemplate = ({ location, data: { mdx: post }, pageContext }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
         pathname={location.pathname}
-        banner={post.frontmatter.featuredImage.publicURL || undefined}
+        banner={post.frontmatter.featuredImage?.publicURL || undefined}
         publicationDate={post.frontmatter.date}
         article
       />
