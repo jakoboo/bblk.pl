@@ -38,7 +38,7 @@ const RecentDemosListWrap = styled.div`
     margin-bottom: ${({ theme }) => theme.spacing['5x']};
   }
 
-  > *:nth-child(4) {
+  > ${DemoWrap}:nth-of-type(4) {
     display: none;
 
     @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
