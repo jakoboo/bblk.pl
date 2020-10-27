@@ -24,7 +24,7 @@ module.exports = {
       username: `jbbabelek`,
     },
     facebook: {
-      appId: '',
+      appId: '1507488332781202',
       language: 'en_US',
     },
     email: `jakub@bblk.pl`,

@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { graphql, useStaticQuery } from 'gatsby';
 import Twitter from './Twitter';
+import Facebook from './Facebook';
 
 const Seo = ({
   title,
@@ -25,7 +26,7 @@ const Seo = ({
       headline,
       siteLanguage,
       author,
-      social: { twitter },
+      social: { facebook, twitter },
     },
   } = site;
 
@@ -159,6 +160,15 @@ const Seo = ({
         )}
         <script type='application/ld+json'>{JSON.stringify(breadcrumb)}</script>
       </Helmet>
+      <Facebook
+        desc={seo.description}
+        image={seo.image}
+        title={seo.title}
+        type={article ? 'article' : 'website'}
+        url={seo.url}
+        locale={facebook.language}
+        appId={facebook.appId}
+      />
       <Twitter
         title={seo.title}
         image={seo.image}
