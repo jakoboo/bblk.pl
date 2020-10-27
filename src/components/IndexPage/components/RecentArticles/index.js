@@ -1,16 +1,16 @@
 import React from 'react';
 import { useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
-import ContentWrap from '../../ui/ContentWrap';
-import Heading from '../../ui/Heading';
-import Padded from '../../ui/Padded';
-import Spaced from '../../ui/Spaced';
-import Link from '../../ui/Link';
-import ScreenReaderText from '../../ui/ScreenReaderText';
-import Text from '../../ui/Text';
+import ContentWrap from '../../../../ui/ContentWrap';
+import Heading from '../../../../ui/Heading';
+import Padded from '../../../../ui/Padded';
+import Spaced from '../../../../ui/Spaced';
+import Link from '../../../../ui/Link';
+import ScreenReaderText from '../../../../ui/ScreenReaderText';
+import Text from '../../../../ui/Text';
 
-import GridPatternSVG from '../../images/circle_grid.svg';
-import LinesSVG from '../../images/lines.svg';
+import GridPatternSVG from '../../../../images/circle_grid.svg';
+import LinesSVG from '../../../../images/lines.svg';
 
 const RecentArticlesWrap = styled.section`
   background: ${(p) => p.theme.bgSecondary};

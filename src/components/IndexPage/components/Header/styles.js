@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import Heading from '../../ui/Heading';
-import ContentWrap from '../../ui/ContentWrap';
-import GridPatternSVG from '../../images/circle_grid.svg';
+import Heading from '../../../../ui/Heading';
+import ContentWrap from '../../../../ui/ContentWrap';
+import GridPatternSVG from '../../../../images/circle_grid.svg';
 
 export const HeaderWrap = styled.section`
   position: relative;

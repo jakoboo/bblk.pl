@@ -1,17 +1,16 @@
+const website = require('./website-config');
+
 module.exports = {
   siteMetadata: {
-    title: `Jakub Bąbelek`,
-    author: {
-      name: `Jakub Bąbelek`,
-      summary: `student and Full Stack Developer living in Poznań, PL`,
-    },
-    description: `Portfolio and personal blog about web dev`,
-    siteUrl: `https://bblk.pl`,
-    social: {
-      github: `https://github.com/jakoboo`,
-      twitter: `https://twitter.com/jbbabelek`,
-      email: 'mailto:jakub@bblk.pl',
-    },
+    siteUrl: website.url,
+    banner: website.logo,
+    defaultTitle: website.defaultTitle,
+    titleTemplate: website.titleTemplate,
+    description: website.description,
+    headline: website.headline,
+    author: website.author,
+    siteLanguage: website.siteLanguage,
+    social: website.social,
   },
   plugins: [
     `gatsby-plugin-remove-trailing-slashes`,
@@ -128,6 +127,18 @@ module.exports = {
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: website.title,
+        short_name: website.shortName,
+        description: website.description,
+        background_color: website.backgroundColor,
+        theme_color: website.themeColor,
+        display: 'standalone',
+        icon: website.favicon,
+      },
+    },
     `gatsby-plugin-offline`,
   ],
 };

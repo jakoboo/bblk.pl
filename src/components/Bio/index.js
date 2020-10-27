@@ -10,34 +10,16 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
 const Bio = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-picture.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50, quality: 95) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-    }
-  `);
+  const { avatarSrc, site } = useStaticQuery(query);
 
-  // Set these values by editing "siteMetadata" in gatsby-config.js
-  const author = data.site.siteMetadata?.author;
-  const social = data.site.siteMetadata?.social;
+  const {
+    siteMetadata: {
+      author,
+      social: { twitter },
+    },
+  } = site;
 
-  const avatar = data?.avatar?.childImageSharp?.fixed;
+  const avatar = avatarSrc?.childImageSharp?.fixed;
 
   return (
     <div className='bio' itemScope itemType='https://schema.org/Person'>
@@ -56,10 +38,10 @@ const Bio = () => {
           <h2>
             <a href='https://bblk.pl/about-me'>{author.name}</a>
           </h2>
-          <p>{author?.summary || null}</p>
+          <p>{author?.description || null}</p>
           <ul>
             <li>
-              <a href={social?.twitter || `https://twitter.com`}>Twitter</a>
+              <a href={`https://twitter.com/${twitter?.username}`}>Twitter</a>
             </li>
           </ul>
         </>
@@ -69,3 +51,29 @@ const Bio = () => {
 };
 
 export default Bio;
+
+const query = graphql`
+  query BioQuery {
+    avatar: file(absolutePath: { regex: "/profile-picture.jpg/" }) {
+      childImageSharp {
+        fixed(width: 50, height: 50, quality: 95) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        author {
+          name
+          description
+          email
+        }
+        social {
+          twitter {
+            username
+          }
+        }
+      }
+    }
+  }
+`;
