@@ -66,7 +66,7 @@ collections:
     folder: 'content/demos'
     create: true
     slug: '{{slug}}'
-    preview_path: '/demo/{{slug}}'
+    preview_path: '/demos/{{slug}}'
     extension: mdx
     format: frontmatter
     fields:
@@ -85,13 +85,23 @@ collections:
         date_format: 'DD MMMM, YYYY'
         time_format: 'HH:mm'
 
+      - label: 'Featured Image'
+        name: featuredImage
+        widget: image
+        required: false
+
       - label: Description
         name: description
         widget: text
 
-      - label: 'Featured Image'
-        name: featuredImage
-        widget: image
+      - label: 'Source URL'
+        name: sourceURL
+        widget: string
+        required: false
+
+      - label: 'Live demo URL'
+        name: liveDemoURL
+        widget: string
         required: false
 
       - label: Tags

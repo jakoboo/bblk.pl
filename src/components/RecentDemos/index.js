@@ -18,7 +18,7 @@ const RecentDemosContentWrap = styled(ContentWrap)`
   position: relative;
 `;
 
-const DemosList = styled.div`
+const RecentDemosListWrap = styled.div`
   position: relative;
   margin-top: ${({ theme }) => theme.spacing['3x']};
   margin-bottom: ${({ theme }) => theme.spacing['3x']};
@@ -49,6 +49,12 @@ const DemosList = styled.div`
       display: none;
     }
   }
+`;
+
+const NoDemosHeading = styled(Heading)`
+  grid-column: auto / span 12;
+  font-weight: 700;
+  text-align: center;
 `;
 
 const DemoWrap = styled.article`
@@ -117,7 +123,7 @@ const Circles = styled(CirclesSVG)`
   }
 `;
 
-const RecentDemos = () => {
+const RecentDemosList = () => {
   const data = useStaticQuery(graphql`
     query {
       allMdx(
@@ -127,11 +133,7 @@ const RecentDemos = () => {
       ) {
         nodes {
           id
-          excerpt
           fields {
-            readingTime {
-              text
-            }
             slug
           }
           frontmatter {
@@ -146,32 +148,44 @@ const RecentDemos = () => {
 
   const Demos = data.allMdx.nodes;
 
+  if (Demos.length > 0) {
+    return (
+      <>
+        {Demos.map((demo) => {
+          return (
+            <DemoWrap>
+              <DemoLink to={demo.fields.slug}>
+                <ScreenReaderText>Go to demo</ScreenReaderText>
+              </DemoLink>
+              <Padded all='xl'>
+                <div>
+                  <Spaced bottom='l'>
+                    <Heading level={4}>{demo.frontmatter.title}</Heading>
+                  </Spaced>
+                  <Text>{demo.frontmatter.description}</Text>
+                </div>
+              </Padded>
+            </DemoWrap>
+          );
+        })}
+      </>
+    );
+  } else {
+    return <NoDemosHeading level={3}>No demos found</NoDemosHeading>;
+  }
+};
+
+const RecentDemos = () => {
   return (
     <RecentDemosWrap>
       <Padded vertical='5x'>
         <RecentDemosContentWrap>
           <Heading level={2}>Recent Demos</Heading>
-          <DemosList>
+          <RecentDemosListWrap>
             <GridPattern />
             <Circles />
-            {Demos.map((demo) => {
-              return (
-                <DemoWrap>
-                  <DemoLink to={demo.fields.slug}>
-                    <ScreenReaderText>Go to demo</ScreenReaderText>
-                  </DemoLink>
-                  <Padded all='xl'>
-                    <div>
-                      <Spaced bottom='l'>
-                        <Heading level={4}>{demo.frontmatter.title}</Heading>
-                      </Spaced>
-                      <Text>{demo.frontmatter.description}</Text>
-                    </div>
-                  </Padded>
-                </DemoWrap>
-              );
-            })}
-          </DemosList>
+            <RecentDemosList />
+          </RecentDemosListWrap>
         </RecentDemosContentWrap>
       </Padded>
     </RecentDemosWrap>
