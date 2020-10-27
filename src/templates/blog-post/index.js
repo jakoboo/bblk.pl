@@ -94,6 +94,7 @@ export const pageQuery = graphql`
         description
         tags
         featuredImage {
+          publicURL
           childImageSharp {
             fluid(maxWidth: 1000) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
