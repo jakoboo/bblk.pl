@@ -92,11 +92,12 @@ const LinkList = styled.ul`
   margin-bottom: 0;
   padding: 0;
   list-style: none;
-
+`;
+const LinkListItem = styled.li``;
+const ListLink = styled(Link)`
   position: relative;
   z-index: 2;
 `;
-const LinkListItem = styled.li``;
 
 const GridPattern = styled(GridPatternSVG)`
   position: absolute;
@@ -180,20 +181,24 @@ const RecentDemosList = () => {
                   <LinkList>
                     {demo.frontmatter.sourceURL ? (
                       <LinkListItem>
-                        <Link to={demo.frontmatter.sourceURL} target='' rel=''>
+                        <ListLink
+                          to={demo.frontmatter.sourceURL}
+                          target=''
+                          rel=''
+                        >
                           Source
-                        </Link>
+                        </ListLink>
                       </LinkListItem>
                     ) : null}
                     {demo.frontmatter.liveDemoURL ? (
                       <LinkListItem>
-                        <Link
+                        <ListLink
                           to={demo.frontmatter.liveDemoURL}
                           target=''
                           rel=''
                         >
                           Live demo
-                        </Link>
+                        </ListLink>
                       </LinkListItem>
                     ) : null}
                   </LinkList>
