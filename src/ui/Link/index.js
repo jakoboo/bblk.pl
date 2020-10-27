@@ -16,12 +16,13 @@ export const Link = ({ to, href, ...props }) => {
     return false;
   };
 
+  console.log(to, props.rel);
   const externalLink = (
     <Root
       {...props}
       href={to || href}
-      target='_blank'
-      rel='nofollow noreferrer noopener'
+      target={props.target !== undefined ? props.target : '_blank'}
+      rel={props.rel !== undefined ? props.rel : 'nofollow noreferrer noopener'}
     >
       {props.children}
     </Root>

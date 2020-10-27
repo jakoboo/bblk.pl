@@ -87,6 +87,17 @@ const DemoLink = styled(Link)`
   height: 100%;
 `;
 
+const LinkList = styled.ul`
+  margin-top: ${(p) => p.theme.spacing.l};
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+
+  position: relative;
+  z-index: 2;
+`;
+const LinkListItem = styled.li``;
+
 const GridPattern = styled(GridPatternSVG)`
   position: absolute;
   left: 0;
@@ -128,7 +139,7 @@ const RecentDemosList = () => {
     query {
       allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { fields: { collection: { eq: "blog" } } }
+        filter: { fields: { collection: { eq: "demos" } } }
         limit: 4
       ) {
         nodes {
@@ -140,6 +151,8 @@ const RecentDemosList = () => {
             date(formatString: "DD MMMM, YYYY")
             title
             description
+            sourceURL
+            liveDemoURL
           }
         }
       }
@@ -163,6 +176,27 @@ const RecentDemosList = () => {
                     <Heading level={4}>{demo.frontmatter.title}</Heading>
                   </Spaced>
                   <Text>{demo.frontmatter.description}</Text>
+
+                  <LinkList>
+                    {demo.frontmatter.sourceURL ? (
+                      <LinkListItem>
+                        <Link to={demo.frontmatter.sourceURL} target='' rel=''>
+                          Source
+                        </Link>
+                      </LinkListItem>
+                    ) : null}
+                    {demo.frontmatter.liveDemoURL ? (
+                      <LinkListItem>
+                        <Link
+                          to={demo.frontmatter.liveDemoURL}
+                          target=''
+                          rel=''
+                        >
+                          Live demo
+                        </Link>
+                      </LinkListItem>
+                    ) : null}
+                  </LinkList>
                 </div>
               </Padded>
             </DemoWrap>
