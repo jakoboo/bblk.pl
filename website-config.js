@@ -8,7 +8,7 @@ module.exports = {
   logo: `/img/favicon.ico`,
 
   // JSONLD / Manifest
-  favicon: 'src/favicon.png', // Used for manifest favicon generation
+  favicon: 'src/images/favicon.png', // Used for manifest favicon generation
   shortName: 'J. Bąbelek', // shortname for manifest. MUST be shorter than 12 characters
   author: {
     name: `Jakub Bąbelek`,
