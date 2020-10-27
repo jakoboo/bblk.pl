@@ -5,7 +5,7 @@ module.exports = {
   headline: 'Portfolio and personal blog about web dev.',
   url: `https://bblk.pl`,
   siteLanguage: 'en',
-  logo: `/img/favicon.ico`,
+  logo: `/img/favicon.png`,
 
   // JSONLD / Manifest
   favicon: 'src/images/favicon.png', // Used for manifest favicon generation

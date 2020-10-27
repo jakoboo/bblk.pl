@@ -5,8 +5,6 @@ import RecentDemos from './components/RecentDemos';
 import Header from './components/Header';
 
 const Index = ({ data }) => {
-  const siteTitle = `Portfolio`;
-
   return (
     <>
       <SEO />
