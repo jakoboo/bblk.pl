@@ -19,7 +19,9 @@ module.exports = {
   backgroundColor: '#ffffff',
 
   social: {
-    githubUsername: `jakoboo`,
+    github: {
+      username: `jakoboo`,
+    },
     twitter: {
       username: `jbbabelek`,
     },
@@ -27,6 +29,5 @@ module.exports = {
       appId: '1507488332781202',
       language: 'en_US',
     },
-    email: `jakub@bblk.pl`,
   },
 };

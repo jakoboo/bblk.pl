@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { graphql, useStaticQuery } from 'gatsby';
+import * as _ from 'lodash';
 import Twitter from './Twitter';
 import Facebook from './Facebook';
 
@@ -40,10 +41,10 @@ const Seo = ({
   const schemaOrgWebPage = {
     '@context': 'http://schema.org',
     '@type': 'WebPage',
-    'url': siteUrl,
-    headline,
+    'url': seo.url,
+    'headline': headline,
     'inLanguage': siteLanguage,
-    'mainEntityOfPage': siteUrl,
+    'mainEntityOfPage': seo.url,
     'description': defaultDescription,
     'name': defaultTitle,
     'author': {
@@ -82,6 +83,26 @@ const Seo = ({
       'position': 1,
     },
   ];
+
+  if (pathname) {
+    // Create breadcrumbs for every page in path
+    // exclude last one if it's article
+    let paths = pathname.match(/[^\/]+/g);
+    paths.map((path, index) => {
+      if (article && index >= paths.length - 1) return;
+
+      let url = paths.slice(0, index + 1).reduce((acc, str) => `${acc}/${str}`);
+
+      itemListElement.push({
+        '@type': 'ListItem',
+        'item': {
+          '@id': `${siteUrl}/${url}`,
+          'name': _.capitalize(path),
+        },
+        'position': itemListElement.length + 1,
+      });
+    });
+  }
 
   let schemaArticle = null;
 
@@ -123,6 +144,7 @@ const Seo = ({
       },
       'mainEntityOfPage': seo.url,
     };
+
     // Push current blog post into breadcrumb list
     itemListElement.push({
       '@type': 'ListItem',
@@ -130,7 +152,7 @@ const Seo = ({
         '@id': seo.url,
         'name': seo.title,
       },
-      'position': 2,
+      'position': itemListElement.length + 1,
     });
   }
 
