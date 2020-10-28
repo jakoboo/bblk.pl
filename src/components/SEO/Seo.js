@@ -91,12 +91,14 @@ const Seo = ({
     paths.map((path, index) => {
       if (article && index >= paths.length - 1) return;
 
-      let url = paths.slice(0, index + 1).reduce((acc, str) => `${acc}/${str}`);
+      let pathnameSlice = paths
+        .slice(0, index + 1)
+        .reduce((acc, str) => `${acc}/${str}`);
 
       itemListElement.push({
         '@type': 'ListItem',
         'item': {
-          '@id': `${siteUrl}/${url}`,
+          '@id': `${siteUrl}/${pathnameSlice}`,
           'name': _.capitalize(path),
         },
         'position': itemListElement.length + 1,
