@@ -6,7 +6,6 @@ const GlobalStyle = createGlobalStyle`
   *:before,
   *:after {
     box-sizing: border-box;
-    transition: color 100ms linear, background-color 100ms linear;
   }
 
   ${createThemeColorsCssString()}
@@ -20,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${(p) => p.theme.fonts.roboto};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    transition: color 100ms ease-out, background-color 100ms ease-out;
   }
 `;
 

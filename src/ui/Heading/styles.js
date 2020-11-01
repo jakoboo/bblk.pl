@@ -62,6 +62,7 @@ export const Root = styled.h1`
   line-height: ${({ level }) => getLineHeight(level)};
   font-weight: ${({ level }) => getFontWeight(level)};
   ${({ level }) => (level === 6 ? 'text-transform: uppercase' : null)};
+  transition: color 100ms ease-out;
 
   color: ${(p) => p.theme.textColor};
 

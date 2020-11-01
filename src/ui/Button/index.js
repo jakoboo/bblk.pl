@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const ButtonWrap = styled.button`
   padding: 0;
   border: 0;
-  background: transparent;
+  background-color: transparent;
   color: ${(p) => p.theme.textColor};
   font-family: ${(p) => p.theme.fonts.roboto};
   font-size: ${(p) => p.theme.fontSizes.xl.mobile};
@@ -12,7 +12,8 @@ const ButtonWrap = styled.button`
   font-weight: 400;
   text-align: center;
   text-decoration: none;
-  transition: transform 100ms ease-in-out, box-shadow 100ms ease-in-out;
+  transition: transform 100ms ease-out, box-shadow 100ms ease-out,
+    color 100ms ease-out;
   cursor: pointer;
 
   @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
@@ -61,6 +62,7 @@ const ButtonContent = styled.div`
   height: 100%;
   border-radius: 5px;
   background: ${(p) => p.theme.bgColor};
+  transition: background-color 100ms linear;
 `;
 
 const Button = forwardRef(({ unstyled, element, children, ...props }, ref) => (

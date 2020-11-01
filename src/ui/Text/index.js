@@ -32,6 +32,7 @@ const Root = styled.p`
   line-height: 1.5;
   font-weight: ${({ order }) => (order === 'meta' ? 500 : 400)};
   ${({ order }) => (order === 'meta' ? 'text-transform: uppercase' : null)};
+  transition: color 100ms ease-out;
 
   color: ${({ theme, order, color }) =>
     color ? color : getColor({ theme, order })};
