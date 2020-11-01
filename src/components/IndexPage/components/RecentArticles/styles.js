@@ -87,6 +87,10 @@ export const Lines = styled(LinesSVG)`
   width: auto;
   transform: translate(-25%, -25%);
 
+  * {
+    transition: stop-color 100ms ease-out, fill 100ms ease-out;
+  }
+
   .gradient__primary {
     stop-color: ${(p) => p.theme.primaryColor};
   }

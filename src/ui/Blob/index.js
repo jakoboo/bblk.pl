@@ -18,6 +18,10 @@ const SVG = styled.svg`
   width: 70%;
   height: auto;
 
+  * {
+    transition: stop-color 100ms ease-out;
+  }
+
   @media (max-width: ${(p) => p.theme.breakpoints.tablet}) {
   }
 

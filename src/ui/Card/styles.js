@@ -4,7 +4,8 @@ export const Root = styled.div`
   overflow: hidden;
   border-radius: 10px;
   box-shadow: ${(p) => p.theme.elevations['1dp']};
-  transition: all 200ms ease-out;
+  transition: background-color 100ms ease-out, box-shadow 200ms ease-out,
+    transform 200ms ease-out;
 
   > * {
     height: 100%;

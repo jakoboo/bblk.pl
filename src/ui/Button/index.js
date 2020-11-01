@@ -12,7 +12,7 @@ const ButtonWrap = styled.button`
   font-weight: 400;
   text-align: center;
   text-decoration: none;
-  transition: transform 100ms ease-out, box-shadow 100ms ease-out,
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out,
     color 100ms ease-out;
   cursor: pointer;
 
@@ -34,7 +34,7 @@ const ButtonWrap = styled.button`
           padding: 5px;
           border-radius: 10px;
           color: ${(p) => p.theme.primaryColor};
-          box-shadow: ${(p) => p.theme.elevations['2dp']};
+          box-shadow: ${(p) => p.theme.elevations['4dp']};
           background: linear-gradient(
             to right,
             ${(p) => p.theme.primaryColor},
@@ -47,9 +47,8 @@ const ButtonWrap = styled.button`
           }
 
           &:active {
-            outline: 0;
+            outline: none;
             transform: translateY(-5%);
-            box-shadow: ${(p) => p.theme.elevations['4dp']};
           }
         `}
 `;

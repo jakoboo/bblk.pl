@@ -57,7 +57,11 @@ const RecentDemosList = () => {
               <LinkList>
                 {demo.frontmatter.sourceURL ? (
                   <LinkListItem>
-                    <ListLink to={demo.frontmatter.sourceURL} target='' rel=''>
+                    <ListLink
+                      to={demo.frontmatter.sourceURL}
+                      target='_blank'
+                      rel=''
+                    >
                       Source
                     </ListLink>
                   </LinkListItem>
@@ -66,7 +70,7 @@ const RecentDemosList = () => {
                   <LinkListItem>
                     <ListLink
                       to={demo.frontmatter.liveDemoURL}
-                      target=''
+                      target='_blank'
                       rel=''
                     >
                       Live demo
