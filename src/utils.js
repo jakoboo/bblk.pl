@@ -19,6 +19,12 @@ export const createThemeColorsCssString = () => {
     :root { ${cssLightVariableString} }
   
     :root[${INITIAL_THEME_ATTR}=dark] { ${cssDarkVariableString} }
+
+    :root.no-js {
+      @media (prefers-color-scheme: dark) {
+        ${cssDarkVariableString}
+      }
+    }
   `;
 
   return wrappedInSelectors;

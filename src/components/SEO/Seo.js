@@ -87,8 +87,8 @@ const Seo = ({
   if (pathname) {
     // Create breadcrumbs for every page in path
     // exclude last one if it's article
-    let paths = pathname.match(/[^\/]+/g);
-    paths.map((path, index) => {
+    let paths = pathname.match(/[^/]+/g);
+    paths.forEach((path, index) => {
       if (article && index >= paths.length - 1) return;
 
       let pathnameSlice = paths
@@ -239,7 +239,6 @@ const query = graphql`
             username
           }
           facebook {
-            appId
             language
           }
         }

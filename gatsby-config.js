@@ -44,6 +44,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+        name: `images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
@@ -60,13 +67,8 @@ module.exports = {
             subsets: [`latin-ext`],
           },
           {
-            family: 'DM Serif Display',
-            variants: ['400'],
-            subsets: ['latin-ext'],
-          },
-          {
             family: 'DM Serif Text',
-            variants: ['400'],
+            variants: ['400', '400i'],
             subsets: ['latin-ext'],
           },
         ],
@@ -82,7 +84,12 @@ module.exports = {
     },
     // Including in your Gatsby plugins will transform any paths in your frontmatter
     `gatsby-plugin-netlify-cms-paths`,
-    `gatsby-remark-images`,
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        backgroundColor: `transparent`,
+      },
+    },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -103,17 +110,11 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-table-of-contents`,
+            resolve: `gatsby-remark-prismjs`,
             options: {
-              exclude: 'Table of Contents',
-              tight: false,
-              fromHeading: 1,
-              toHeading: 6,
-              className: 'table-of-contents',
+              showLineNumbers: true,
             },
           },
-          `gatsby-remark-autolink-headers`,
-          `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],

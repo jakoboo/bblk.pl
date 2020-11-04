@@ -1,26 +1,25 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
-import { Link as GatsbyLink } from 'gatsby';
 import styled from 'styled-components';
+import { Link as GatsbyLink } from 'gatsby';
 
 const Root = styled.a`
   color: ${(p) => (p.primary ? p.theme.primaryColor : p.theme.secondaryColor)};
 `;
 
 export const Link = ({ to, href, ...props }) => {
+  href = href || to;
+
   const isExternal = () => {
-    if (href) return true;
-    if (!to.startsWith('/')) return true;
+    if (!href.startsWith('/') && !href.startsWith('#')) return true;
 
     return false;
   };
 
-  console.log(to, props.rel);
   const externalLink = (
     <Root
       {...props}
-      href={to || href}
+      href={href}
       target={props.target !== undefined ? props.target : '_blank'}
       rel={props.rel !== undefined ? props.rel : 'nofollow noreferrer noopener'}
     >
@@ -31,9 +30,9 @@ export const Link = ({ to, href, ...props }) => {
   if (isExternal()) return externalLink;
   else
     return (
-      <GatsbyLink as={Root} to={to} {...props}>
+      <Root as={GatsbyLink} to={href} {...props}>
         {props.children}
-      </GatsbyLink>
+      </Root>
     );
 };
 

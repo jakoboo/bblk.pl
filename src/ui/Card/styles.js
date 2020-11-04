@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const Root = styled.div`
   overflow: hidden;
   border-radius: 10px;
+  background: ${(p) => p.theme.bgColor};
   box-shadow: ${(p) => p.theme.elevations['1dp']};
-  transition: background-color 100ms ease-out, box-shadow 200ms ease-out,
-    transform 200ms ease-out;
+  transition: transform 200ms ease-out, background 200ms ease-out,
+    box-shadow 200ms ease-out;
 
   > * {
     height: 100%;

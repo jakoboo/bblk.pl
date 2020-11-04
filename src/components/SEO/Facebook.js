@@ -2,26 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-const FacebookAnalytics = `
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '{your-app-id}',
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v8.0'
-  });
-    
-  FB.AppEvents.logPageView();
-};
-
-(function(d, s, id){
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));`;
-
 const Facebook = ({ url, locale, type, title, desc, image, appId }) => (
   <Helmet>
     <meta property='og:locale' content={locale} />
@@ -34,7 +14,6 @@ const Facebook = ({ url, locale, type, title, desc, image, appId }) => (
     <meta property='og:image:width' content='600' />
     <meta property='og:image:height' content='600' />
     {appId && <meta property='fb:app_id' content={appId} />}
-    {/*<script>{FacebookAnalytics.replace(`{your-app-id}`, appId)}</script>*/}
   </Helmet>
 );
 

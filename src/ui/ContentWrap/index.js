@@ -9,6 +9,6 @@ const Root = styled.div`
   padding-left: ${({ theme }) => theme.spacing.xl};
 `;
 
-const ContentWrap = ({ ...props }) => <Root {...props} />;
+const ContentWrap = ({ element, ...props }) => <Root as={element} {...props} />;
 
 export default ContentWrap;

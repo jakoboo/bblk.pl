@@ -1,63 +1,115 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
-import Image from 'gatsby-image';
+import { Github, Mail, Twitter } from 'styled-icons/feather';
+import Spaced from '../../ui/Spaced';
+import Heading from '../../ui/Heading';
+import Text from '../../ui/Text';
+import {
+  BioWrap,
+  Avatar,
+  AboutLink,
+  SocialsWrap,
+  SocialListItem,
+  SocialLink,
+} from './styles';
 
-const Bio = () => {
-  const { avatarSrc, site } = useStaticQuery(query);
+const Bio = ({ compact }) => {
+  const data = useStaticQuery(query);
 
   const {
-    siteMetadata: {
-      author,
-      social: { twitter },
+    avatar: {
+      childImageSharp: { fluid: avatar },
     },
-  } = site;
-
-  const avatar = avatarSrc?.childImageSharp?.fixed;
+    site: {
+      siteMetadata: { author, social },
+    },
+  } = data;
 
   return (
-    <div className='bio' itemScope itemType='https://schema.org/Person'>
+    <BioWrap itemScope itemType='https://schema.org/Person'>
       {avatar && (
-        <Image
-          fixed={avatar}
-          alt={author?.name || ``}
-          className='bio-avatar'
-          imgStyle={{
-            borderRadius: `50%`,
-          }}
-        />
+        <Spaced right='xl'>
+          <Avatar
+            compact={compact}
+            fluid={avatar}
+            alt={author?.name || ``}
+            imgStyle={{
+              borderRadius: `50%`,
+            }}
+          />
+        </Spaced>
       )}
       {author?.name && (
-        <>
-          <h2>
-            <a href='https://bblk.pl/about-me'>{author.name}</a>
-          </h2>
-          <p>{author?.description || null}</p>
-          <ul>
-            <li>
-              <a href={`https://twitter.com/${twitter?.username}`}>Twitter</a>
-            </li>
-          </ul>
-        </>
+        <div>
+          {compact ? (
+            <Text>
+              <AboutLink to='/about-me'>{author?.name || `Author`}</AboutLink>
+            </Text>
+          ) : (
+            <>
+              <Spaced vertical='s'>
+                <Heading level={6}>Written by:</Heading>
+              </Spaced>
+              <Heading level={4}>
+                <AboutLink to='/about-me'>{author?.name || `Author`}</AboutLink>
+              </Heading>
+              <Spaced top='s'>
+                <Text>{author?.description || null}</Text>
+              </Spaced>
+            </>
+          )}
+        </div>
       )}
-    </div>
+      {social && (
+        <Spaced left='xl'>
+          <SocialsWrap>
+            <ul>
+              <Spaced left='xl'>
+                <SocialListItem>
+                  <SocialLink
+                    to={`https://twitter.com/${social?.twitter?.username}`}
+                  >
+                    <Twitter />
+                  </SocialLink>
+                </SocialListItem>
+                <SocialListItem>
+                  <SocialLink
+                    to={`https://github.com/${social?.github?.username}`}
+                  >
+                    <Github />
+                  </SocialLink>
+                </SocialListItem>
+                <SocialListItem>
+                  <SocialLink to={`mailto:${author?.email}`}>
+                    <Mail />
+                  </SocialLink>
+                </SocialListItem>
+              </Spaced>
+            </ul>
+          </SocialsWrap>
+        </Spaced>
+      )}
+    </BioWrap>
   );
+};
+
+Bio.propTypes = {
+  compact: PropTypes.bool,
+};
+
+Bio.defaultProps = {
+  compact: false,
 };
 
 export default Bio;
 
 const query = graphql`
   query BioQuery {
-    avatar: file(absolutePath: { regex: "/profile-picture.jpg/" }) {
+    avatar: file(absolutePath: { regex: "/src/images/avatar.jpeg/" }) {
       childImageSharp {
-        fixed(width: 50, height: 50, quality: 95) {
-          ...GatsbyImageSharpFixed
+        fluid(maxWidth: 100) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
         }
       }
     }
@@ -69,6 +121,9 @@ const query = graphql`
           email
         }
         social {
+          github {
+            username
+          }
           twitter {
             username
           }

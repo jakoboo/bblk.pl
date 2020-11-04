@@ -21,6 +21,13 @@ const rootTheme = {
   gray700Color: 'var(--theme-colors-gray700)',
   gray500Color: 'var(--theme-colors-gray500)',
   gray300Color: 'var(--theme-colors-gray300)',
+  hlShadow: 'var(--theme-colors-hlShadow)',
+  hlComment: 'var(--theme-colors-hlComment)',
+  hlPunctuation: 'var(--theme-colors-hlPunctuation)',
+  hlProperty: 'var(--theme-colors-hlProperty)',
+  hlBoolean: 'var(--theme-colors-hlBoolean)',
+  hlSelector: 'var(--theme-colors-hlSelector)',
+  hlFunction: 'var(--theme-colors-hlFunction)',
 };
 
 const lightTheme = {};

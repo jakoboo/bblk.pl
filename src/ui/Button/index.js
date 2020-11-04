@@ -12,8 +12,8 @@ const ButtonWrap = styled.button`
   font-weight: 400;
   text-align: center;
   text-decoration: none;
-  transition: transform 200ms ease-out, box-shadow 200ms ease-out,
-    color 100ms ease-out;
+  transition: transform 200ms ease-out, color 200ms ease-out,
+    box-shadow 200ms ease-out, background 200ms ease-out;
   cursor: pointer;
 
   @media (min-width: ${(p) => p.theme.breakpoints.tablet}) {
@@ -61,7 +61,6 @@ const ButtonContent = styled.div`
   height: 100%;
   border-radius: 5px;
   background: ${(p) => p.theme.bgColor};
-  transition: background-color 100ms linear;
 `;
 
 const Button = forwardRef(({ unstyled, element, children, ...props }, ref) => (

@@ -92,7 +92,6 @@ export const GridPattern = styled(GridPatternSVG)`
 
   circle {
     fill: ${(p) => p.theme.primaryColor};
-    transition: fill 100ms ease-out;
   }
 `;
 
@@ -104,10 +103,6 @@ export const Circles = styled(CirclesSVG)`
   height: 20rem;
   width: auto;
   transform: translate(30%, 50%) scaleX(-1);
-
-  * {
-    transition: stop-color 100ms ease-out;
-  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktopLarge}) {
     top: 0;
@@ -123,5 +118,3 @@ export const Circles = styled(CirclesSVG)`
     stop-color: ${(p) => p.theme.secondaryColor};
   }
 `;
-
-export const AnimatedHeading = animated(Heading);

@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Img from 'gatsby-image';
-
-import Bio from '../../components/Bio';
+import { animated, Spring } from 'react-spring/renderprops';
 import SEO from '../../components/SEO';
+import Bio from '../../components/Bio';
+import Heading from '../../ui/Heading';
+import Spaced from '../../ui/Spaced';
+import Padded from '../../ui/Padded';
+import ContentWrap from '../../ui/ContentWrap';
+import { BlogPostBody, BlogPostWrap } from './styles';
+import Text from '../../ui/Text';
 
 const BlogPostTemplate = ({ location, data: { mdx: post }, pageContext }) => {
   const { previous, next } = pageContext;
@@ -19,53 +24,79 @@ const BlogPostTemplate = ({ location, data: { mdx: post }, pageContext }) => {
         publicationDate={post.frontmatter.date}
         article
       />
-      <article
-        className='blog-post'
-        itemScope
-        itemType='http://schema.org/Article'
-      >
-        <header>
-          <h1 itemProp='headline'>{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-          <span>{post.fields.readingTime.text}</span>
-        </header>
-        {post.frontmatter.featuredImage && (
-          <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
-        )}
-        <section itemProp='articleBody'>
-          <MDXRenderer>{post.body}</MDXRenderer>
-        </section>
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
-      </article>
-      <nav className='blog-post-nav'>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
+      <ContentWrap>
+        <BlogPostWrap
+          element='article'
+          itemScope
+          itemType='http://schema.org/Article'
         >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel='prev'>
-                ← {previous.frontmatter.title}
-              </Link>
+          <Spring
+            from={{ opacity: 0, transform: 'translateY(0.5rem)' }}
+            to={{ opacity: 1, transform: 'translateY(0)' }}
+          >
+            {(props) => (
+              <animated.header style={props}>
+                <Spaced bottom='m'>
+                  <Heading level={1} itemProp='headline'>
+                    {post.frontmatter.title}
+                  </Heading>
+                  <Text>
+                    {post.frontmatter.date}
+                    &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
+                    {post.fields.readingTime.text}
+                  </Text>
+                  <Bio compact />
+                </Spaced>
+              </animated.header>
             )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel='next'>
-                {next.frontmatter.title} →
-              </Link>
+          </Spring>
+
+          <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
+            {(props) => (
+              <animated.div style={props}>
+                <Padded vertical='4x'>
+                  <BlogPostBody itemProp='articleBody'>
+                    <MDXRenderer>{post.body}</MDXRenderer>
+                  </BlogPostBody>
+                </Padded>
+              </animated.div>
             )}
-          </li>
-        </ul>
-      </nav>
+          </Spring>
+
+          <hr />
+          <Padded vertical='xl' horizontal='m'>
+            <footer>
+              <Bio />
+            </footer>
+          </Padded>
+          <nav className='blog-post-nav'>
+            <ul
+              style={{
+                display: `flex`,
+                flexWrap: `wrap`,
+                justifyContent: `space-between`,
+                listStyle: `none`,
+                padding: 0,
+              }}
+            >
+              <li>
+                {previous && (
+                  <Link to={previous.fields.slug} rel='prev'>
+                    ← {previous.frontmatter.title}
+                  </Link>
+                )}
+              </li>
+              <li>
+                {next && (
+                  <Link to={next.fields.slug} rel='next'>
+                    {next.frontmatter.title} →
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </BlogPostWrap>
+      </ContentWrap>
     </>
   );
 };

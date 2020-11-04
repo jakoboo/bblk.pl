@@ -1,14 +1,15 @@
 import React from 'react';
-import { useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
+import { useSpring } from 'react-spring';
+import { Trail } from 'react-spring/renderprops';
 import ContentWrap from '../../../../ui/ContentWrap';
-import Heading from '../../../../ui/Heading';
+import Heading, { AnimatedHeading } from '../../../../ui/Heading';
 import Padded from '../../../../ui/Padded';
 import Spaced from '../../../../ui/Spaced';
 import ScreenReaderText from '../../../../ui/ScreenReaderText';
 import Text from '../../../../ui/Text';
 import Section from '../Section';
 import {
-  AnimatedHeading,
   RecentDemosListWrap,
   GridPattern,
   Circles,
@@ -20,8 +21,6 @@ import {
   ListLink,
   NoDemosHeading,
 } from './styles';
-import { useSpring } from 'react-spring';
-import { Trail } from 'react-spring/renderprops';
 
 const config = {
   from: { opacity: 0, transform: 'translateY(2rem)' },

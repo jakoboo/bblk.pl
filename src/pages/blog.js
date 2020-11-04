@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 
 import SEO from '../components/SEO';
 
-const BlogIndex = ({ location, data }) => {
+const Blog = ({ location, data }) => {
   const posts = data.allMdx.nodes;
 
   return (
@@ -44,7 +44,7 @@ const BlogIndex = ({ location, data }) => {
   );
 };
 
-export default BlogIndex;
+export default Blog;
 
 export const pageQuery = graphql`
   query {

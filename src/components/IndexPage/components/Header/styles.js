@@ -60,7 +60,6 @@ export const GridPattern = styled(GridPatternSVG)`
 
   circle {
     fill: ${(p) => p.theme.bgWatermark};
-    transition: fill 100ms ease-out;
   }
 `;
 
@@ -73,7 +72,6 @@ export const CircleWatermark = styled.div`
   width: 50%;
   background: ${(p) => p.theme.bgWatermark};
   border-radius: 100%;
-  transition: background-color 100ms ease-out;
 
   @media (max-width: ${(p) => p.theme.breakpoints.desktop}) {
     display: none;

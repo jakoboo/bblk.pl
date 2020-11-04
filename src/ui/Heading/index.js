@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Root } from './styles';
+import { animated } from 'react-spring';
 
 const Heading = ({ level, element, ...props }) => (
   <Root level={level} as={element ? element : `h${level}`} {...props} />
@@ -16,3 +17,4 @@ Heading.defaultProps = {
 };
 
 export default Heading;
+export const AnimatedHeading = animated(Heading);

@@ -26,7 +26,6 @@ module.exports = {
       username: `jbbabelek`,
     },
     facebook: {
-      appId: '1507488332781202',
       language: 'en_US',
     },
   },

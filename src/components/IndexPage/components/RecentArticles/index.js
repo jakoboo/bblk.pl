@@ -1,10 +1,11 @@
 import React from 'react';
-import { useStaticQuery } from 'gatsby';
-import { animated, useSpring } from 'react-spring';
+import { graphql, useStaticQuery } from 'gatsby';
+import { useSpring } from 'react-spring';
 import { Trail } from 'react-spring/renderprops';
 import ContentWrap from '../../../../ui/ContentWrap';
 import Padded from '../../../../ui/Padded';
 import Spaced from '../../../../ui/Spaced';
+import Heading, { AnimatedHeading } from '../../../../ui/Heading';
 import ScreenReaderText from '../../../../ui/ScreenReaderText';
 import Text from '../../../../ui/Text';
 import Section from '../Section';
@@ -16,9 +17,7 @@ import {
   ArticlePublishDate,
   Lines,
   GridPattern,
-  AnimatedHeading,
 } from './styles';
-import Heading from '../../../../ui/Heading';
 
 const RecentArticles = () => {
   const data = useStaticQuery(query);
@@ -31,13 +30,13 @@ const RecentArticles = () => {
       transform: 'translateY(0)',
     },
   };
-  const spring = useSpring(config);
+  const springStyle = useSpring(config);
 
   return (
     <Section elevated={true}>
       <Padded vertical='5x'>
         <ContentWrap>
-          <AnimatedHeading style={spring} level={2}>
+          <AnimatedHeading style={springStyle} level={2}>
             Recent articles
           </AnimatedHeading>
           <ArticlesList>

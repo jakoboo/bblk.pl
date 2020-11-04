@@ -19,8 +19,8 @@ export const colors = {
     dark: 'hsl(200, 5%, 15%)',
   },
   bgAccent: {
-    light: 'hsl(0, 0%, 61%)',
-    dark: 'hsl(200, 5%, 49%)',
+    light: 'hsl(0, 1%, 27%)',
+    dark: 'hsl(0, 0%, 100%)',
   },
   primary: {
     light: 'hsl(205, 70%, 50%)',
@@ -42,6 +42,35 @@ export const colors = {
   gray700: {
     light: 'hsl(0, 0%, 30%)',
     dark: 'hsl(0, 0%, 70%)',
+  },
+  // Code highlight
+  hlShadow: {
+    light: '0 1px white',
+    dark: '0 1px rgba(0, 0, 0, 0.3)',
+  },
+  hlComment: {
+    light: 'hsl(210, 15%, 20%)',
+    dark: 'hsl(210, 15%, 57%)',
+  },
+  hlPunctuation: {
+    light: 'hsl(60, 5%, 30%)',
+    dark: 'hsl(60, 30%, 96%)',
+  },
+  hlProperty: {
+    light: 'hsl(338, 95%, 36%)',
+    dark: 'hsl(338, 95%, 56%)',
+  },
+  hlBoolean: {
+    light: 'hsl(261, 100%, 35%)',
+    dark: 'hsl(261, 100%, 75%)',
+  },
+  hlSelector: {
+    light: 'hsl(80, 76%, 33%)',
+    dark: 'hsl(80, 76%, 53%)',
+  },
+  hlFunction: {
+    light: 'hsl(54, 70%, 38%)',
+    dark: 'hsl(54, 70%, 68%)',
   },
 };
 
@@ -100,14 +129,13 @@ export const fonts = {
   montserrat: `"Montserrat", Sans-Serif`,
   roboto: `"Roboto", Sans-Serif`,
   serif: `"DM Serif Text", serif`,
-  serifDisplay: `"DM Serif Display", serif`,
 };
 
 export const fontSizes = {
   xxxl: {
-    mobile: '3rem',
-    tablet: '3.5rem',
-    desktop: '4rem',
+    mobile: '2.125rem',
+    tablet: '2.5rem',
+    desktop: '2.875rem',
   },
   xxl: {
     mobile: '1.875rem',

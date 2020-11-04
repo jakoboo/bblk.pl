@@ -19,15 +19,15 @@ const Root = styled.blockquote`
     top: 0;
     bottom: 0;
     left: calc(${(p) => p.theme.spacing.xl} / 3);
-    width: calc(${(p) => p.theme.spacing.xl} / 3);
+    width: calc(${(p) => p.theme.spacing.xl} / 6);
 
     background-color: ${(p) => p.theme.bgAccent};
   }
 `;
 
 const QuoteText = styled(Text)`
-  font-family: ${(p) => p.theme.fonts.serif};
-  //font-style: italic;
+  font-family: ${(p) => p.theme.fonts.roboto};
+  font-style: italic;
   font-size: ${(p) => getFontSize(p.theme, 'mobile')};
   color: ${(p) => p.theme.textColor};
 

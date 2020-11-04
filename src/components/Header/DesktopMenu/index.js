@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/shift-away.css';
 import { breakpoints } from '../../../ui/variables';
 import Link from '../../../ui/Link';
 import Text from '../../../ui/Text';
