@@ -8,6 +8,7 @@ import { Root as Text } from '../../ui/Text';
 export const ArticleWrap = styled.article``;
 export const ArticleContentWrap = styled(ContentWrap)`
   max-width: 680px;
+  overflow: hidden;
 `;
 
 export const ArticleHeader = styled.header``;
