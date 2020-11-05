@@ -24,7 +24,7 @@ const getColor = ({ theme, order }) => {
   }
 };
 
-const Root = styled.p`
+export const Root = styled.p`
   margin: 0;
 
   font-family: ${({ theme }) => theme.fonts.roboto};

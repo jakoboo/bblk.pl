@@ -2,8 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import * as _ from 'lodash';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { useSpring, config } from 'react-spring';
-import { Calendar, Clock } from 'styled-icons/feather';
+import { useSpring } from 'react-spring';
+import { Clock } from 'styled-icons/feather';
 import { Avatar } from '../../components/Bio/styles';
 import SEO from '../../components/SEO';
 import Bio from '../../components/Bio';
@@ -21,6 +21,7 @@ import {
   ArticleContentWrap,
   AnimatedArticleBody,
   ArticleWrap,
+  ArticleAuthorLink,
 } from './styles';
 
 const ArticleTemplate = ({ location, data, pageContext }) => {
@@ -82,7 +83,7 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                 </Heading>
               </Spaced>
               <ArticleSubheader>
-                <Link href='/about-me'>
+                <ArticleAuthorLink href='/about-me'>
                   <Avatar
                     compact
                     fluid={avatar}
@@ -90,20 +91,15 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                     imgStyle={{
                       borderRadius: `50%`,
                     }}
-                    style={{ display: 'inline-block', marginRight: '1rem' }}
                   />
-                  {author?.name}
-                </Link>
+                  <Text element='span'>{author?.name}</Text>
+                </ArticleAuthorLink>
                 <span>
                   <time datetime={post.frontmatter.datetime}>
-                    <Text element='span' order='meta'>
-                      {post.frontmatter.date}
-                    </Text>
+                    <Text element='span'>{post.frontmatter.date}</Text>
                   </time>
                   <Clock />
-                  <Text element='span' order='meta'>
-                    {post.fields.readingTime.text}
-                  </Text>
+                  <Text element='span'>{post.fields.readingTime.text}</Text>
                 </span>
               </ArticleSubheader>
             </AnimatedArticleHeader>

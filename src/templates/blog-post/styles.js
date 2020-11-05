@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 import ContentWrap from '../../ui/ContentWrap';
+import Link from '../../ui/Link';
+import { Avatar } from '../../components/Bio/styles';
+import { Root as Text } from '../../ui/Text';
 
 export const ArticleWrap = styled.article``;
 export const ArticleContentWrap = styled(ContentWrap)`
@@ -33,24 +36,37 @@ export const ArticleTag = styled.li`
 `;
 
 export const ArticleSubheader = styled.div`
-  a {
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: ${(p) => p.theme.textColor};
-    margin-right: ${(p) => p.theme.spacing['m']};
-  }
-
   * {
     display: inline-block;
     vertical-align: middle;
   }
 
+  ${Text} {
+    font-size: 0.8rem;
+  }
+
   svg {
-    vertical-align: middle;
-    height: 1.25rem;
-    color: ${(p) => p.theme.gray500Color}
+    height: 1rem;
+    color: ${(p) => p.theme.gray500Color};
     stroke-width: 2px;
     margin: 0 ${(p) => p.theme.spacing['s']};
+  }
+`;
+
+export const ArticleAuthorLink = styled(Link)`
+  text-decoration: none;
+  margin-right: ${(p) => p.theme.spacing['m']};
+
+  ${Avatar} {
+    width: 2.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  ${Text} {
+    font-size: 1rem;
+    font-weight: 700;
+    color: ${(p) => p.theme.textColor};
   }
 `;
 
