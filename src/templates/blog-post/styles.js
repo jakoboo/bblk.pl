@@ -16,8 +16,12 @@ export const ArticleTag = styled.li`
   list-style: none;
 
   &:not(:first-child)::before {
-    content: '·';
-    font-size: 2rem;
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: ${(p) => p.theme.textColor};
+    border-radius: 50%;
     margin: 0 0.5rem;
     vertical-align: middle;
   }
@@ -27,11 +31,13 @@ export const ArticleTag = styled.li`
     text-decoration: none;
   }
 `;
-export const ArticlePublished = styled.div`
+
+export const ArticleSubheader = styled.div`
   a {
     font-size: 1.2rem;
     text-decoration: none;
     color: ${(p) => p.theme.textColor};
+    margin-right: ${(p) => p.theme.spacing['m']};
   }
 
   * {
@@ -42,9 +48,9 @@ export const ArticlePublished = styled.div`
   svg {
     vertical-align: middle;
     height: 1.25rem;
+    color: ${(p) => p.theme.gray500Color}
     stroke-width: 2px;
-    margin-left: ${(p) => p.theme.spacing['xl']};
-    margin-right: ${(p) => p.theme.spacing['s']};
+    margin: 0 ${(p) => p.theme.spacing['s']};
   }
 `;
 

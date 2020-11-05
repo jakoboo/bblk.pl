@@ -18,7 +18,7 @@ const getColor = ({ theme, order }) => {
   switch (order) {
     case 'caption':
     case 'meta':
-      return theme.gray700Color;
+      return theme.gray500Color;
     default:
       return theme.textColor;
   }

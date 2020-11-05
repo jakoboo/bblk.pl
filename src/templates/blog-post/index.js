@@ -12,11 +12,12 @@ import Spaced from '../../ui/Spaced';
 import Padded from '../../ui/Padded';
 import Text from '../../ui/Text';
 import Link from '../../ui/Link';
+import ScreenReaderText from '../../ui/ScreenReaderText';
 import {
   AnimatedArticleHeader,
   ArticleTags,
   ArticleTag,
-  ArticlePublished,
+  ArticleSubheader,
   ArticleContentWrap,
   AnimatedArticleBody,
   ArticleWrap,
@@ -57,42 +58,54 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
         <ArticleWrap aria-labelledby='article-title'>
           <ArticleContentWrap>
             <AnimatedArticleHeader style={headerSpring}>
-              <ArticleTags>
-                <ul>
-                  {post.frontmatter.tags.map((tag) => (
-                    <ArticleTag key={_.kebabCase(tag)}>
-                      <Link href={`/tags/${_.kebabCase(tag)}`}>
-                        <Text element='span' order='meta'>
-                          {tag}
-                        </Text>
-                      </Link>
-                    </ArticleTag>
-                  ))}
-                </ul>
-              </ArticleTags>
-              <Heading level={1} id='article-title'>
-                {post.frontmatter.title}
-              </Heading>
-              <Spaced top='s'>
-                <ArticlePublished>
-                  <Link href='/about-me'>
-                    <Avatar
-                      compact
-                      fluid={avatar}
-                      alt={author?.name || ``}
-                      imgStyle={{
-                        borderRadius: `50%`,
-                      }}
-                      style={{ display: 'inline-block', marginRight: '1rem' }}
-                    />
-                    {author?.name}
-                  </Link>
-                  <Calendar />
-                  <Text order='meta'>{post.frontmatter.date}</Text>
-                  <Clock />
-                  <Text order='meta'>{post.fields.readingTime.text}</Text>
-                </ArticlePublished>
+              <Spaced bottom='s'>
+                <ArticleTags>
+                  <ScreenReaderText aria>
+                    <Heading level={2} id='article-tags-label'>
+                      Article tags
+                    </Heading>
+                  </ScreenReaderText>
+                  <ul aria-labelledby='article-tags-label'>
+                    {post.frontmatter.tags.map((tag) => (
+                      <ArticleTag key={_.kebabCase(tag)}>
+                        <Link href={`/tags/${_.kebabCase(tag)}`}>
+                          <Text element='span' order='meta'>
+                            {tag}
+                          </Text>
+                        </Link>
+                      </ArticleTag>
+                    ))}
+                  </ul>
+                </ArticleTags>
+                <Heading level={1} id='article-title'>
+                  {post.frontmatter.title}
+                </Heading>
               </Spaced>
+              <ArticleSubheader>
+                <Link href='/about-me'>
+                  <Avatar
+                    compact
+                    fluid={avatar}
+                    alt={author?.name || ``}
+                    imgStyle={{
+                      borderRadius: `50%`,
+                    }}
+                    style={{ display: 'inline-block', marginRight: '1rem' }}
+                  />
+                  {author?.name}
+                </Link>
+                <span>
+                  <time datetime={post.frontmatter.datetime}>
+                    <Text element='span' order='meta'>
+                      {post.frontmatter.date}
+                    </Text>
+                  </time>
+                  <Clock />
+                  <Text element='span' order='meta'>
+                    {post.fields.readingTime.text}
+                  </Text>
+                </span>
+              </ArticleSubheader>
             </AnimatedArticleHeader>
             <Padded vertical='5x'>
               <AnimatedArticleBody style={bodySpring}>
@@ -167,7 +180,8 @@ export const pageQuery = graphql`
         slug
       }
       frontmatter {
-        date(formatString: "DD MMMM, YYYY")
+        datetime: date
+        date: date(formatString: "DD MMMM, YYYY")
         title
         description
         tags
