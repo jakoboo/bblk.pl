@@ -34,16 +34,6 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
   } = data;
   const { previous, next } = pageContext;
 
-  const [y, setY] = useSpring(() => ({
-    immediate: false,
-    y: window.scrollY,
-    config: config.stiff,
-    onFrame: (p) => {
-      setY(window.scrollY);
-      console.log(y);
-    },
-  }));
-
   const headerSpring = useSpring({
     from: { opacity: 0, transform: 'translateY(-5rem)' },
     to: { opacity: 1, transform: 'translateY(0)' },
