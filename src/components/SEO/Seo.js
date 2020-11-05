@@ -112,6 +112,21 @@ const Seo = ({
     schemaArticle = {
       '@context': 'http://schema.org',
       '@type': 'Article',
+      'url': seo.url,
+      'name': seo.title,
+      'headline': seo.title,
+      'inLanguage': siteLanguage,
+      'datePublished': publicationDate,
+      'dateModified': buildTime,
+      'description': seo.description,
+      'image': {
+        '@type': 'ImageObject',
+        'url': seo.image,
+      },
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': seo.url,
+      },
       'author': {
         '@type': 'Person',
         ...author,
@@ -132,21 +147,6 @@ const Seo = ({
           '@type': 'ImageObject',
           'url': `${siteUrl}${defaultBanner}`,
         },
-      },
-      'datePublished': publicationDate,
-      'dateModified': buildTime,
-      'description': seo.description,
-      'headline': seo.title,
-      'inLanguage': siteLanguage,
-      'url': seo.url,
-      'name': seo.title,
-      'image': {
-        '@type': 'ImageObject',
-        'url': seo.image,
-      },
-      'mainEntityOfPage': {
-        '@type': 'WebPage',
-        '@id': seo.url,
       },
     };
 
@@ -236,6 +236,7 @@ const query = graphql`
           name
           description
           email
+          sameAs
         }
         social {
           twitter {

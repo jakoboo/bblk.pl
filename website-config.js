@@ -14,6 +14,7 @@ module.exports = {
     name: `Jakub Bąbelek`,
     email: `jakub@bblk.pl`,
     description: `Student and Full Stack Developer living in Poznań, PL`,
+    sameAs: [`https://twitter.com/jbbabelek`, `https://github.com/jakoboo`],
   }, // Author for schemaORGJSONLD
   themeColor: '#ffffff',
   backgroundColor: '#ffffff',
