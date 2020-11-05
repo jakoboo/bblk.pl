@@ -14,9 +14,14 @@ export const ArticleHeader = styled.header``;
 export const AnimatedArticleHeader = animated(ArticleHeader);
 
 export const ArticleTags = styled.div``;
-export const ArticleTag = styled.li`
+export const AnimatedArticleTags = animated(ArticleTags);
+export const ArticleTagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+export const ArticleTag = styled.span`
   display: inline-block;
-  list-style: none;
 
   &:not(:first-child)::before {
     content: '';
@@ -36,37 +41,26 @@ export const ArticleTag = styled.li`
 `;
 
 export const ArticleSubheader = styled.div`
-  * {
-    display: inline-block;
-    vertical-align: middle;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 
   ${Text} {
-    font-size: 0.8rem;
-  }
-
-  svg {
-    height: 1rem;
-    color: ${(p) => p.theme.gray500Color};
-    stroke-width: 2px;
-    margin: 0 ${(p) => p.theme.spacing['s']};
+    font-size: ${(p) => p.theme.fontSizes.s.mobile};
   }
 `;
+export const AnimatedArticleSubheader = animated(ArticleSubheader);
 
 export const ArticleAuthorLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  font-size: ${(p) => p.theme.fontSizes.m.mobile};
+  font-weight: 500;
+  color: ${(p) => p.theme.textColor};
   text-decoration: none;
-  margin-right: ${(p) => p.theme.spacing['m']};
 
   ${Avatar} {
-    width: 2.5rem;
-    margin-right: 0.5rem;
-    vertical-align: middle;
-  }
-
-  ${Text} {
-    font-size: 1rem;
-    font-weight: 700;
-    color: ${(p) => p.theme.textColor};
+    width: 2rem;
   }
 `;
 

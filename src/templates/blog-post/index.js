@@ -2,26 +2,26 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import * as _ from 'lodash';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { useSpring } from 'react-spring';
-import { Clock } from 'styled-icons/feather';
+import { useSpring, useTrail } from 'react-spring';
 import { Avatar } from '../../components/Bio/styles';
 import SEO from '../../components/SEO';
 import Bio from '../../components/Bio';
-import Heading from '../../ui/Heading';
+import Heading, { AnimatedHeading } from '../../ui/Heading';
 import Spaced from '../../ui/Spaced';
 import Padded from '../../ui/Padded';
 import Text from '../../ui/Text';
 import Link from '../../ui/Link';
 import ScreenReaderText from '../../ui/ScreenReaderText';
 import {
-  AnimatedArticleHeader,
-  ArticleTags,
+  ArticleHeader,
+  AnimatedArticleTags,
   ArticleTag,
-  ArticleSubheader,
+  AnimatedArticleSubheader,
   ArticleContentWrap,
   AnimatedArticleBody,
   ArticleWrap,
   ArticleAuthorLink,
+  ArticleTagList,
 } from './styles';
 
 const ArticleTemplate = ({ location, data, pageContext }) => {
@@ -36,9 +36,9 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
   } = data;
   const { previous, next } = pageContext;
 
-  const headerSpring = useSpring({
-    from: { opacity: 0, transform: 'translateY(-5rem)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
+  const headerTrail = useTrail(3, {
+    from: { opacity: 0, transform: 'translateX(-100%)' },
+    to: { opacity: 1, transform: 'translateX(0)' },
   });
   const bodySpring = useSpring({
     from: { opacity: 0 },
@@ -58,15 +58,15 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
       <Spaced top='5x'>
         <ArticleWrap aria-labelledby='article-title'>
           <ArticleContentWrap>
-            <AnimatedArticleHeader style={headerSpring}>
+            <ArticleHeader>
               <Spaced bottom='s'>
-                <ArticleTags>
+                <AnimatedArticleTags style={headerTrail[0]}>
                   <ScreenReaderText aria>
                     <Heading level={2} id='article-tags-label'>
                       Article tags
                     </Heading>
                   </ScreenReaderText>
-                  <ul aria-labelledby='article-tags-label'>
+                  <ArticleTagList aria-labelledby='article-tags-label'>
                     {post.frontmatter.tags.map((tag) => (
                       <ArticleTag key={_.kebabCase(tag)}>
                         <Link href={`/tags/${_.kebabCase(tag)}`}>
@@ -76,34 +76,45 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                         </Link>
                       </ArticleTag>
                     ))}
-                  </ul>
-                </ArticleTags>
-                <Heading level={1} id='article-title'>
-                  {post.frontmatter.title}
-                </Heading>
+                  </ArticleTagList>
+                </AnimatedArticleTags>
               </Spaced>
-              <ArticleSubheader>
-                <ArticleAuthorLink href='/about-me'>
-                  <Avatar
-                    compact
-                    fluid={avatar}
-                    alt={author?.name || ``}
-                    imgStyle={{
-                      borderRadius: `50%`,
-                    }}
-                  />
-                  <Text element='span'>{author?.name}</Text>
-                </ArticleAuthorLink>
-                <span>
-                  <time datetime={post.frontmatter.datetime}>
-                    <Text element='span'>{post.frontmatter.date}</Text>
-                  </time>
-                  <Clock />
-                  <Text element='span'>{post.fields.readingTime.text}</Text>
-                </span>
-              </ArticleSubheader>
-            </AnimatedArticleHeader>
-            <Padded vertical='5x'>
+              <Spaced bottom='xl'>
+                <AnimatedHeading
+                  style={headerTrail[1]}
+                  level={1}
+                  id='article-title'
+                >
+                  {post.frontmatter.title}
+                </AnimatedHeading>
+              </Spaced>
+              <AnimatedArticleSubheader style={headerTrail[2]}>
+                <Spaced right='m' bottom='m'>
+                  <ArticleAuthorLink href='/about-me'>
+                    <Spaced right='xs'>
+                      <span>
+                        <Avatar
+                          compact
+                          fluid={avatar}
+                          alt={author?.name || ``}
+                          imgStyle={{
+                            borderRadius: `50%`,
+                          }}
+                        />
+                      </span>
+                    </Spaced>
+                    {author?.name}
+                  </ArticleAuthorLink>
+                  <span>
+                    <time datetime={post.frontmatter.datetime}>
+                      <Text element='span'>{post.frontmatter.date}</Text>
+                    </time>
+                    <Text element='span'>・{post.fields.readingTime.text}</Text>
+                  </span>
+                </Spaced>
+              </AnimatedArticleSubheader>
+            </ArticleHeader>
+            <Padded vertical='2x'>
               <AnimatedArticleBody style={bodySpring}>
                 <MDXRenderer>{post.body}</MDXRenderer>
               </AnimatedArticleBody>
@@ -177,7 +188,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         datetime: date
-        date: date(formatString: "DD MMMM, YYYY")
+        date: date(formatString: "DD MMM, YYYY")
         title
         description
         tags
