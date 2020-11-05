@@ -42,11 +42,20 @@ const Seo = ({
     '@context': 'http://schema.org',
     '@type': 'WebPage',
     'url': seo.url,
+    'name': defaultTitle,
     'headline': headline,
     'inLanguage': siteLanguage,
-    'mainEntityOfPage': seo.url,
+    'datePublished': '2020-11-01',
+    'dateModified': buildTime,
     'description': defaultDescription,
-    'name': defaultTitle,
+    'image': {
+      '@type': 'ImageObject',
+      'url': `${siteUrl}${defaultBanner}`,
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': seo.url,
+    },
     'author': {
       '@type': 'Person',
       ...author,
@@ -63,12 +72,6 @@ const Seo = ({
     'publisher': {
       '@type': 'Person',
       ...author,
-    },
-    'datePublished': '2020-11-01',
-    'dateModified': buildTime,
-    'image': {
-      '@type': 'ImageObject',
-      'url': `${siteUrl}${defaultBanner}`,
     },
   };
 
