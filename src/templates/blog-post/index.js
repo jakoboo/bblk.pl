@@ -1,18 +1,57 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
+import * as _ from 'lodash';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { animated, Spring } from 'react-spring/renderprops';
+import { useSpring, config } from 'react-spring';
+import { Calendar, Clock } from 'styled-icons/feather';
+import { Avatar } from '../../components/Bio/styles';
 import SEO from '../../components/SEO';
 import Bio from '../../components/Bio';
 import Heading from '../../ui/Heading';
 import Spaced from '../../ui/Spaced';
 import Padded from '../../ui/Padded';
-import ContentWrap from '../../ui/ContentWrap';
-import { BlogPostBody, BlogPostWrap } from './styles';
 import Text from '../../ui/Text';
+import Link from '../../ui/Link';
+import {
+  AnimatedArticleHeader,
+  ArticleTags,
+  ArticleTag,
+  ArticlePublished,
+  ArticleContentWrap,
+  AnimatedArticleBody,
+  ArticleWrap,
+} from './styles';
 
-const BlogPostTemplate = ({ location, data: { mdx: post }, pageContext }) => {
+const ArticleTemplate = ({ location, data, pageContext }) => {
+  const {
+    avatar: {
+      childImageSharp: { fluid: avatar },
+    },
+    site: {
+      siteMetadata: { author },
+    },
+    mdx: post,
+  } = data;
   const { previous, next } = pageContext;
+
+  const [y, setY] = useSpring(() => ({
+    immediate: false,
+    y: window.scrollY,
+    config: config.stiff,
+    onFrame: (p) => {
+      setY(window.scrollY);
+      console.log(y);
+    },
+  }));
+
+  const headerSpring = useSpring({
+    from: { opacity: 0, transform: 'translateY(-5rem)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+  });
+  const bodySpring = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
 
   return (
     <>
@@ -24,90 +63,108 @@ const BlogPostTemplate = ({ location, data: { mdx: post }, pageContext }) => {
         publicationDate={post.frontmatter.date}
         article
       />
-      <ContentWrap>
-        <BlogPostWrap
-          element='article'
-          itemScope
-          itemType='http://schema.org/Article'
-        >
-          <Spring
-            from={{ opacity: 0, transform: 'translateY(0.5rem)' }}
-            to={{ opacity: 1, transform: 'translateY(0)' }}
-          >
-            {(props) => (
-              <animated.header style={props}>
-                <Spaced bottom='m'>
-                  <Heading level={1} itemProp='headline'>
-                    {post.frontmatter.title}
-                  </Heading>
-                  <Text>
-                    {post.frontmatter.date}
-                    &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;
-                    {post.fields.readingTime.text}
-                  </Text>
-                  <Bio compact />
-                </Spaced>
-              </animated.header>
-            )}
-          </Spring>
-
-          <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
-            {(props) => (
-              <animated.div style={props}>
-                <Padded vertical='4x'>
-                  <BlogPostBody itemProp='articleBody'>
-                    <MDXRenderer>{post.body}</MDXRenderer>
-                  </BlogPostBody>
-                </Padded>
-              </animated.div>
-            )}
-          </Spring>
-
-          <hr />
-          <Padded vertical='xl' horizontal='m'>
-            <footer>
-              <Bio />
-            </footer>
-          </Padded>
-          <nav className='blog-post-nav'>
-            <ul
-              style={{
-                display: `flex`,
-                flexWrap: `wrap`,
-                justifyContent: `space-between`,
-                listStyle: `none`,
-                padding: 0,
-              }}
-            >
-              <li>
-                {previous && (
-                  <Link to={previous.fields.slug} rel='prev'>
-                    ← {previous.frontmatter.title}
+      <Spaced top='5x'>
+        <ArticleWrap aria-labelledby='article-title'>
+          <ArticleContentWrap>
+            <AnimatedArticleHeader style={headerSpring}>
+              <ArticleTags>
+                <ul>
+                  {post.frontmatter.tags.map((tag) => (
+                    <ArticleTag key={_.kebabCase(tag)}>
+                      <Link href={`/tags/${_.kebabCase(tag)}`}>
+                        <Text element='span' order='meta'>
+                          {tag}
+                        </Text>
+                      </Link>
+                    </ArticleTag>
+                  ))}
+                </ul>
+              </ArticleTags>
+              <Heading level={1} id='article-title'>
+                {post.frontmatter.title}
+              </Heading>
+              <Spaced top='s'>
+                <ArticlePublished>
+                  <Link href='/about-me'>
+                    <Avatar
+                      compact
+                      fluid={avatar}
+                      alt={author?.name || ``}
+                      imgStyle={{
+                        borderRadius: `50%`,
+                      }}
+                      style={{ display: 'inline-block', marginRight: '1rem' }}
+                    />
+                    {author?.name}
                   </Link>
-                )}
-              </li>
-              <li>
-                {next && (
-                  <Link to={next.fields.slug} rel='next'>
-                    {next.frontmatter.title} →
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </nav>
-        </BlogPostWrap>
-      </ContentWrap>
+                  <Calendar />
+                  <Text order='meta'>{post.frontmatter.date}</Text>
+                  <Clock />
+                  <Text order='meta'>{post.fields.readingTime.text}</Text>
+                </ArticlePublished>
+              </Spaced>
+            </AnimatedArticleHeader>
+            <Padded vertical='5x'>
+              <AnimatedArticleBody style={bodySpring}>
+                <MDXRenderer>{post.body}</MDXRenderer>
+              </AnimatedArticleBody>
+            </Padded>
+            <hr />
+            <Padded vertical='xl' horizontal='m'>
+              <footer>
+                <Bio />
+              </footer>
+            </Padded>
+            <nav className='blog-post-nav'>
+              <ul
+                style={{
+                  display: `flex`,
+                  flexWrap: `wrap`,
+                  justifyContent: `space-between`,
+                  listStyle: `none`,
+                  padding: 0,
+                }}
+              >
+                <li>
+                  {previous && (
+                    <Link to={previous.fields.slug} rel='prev'>
+                      ← {previous.frontmatter.title}
+                    </Link>
+                  )}
+                </li>
+                <li>
+                  {next && (
+                    <Link to={next.fields.slug} rel='next'>
+                      {next.frontmatter.title} →
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            </nav>
+          </ArticleContentWrap>
+        </ArticleWrap>
+      </Spaced>
     </>
   );
 };
 
-export default BlogPostTemplate;
+export default ArticleTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
+  query ArticleByID($id: String!) {
+    avatar: file(absolutePath: { regex: "/src/images/avatar.jpeg/" }) {
+      childImageSharp {
+        fluid(maxWidth: 50) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
     site {
       siteMetadata {
         title
+        author {
+          name
+        }
       }
     }
     mdx(id: { eq: $id }) {

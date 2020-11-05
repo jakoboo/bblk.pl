@@ -144,7 +144,10 @@ const Seo = ({
         '@type': 'ImageObject',
         'url': seo.image,
       },
-      'mainEntityOfPage': seo.url,
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': seo.url,
+      },
     };
 
     // Push current blog post into breadcrumb list
