@@ -15,9 +15,7 @@ import ArticleHeading from '../ArticleHeading';
 import Quote from '../../ui/Quote';
 import { LayoutWrap, MainWrap } from './styles';
 
-const LayoutContent = ({ location, children, ...props }) => {
-  // Check for Client side rendering to fix rehydration flicker
-  // due to theme rehydration
+const LayoutContent = ({ location, themeName, children, ...props }) => {
   const [hasMounted, setHasMounted] = useState(false);
   const mainRef = useRef();
 
@@ -26,9 +24,11 @@ const LayoutContent = ({ location, children, ...props }) => {
     setHasMounted(true);
   }, []);
 
-  // return null for SSR
-  if (!hasMounted) {
-    //return null;
+  // Fix rehydration flicker due to theme rehydration
+  // return null for CSR if theme has not been set yet
+  // so that SSR will work for clients with disabled JavaScript
+  if (hasMounted && !themeName) {
+    return null;
   }
 
   return (
@@ -121,12 +121,16 @@ const LayoutContent = ({ location, children, ...props }) => {
 };
 
 const Layout = ({ location, children }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, themeName } = useContext(ThemeContext);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <LayoutContent location={location} children={children} />
+      <LayoutContent
+        location={location}
+        themeName={themeName}
+        children={children}
+      />
     </ThemeProvider>
   );
 };
