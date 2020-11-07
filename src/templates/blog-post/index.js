@@ -93,7 +93,7 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
               </Spaced>
               <ArticleSubheader>
                 <Spaced right='m' bottom='m'>
-                  <ArticleAuthorLink href='/about-me'>
+                  <ArticleAuthorLink href='/about'>
                     <Spaced right='xs'>
                       <span>
                         <Avatar

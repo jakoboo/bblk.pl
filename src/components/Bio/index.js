@@ -44,7 +44,7 @@ const Bio = ({ compact }) => {
         <div>
           {compact ? (
             <Text>
-              <AboutLink to='/about-me'>{author?.name || `Author`}</AboutLink>
+              <AboutLink to='/about'>{author?.name || `Author`}</AboutLink>
             </Text>
           ) : (
             <>
@@ -52,7 +52,7 @@ const Bio = ({ compact }) => {
                 <Heading level={6}>Written by:</Heading>
               </Spaced>
               <Heading level={4}>
-                <AboutLink to='/about-me'>{author?.name || `Author`}</AboutLink>
+                <AboutLink to='/about'>{author?.name || `Author`}</AboutLink>
               </Heading>
               <Spaced top='s'>
                 <Text>{author?.description || null}</Text>
