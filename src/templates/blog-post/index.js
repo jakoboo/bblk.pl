@@ -2,24 +2,25 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import * as _ from 'lodash';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { useSpring, useTrail } from 'react-spring';
+import { useSpring } from 'react-spring';
 import { Avatar } from '../../components/Bio/styles';
 import SEO from '../../components/SEO';
 import Bio from '../../components/Bio';
-import Heading, { AnimatedHeading } from '../../ui/Heading';
+import Heading from '../../ui/Heading';
 import Spaced from '../../ui/Spaced';
 import Padded from '../../ui/Padded';
+import Button from '../../ui/Button';
 import Text from '../../ui/Text';
 import Link from '../../ui/Link';
 import ScreenReaderText from '../../ui/ScreenReaderText';
 import {
+  AnimatedArticleWrap,
   ArticleHeader,
-  AnimatedArticleTags,
+  ArticleTags,
   ArticleTag,
-  AnimatedArticleSubheader,
+  ArticleSubheader,
   ArticleContentWrap,
-  AnimatedArticleBody,
-  ArticleWrap,
+  ArticleBody,
   ArticleAuthorLink,
   ArticleTagList,
 } from './styles';
@@ -36,11 +37,17 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
   } = data;
   const { previous, next } = pageContext;
 
-  const headerTrail = useTrail(3, {
-    from: { opacity: 0, transform: 'translateX(-100%)' },
-    to: { opacity: 1, transform: 'translateX(0)' },
-  });
-  const bodySpring = useSpring({
+  const shareArticle = () => {
+    try {
+      navigator.share({
+        title: post.frontmatter.title,
+        url: `${window.location.origin}${post.fields.slug}`,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const props = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
   });
@@ -56,11 +63,11 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
         article
       />
       <Spaced top='5x'>
-        <ArticleWrap aria-labelledby='article-title'>
+        <AnimatedArticleWrap style={props} aria-labelledby='article-title'>
           <ArticleContentWrap>
             <ArticleHeader>
               <Spaced bottom='s'>
-                <AnimatedArticleTags style={headerTrail[0]}>
+                <ArticleTags>
                   <ScreenReaderText aria>
                     <Heading level={2} id='article-tags-label'>
                       Article tags
@@ -77,18 +84,14 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                       </ArticleTag>
                     ))}
                   </ArticleTagList>
-                </AnimatedArticleTags>
+                </ArticleTags>
               </Spaced>
               <Spaced bottom='xl'>
-                <AnimatedHeading
-                  style={headerTrail[1]}
-                  level={1}
-                  id='article-title'
-                >
+                <Heading level={1} id='article-title'>
                   {post.frontmatter.title}
-                </AnimatedHeading>
+                </Heading>
               </Spaced>
-              <AnimatedArticleSubheader style={headerTrail[2]}>
+              <ArticleSubheader>
                 <Spaced right='m' bottom='m'>
                   <ArticleAuthorLink href='/about-me'>
                     <Spaced right='xs'>
@@ -111,13 +114,18 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                     </time>
                     <Text element='span'>・{post.fields.readingTime.text}</Text>
                   </span>
+                  <span>
+                    <Button unstyled onClick={shareArticle}>
+                      Share
+                    </Button>
+                  </span>
                 </Spaced>
-              </AnimatedArticleSubheader>
+              </ArticleSubheader>
             </ArticleHeader>
             <Padded vertical='2x'>
-              <AnimatedArticleBody style={bodySpring}>
+              <ArticleBody>
                 <MDXRenderer>{post.body}</MDXRenderer>
-              </AnimatedArticleBody>
+              </ArticleBody>
             </Padded>
             <hr />
             <Padded vertical='xl' horizontal='m'>
@@ -152,7 +160,7 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
               </ul>
             </nav>
           </ArticleContentWrap>
-        </ArticleWrap>
+        </AnimatedArticleWrap>
       </Spaced>
     </>
   );

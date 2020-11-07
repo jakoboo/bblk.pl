@@ -45,6 +45,9 @@ export const onRenderBody = ({ setPreBodyComponents, setHeadComponents }) => {
   setPreBodyComponents(<ThemeScriptTag />);
 };
 
-export const wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>;
-};
+export const wrapRootElement = ({ element, props }) => (
+  <ContextThemeProvider {...props}>{element}</ContextThemeProvider>
+);
+export const wrapPageElement = ({ element, props }) => (
+  <Layout {...props}>{element}</Layout>
+);

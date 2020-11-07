@@ -6,16 +6,13 @@ import { Avatar } from '../../components/Bio/styles';
 import { Root as Text } from '../../ui/Text';
 
 export const ArticleWrap = styled.article``;
+export const AnimatedArticleWrap = animated(ArticleWrap);
 export const ArticleContentWrap = styled(ContentWrap)`
   max-width: 680px;
   overflow: hidden;
 `;
-
 export const ArticleHeader = styled.header``;
-export const AnimatedArticleHeader = animated(ArticleHeader);
-
 export const ArticleTags = styled.div``;
-export const AnimatedArticleTags = animated(ArticleTags);
 export const ArticleTagList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -50,7 +47,6 @@ export const ArticleSubheader = styled.div`
     font-size: ${(p) => p.theme.fontSizes.s.mobile};
   }
 `;
-export const AnimatedArticleSubheader = animated(ArticleSubheader);
 
 export const ArticleAuthorLink = styled(Link)`
   display: flex;
@@ -83,4 +79,3 @@ export const ArticleBody = styled.div`
     }
   }
 `;
-export const AnimatedArticleBody = animated(ArticleBody);
