@@ -107,14 +107,14 @@ const DesktopMenu = ({ location }) => {
                 </MenuLink>
               </MenuLinkWrap>
               <MenuLinkWrap>
-                <MenuLink to='/blog' activeClassName='active'>
+                <MenuLink to='/blog' activeClassName='active' partiallyActive>
                   <MenuLinkText order='body' element='span'>
                     Blog
                   </MenuLinkText>
                 </MenuLink>
               </MenuLinkWrap>
               <MenuLinkWrap>
-                <MenuLink to='/demos' activeClassName='active'>
+                <MenuLink to='/demos' activeClassName='active' partiallyActive>
                   <MenuLinkText order='body' element='span'>
                     Demos
                   </MenuLinkText>

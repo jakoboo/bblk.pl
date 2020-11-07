@@ -24,12 +24,7 @@ const Layout = ({ location, children }) => {
       <GlobalStyle />
       <LayoutWrap>
         <Header location={location} />
-        <MainWrap
-          id='main'
-          tabIndex='-1'
-          aria-label='Main content'
-          ref={mainRef}
-        >
+        <MainWrap id='main' aria-label='Main content' ref={mainRef}>
           <MDXProvider
             components={{
               h1: (props) => <Heading level={1} {...props} />,
