@@ -16,6 +16,8 @@ import Quote from '../../ui/Quote';
 import { LayoutWrap, MainWrap } from './styles';
 
 const LayoutContent = ({ location, children, ...props }) => {
+  // Check for Client side rendering to fix rehydration flicker
+  // due to theme rehydration
   const [hasMounted, setHasMounted] = useState(false);
   const mainRef = useRef();
 
