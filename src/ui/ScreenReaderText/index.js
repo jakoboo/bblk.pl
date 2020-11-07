@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Root = styled.span`
+const ScreenReaderOnly = styled.span`
   clip: rect(0 0 0 0);
   position: absolute;
   width: 1px;
@@ -14,9 +14,9 @@ const Root = styled.span`
 `;
 
 const ScreenReaderText = ({ element, children, ...props }) => (
-  <Root as={element} {...props}>
+  <ScreenReaderOnly as={element} {...props}>
     {children}
-  </Root>
+  </ScreenReaderOnly>
 );
 
 export default ScreenReaderText;

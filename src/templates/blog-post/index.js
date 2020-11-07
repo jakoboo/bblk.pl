@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import * as _ from 'lodash';
+import { kebabCase } from 'lodash';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useSpring } from 'react-spring';
 import { Avatar } from '../../components/Bio/styles';
@@ -9,21 +9,25 @@ import Bio from '../../components/Bio';
 import Heading from '../../ui/Heading';
 import Spaced from '../../ui/Spaced';
 import Padded from '../../ui/Padded';
-import Button from '../../ui/Button';
 import Text from '../../ui/Text';
 import Link from '../../ui/Link';
 import ScreenReaderText from '../../ui/ScreenReaderText';
+import { Share } from 'styled-icons/feather';
 import {
-  AnimatedArticleWrap,
+  ArticleWrap,
+  AnimatedArticleContentWrap,
   ArticleHeader,
   ArticleTags,
+  ArticleTagList,
   ArticleTag,
   ArticleSubheader,
-  ArticleContentWrap,
-  ArticleBody,
   ArticleAuthorLink,
-  ArticleTagList,
+  ShareButton,
+  ArticleBody,
+  ShareWrap,
+  PublicationWrap,
 } from './styles';
+import Tippy from '@tippyjs/react';
 
 const ArticleTemplate = ({ location, data, pageContext }) => {
   const {
@@ -47,6 +51,7 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
       console.log(err);
     }
   };
+
   const props = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -59,12 +64,16 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
         description={post.frontmatter.description || post.excerpt}
         pathname={location.pathname}
         banner={post.frontmatter.featuredImage?.publicURL || undefined}
-        publicationDate={post.frontmatter.date}
+        publicationDate={post.frontmatter.dateTime}
         article
       />
       <Spaced top='5x'>
-        <AnimatedArticleWrap style={props} aria-labelledby='article-title'>
-          <ArticleContentWrap>
+        <ArticleWrap>
+          <AnimatedArticleContentWrap
+            style={props}
+            element='article'
+            aria-labelledby='article-title'
+          >
             <ArticleHeader>
               <Spaced bottom='s'>
                 <ArticleTags>
@@ -75,8 +84,8 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                   </ScreenReaderText>
                   <ArticleTagList aria-labelledby='article-tags-label'>
                     {post.frontmatter.tags.map((tag) => (
-                      <ArticleTag key={_.kebabCase(tag)}>
-                        <Link href={`/tags/${_.kebabCase(tag)}`}>
+                      <ArticleTag key={kebabCase(tag)}>
+                        <Link href={`/tags/${kebabCase(tag)}`}>
                           <Text element='span' order='meta'>
                             {tag}
                           </Text>
@@ -92,34 +101,53 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                 </Heading>
               </Spaced>
               <ArticleSubheader>
-                <Spaced right='m' bottom='m'>
-                  <ArticleAuthorLink href='/about'>
-                    <Spaced right='xs'>
-                      <span>
-                        <Avatar
-                          compact
-                          fluid={avatar}
-                          alt={author?.name || ``}
-                          imgStyle={{
-                            borderRadius: `50%`,
-                          }}
-                        />
-                      </span>
-                    </Spaced>
-                    {author?.name}
-                  </ArticleAuthorLink>
-                  <span>
-                    <time dateTime={post.frontmatter.datetime}>
-                      <Text element='span'>{post.frontmatter.date}</Text>
-                    </time>
-                    <Text element='span'>・{post.fields.readingTime.text}</Text>
-                  </span>
-                  <span>
-                    <Button unstyled onClick={shareArticle}>
-                      Share
-                    </Button>
-                  </span>
-                </Spaced>
+                <PublicationWrap>
+                  <Spaced right='m' bottom='m'>
+                    <ArticleAuthorLink href='/about'>
+                      <Spaced right='xs'>
+                        <span>
+                          <Avatar
+                            compact
+                            fluid={avatar}
+                            alt={author?.name || ``}
+                            imgStyle={{
+                              borderRadius: `50%`,
+                            }}
+                          />
+                        </span>
+                      </Spaced>
+                      {author?.name}
+                    </ArticleAuthorLink>
+                    <div>
+                      <time dateTime={post.frontmatter.dateTime}>
+                        <Text element='span'>
+                          {post.frontmatter.date}
+                          {/* Add year to the date if it's not current year */}
+                          {post.frontmatter.dateYear < new Date().getFullYear()
+                            ? `, ${post.frontmatter.dateYear}`
+                            : null}
+                        </Text>
+                      </time>
+                      <Text element='span'>
+                        ・{post.fields.readingTime.text}
+                      </Text>
+                    </div>
+                  </Spaced>
+                </PublicationWrap>
+                <ShareWrap>
+                  <Spaced left='m' bottom='m'>
+                    <ShareButton unstyled onClick={shareArticle}>
+                      <Tippy
+                        content={`Share article`}
+                        placement='bottom'
+                        offset={[0, 20]}
+                        animation='shift-away'
+                      >
+                        <Share />
+                      </Tippy>
+                    </ShareButton>
+                  </Spaced>
+                </ShareWrap>
               </ArticleSubheader>
             </ArticleHeader>
             <Padded vertical='2x'>
@@ -159,8 +187,8 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                 </li>
               </ul>
             </nav>
-          </ArticleContentWrap>
-        </AnimatedArticleWrap>
+          </AnimatedArticleContentWrap>
+        </ArticleWrap>
       </Spaced>
     </>
   );
@@ -195,8 +223,9 @@ export const pageQuery = graphql`
         slug
       }
       frontmatter {
-        datetime: date
-        date: date(formatString: "DD MMM, YYYY")
+        dateTime: date
+        dateYear: date(formatString: "YYYY")
+        date: date(formatString: "DD MMM")
         title
         description
         tags

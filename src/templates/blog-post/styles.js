@@ -4,12 +4,13 @@ import ContentWrap from '../../ui/ContentWrap';
 import Link from '../../ui/Link';
 import { Avatar } from '../../components/Bio/styles';
 import { Root as Text } from '../../ui/Text';
+import Button from '../../ui/Button';
 
-export const ArticleWrap = styled.article``;
-export const AnimatedArticleWrap = animated(ArticleWrap);
+export const ArticleWrap = styled.div``;
 export const ArticleContentWrap = styled(ContentWrap)`
   max-width: 680px;
 `;
+export const AnimatedArticleContentWrap = animated(ArticleContentWrap);
 export const ArticleHeader = styled.header``;
 export const ArticleTags = styled.div``;
 export const ArticleTagList = styled.div`
@@ -39,16 +40,21 @@ export const ArticleTag = styled.span`
 
 export const ArticleSubheader = styled.div`
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 
   ${Text} {
     font-size: ${(p) => p.theme.fontSizes.s.mobile};
   }
 `;
 
-export const ArticleAuthorLink = styled(Link)`
+export const PublicationWrap = styled.div`
   display: flex;
+  align-items: center;
+`;
+
+export const ArticleAuthorLink = styled(Link)`
+  display: inline-flex;
   align-items: center;
   font-size: ${(p) => p.theme.fontSizes.m.mobile};
   font-weight: 500;
@@ -57,6 +63,24 @@ export const ArticleAuthorLink = styled(Link)`
 
   ${Avatar} {
     width: 2rem;
+  }
+`;
+
+export const ShareWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ShareButton = styled(Button)`
+  width: 1.2rem;
+  height: 1.2rem;
+
+  svg {
+    vertical-align: top;
+  }
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
   }
 `;
 
