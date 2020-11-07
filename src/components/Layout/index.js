@@ -22,11 +22,13 @@ const LayoutContent = ({ location, children, ...props }) => {
   const mainRef = useRef();
 
   useEffect(() => {
+    // Set true for client side
     setHasMounted(true);
   }, []);
 
+  // return null for SSR
   if (!hasMounted) {
-    return null;
+    //return null;
   }
 
   return (
