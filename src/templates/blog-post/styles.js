@@ -41,15 +41,16 @@ export const ArticleTag = styled.span`
 export const ArticleSubheader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   ${Text} {
     font-size: ${(p) => p.theme.fontSizes.s.mobile};
+    color: ${(p) => p.theme.gray500Color};
   }
 `;
 
 export const PublicationWrap = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 `;
 
@@ -57,18 +58,18 @@ export const ArticleAuthorLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   font-size: ${(p) => p.theme.fontSizes.m.mobile};
-  font-weight: 500;
   color: ${(p) => p.theme.textColor};
   text-decoration: none;
 
   ${Avatar} {
-    width: 2rem;
+    width: 3rem;
   }
 `;
 
 export const ShareWrap = styled.div`
   display: flex;
   align-items: center;
+  margin-left: auto;
 `;
 
 export const ShareButton = styled(Button)`

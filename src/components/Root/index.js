@@ -47,6 +47,10 @@ const Root = ({ children }) => {
     //addAlert(`Theme set to ${themeName}`);
   };
 
+  if (!themeName) {
+    return null;
+  }
+
   return (
     <ThemeContext.Provider value={{ theme, themeName, setTheme }}>
       {children}

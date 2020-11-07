@@ -101,24 +101,24 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                 </Heading>
               </Spaced>
               <ArticleSubheader>
+                <Spaced right='s' bottom='xs'>
+                  <Link href='/about'>
+                    <Avatar
+                      compact
+                      fluid={avatar}
+                      alt={author?.name || ``}
+                      imgStyle={{
+                        borderRadius: `50%`,
+                      }}
+                    />
+                  </Link>
+                </Spaced>
                 <PublicationWrap>
-                  <Spaced right='m' bottom='m'>
+                  <Spaced right='s' bottom='xs'>
                     <ArticleAuthorLink href='/about'>
-                      <Spaced right='xs'>
-                        <span>
-                          <Avatar
-                            compact
-                            fluid={avatar}
-                            alt={author?.name || ``}
-                            imgStyle={{
-                              borderRadius: `50%`,
-                            }}
-                          />
-                        </span>
-                      </Spaced>
                       {author?.name}
                     </ArticleAuthorLink>
-                    <div>
+                    <span>
                       <time dateTime={post.frontmatter.dateTime}>
                         <Text element='span'>
                           {post.frontmatter.date}
@@ -131,11 +131,11 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                       <Text element='span'>
                         ・{post.fields.readingTime.text}
                       </Text>
-                    </div>
+                    </span>
                   </Spaced>
                 </PublicationWrap>
                 <ShareWrap>
-                  <Spaced left='m' bottom='m'>
+                  <Spaced left='s' bottom='xs'>
                     <ShareButton unstyled onClick={shareArticle}>
                       <Tippy
                         content={`Share article`}

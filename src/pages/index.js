@@ -4,15 +4,13 @@ import RecentArticles from '../components/IndexPage/components/RecentArticles';
 import RecentDemos from '../components/IndexPage/components/RecentDemos';
 import Header from '../components/IndexPage/components/Header';
 
-const Index = () => {
-  return (
-    <>
-      <SEO />
-      <Header />
-      <RecentArticles />
-      <RecentDemos />
-    </>
-  );
-};
+const Index = () => (
+  <>
+    <SEO />
+    <Header />
+    <RecentArticles />
+    <RecentDemos />
+  </>
+);
 
 export default Index;

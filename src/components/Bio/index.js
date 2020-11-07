@@ -10,8 +10,8 @@ import {
   Avatar,
   AboutLink,
   SocialsWrap,
-  SocialListItem,
   SocialLink,
+  AboutWrap,
 } from './styles';
 
 const Bio = ({ compact }) => {
@@ -27,9 +27,9 @@ const Bio = ({ compact }) => {
   } = data;
 
   return (
-    <BioWrap itemScope itemType='https://schema.org/Person'>
+    <BioWrap>
       {avatar && (
-        <Spaced right='xl'>
+        <Spaced right='m'>
           <Avatar
             compact={compact}
             fluid={avatar}
@@ -41,54 +41,38 @@ const Bio = ({ compact }) => {
         </Spaced>
       )}
       {author?.name && (
-        <div>
+        <AboutWrap>
           {compact ? (
             <Text>
               <AboutLink to='/about'>{author?.name || `Author`}</AboutLink>
             </Text>
           ) : (
             <>
-              <Spaced vertical='s'>
-                <Heading level={6}>Written by:</Heading>
-              </Spaced>
-              <Heading level={4}>
-                <AboutLink to='/about'>{author?.name || `Author`}</AboutLink>
-              </Heading>
               <Spaced top='s'>
+                <Heading level={6}>Written by:</Heading>
+                <Heading level={4}>
+                  <AboutLink to='/about'>{author?.name || `Author`}</AboutLink>
+                </Heading>
                 <Text>{author?.description || null}</Text>
               </Spaced>
             </>
           )}
-        </div>
+        </AboutWrap>
       )}
       {social && (
-        <Spaced left='xl'>
-          <SocialsWrap>
-            <ul>
-              <Spaced left='xl'>
-                <SocialListItem>
-                  <SocialLink
-                    to={`https://twitter.com/${social?.twitter?.username}`}
-                  >
-                    <Twitter />
-                  </SocialLink>
-                </SocialListItem>
-                <SocialListItem>
-                  <SocialLink
-                    to={`https://github.com/${social?.github?.username}`}
-                  >
-                    <Github />
-                  </SocialLink>
-                </SocialListItem>
-                <SocialListItem>
-                  <SocialLink to={`mailto:${author?.email}`}>
-                    <Mail />
-                  </SocialLink>
-                </SocialListItem>
-              </Spaced>
-            </ul>
-          </SocialsWrap>
-        </Spaced>
+        <SocialsWrap>
+          <Spaced left='m' bottom='m'>
+            <SocialLink to={`https://twitter.com/${social?.twitter?.username}`}>
+              <Twitter />
+            </SocialLink>
+            <SocialLink to={`https://github.com/${social?.github?.username}`}>
+              <Github />
+            </SocialLink>
+            <SocialLink to={`mailto:${author?.email}`}>
+              <Mail />
+            </SocialLink>
+          </Spaced>
+        </SocialsWrap>
       )}
     </BioWrap>
   );

@@ -8,8 +8,7 @@ export const BioWrap = styled.div`
 `;
 
 export const Avatar = styled(Image)`
-  flex-shrink: 0;
-  width: 100px;
+  width: 5rem;
   align-self: flex-start;
 
   ${({ compact }) => (compact ? 'max-width: 50px;' : null)}
@@ -20,14 +19,14 @@ export const AboutLink = styled(Link)`
   color: ${(p) => p.theme.textColor};
 `;
 
-export const SocialsWrap = styled.div`
-  margin-left: auto;
-  flex-shrink: 0;
+export const AboutWrap = styled.div`
+  flex-grow: 1;
 `;
 
-export const SocialListItem = styled.li`
-  display: inline-block;
-  list-style: none;
+export const SocialsWrap = styled.div`
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
 `;
 
 export const SocialLink = styled(Link)`

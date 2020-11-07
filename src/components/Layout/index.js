@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
 import { ThemeProvider } from 'styled-components';
@@ -18,6 +18,10 @@ import { LayoutWrap, MainWrap } from './styles';
 const Layout = ({ location, children }) => {
   const { theme } = useContext(ThemeContext);
   const mainRef = useRef();
+
+  useEffect(() => {
+    alert('test');
+  });
 
   return (
     <ThemeProvider theme={theme}>
