@@ -3,11 +3,12 @@ import Terser from 'terser';
 
 import { THEME_KEY, INITIAL_THEME_ATTR } from './src/ui/variables';
 
+import { ContextThemeProvider } from './src/ui/ThemeContext';
 import Layout from './src/components/Layout';
 
 function setTheme() {
-  const themeKey = '🔑';
-  const initialThemeAttr = '⚡️';
+  const themeKey = '%THEME_KEY%';
+  const initialThemeAttr = '%INITIAL_THEME_ATTR%';
 
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersDarkFromMQ = mql.matches;
@@ -30,8 +31,8 @@ function setTheme() {
 
 const ThemeScriptTag = () => {
   const boundFn = String(setTheme)
-    .replace('🔑', THEME_KEY)
-    .replace('⚡️', INITIAL_THEME_ATTR);
+    .replace('%THEME_KEY%', THEME_KEY)
+    .replace('%INITIAL_THEME_ATTR%', INITIAL_THEME_ATTR);
 
   let calledFunction = `(${boundFn})()`;
 
