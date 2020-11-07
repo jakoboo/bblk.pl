@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import ContentWrap from '../../ui/ContentWrap';
 import Heading from '../../ui/Heading';
+import Link from '../../ui/Link';
 import Padded from '../../ui/Padded';
+import DesktopMenu from './DesktopMenu';
 
 import SiteLogo from '../../images/bblk-logo.svg';
-import DesktopMenu from './DesktopMenu';
 
 const HeaderWrap = styled.header`
   position: absolute;
@@ -17,8 +17,6 @@ const HeaderWrap = styled.header`
 `;
 
 const HeaderContentWrap = styled(ContentWrap)`
-  height: 100%;
-
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -43,20 +41,24 @@ const SiteTitle = styled(Heading)`
   }
 `;
 
-const Header = () => (
+const Header = ({ location }) => (
   <HeaderWrap>
     <Padded vertical='m'>
       <HeaderContentWrap>
         <SiteTitle level={4} element='span'>
-          <Link to='/'>
+          <Link to='/' aria-label='Home page'>
             <SiteLogo />
           </Link>
         </SiteTitle>
 
-        <DesktopMenu />
+        <DesktopMenu location={location} />
       </HeaderContentWrap>
     </Padded>
   </HeaderWrap>
 );
+
+Header.propTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 export default Header;

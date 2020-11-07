@@ -37,9 +37,9 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
   } = data;
   const { previous, next } = pageContext;
 
-  const shareArticle = () => {
+  const shareArticle = async () => {
     try {
-      navigator.share({
+      await navigator.share({
         title: post.frontmatter.title,
         url: `${window.location.origin}${post.fields.slug}`,
       });
@@ -109,7 +109,7 @@ const ArticleTemplate = ({ location, data, pageContext }) => {
                     {author?.name}
                   </ArticleAuthorLink>
                   <span>
-                    <time datetime={post.frontmatter.datetime}>
+                    <time dateTime={post.frontmatter.datetime}>
                       <Text element='span'>{post.frontmatter.date}</Text>
                     </time>
                     <Text element='span'>・{post.fields.readingTime.text}</Text>

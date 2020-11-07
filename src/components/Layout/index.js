@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { ThemeContext } from '../Root';
 import GlobalStyle from '../GlobalStyle';
 import Header from '../Header';
@@ -12,26 +13,23 @@ import Spaced from '../../ui/Spaced';
 import Heading from '../../ui/Heading';
 import ArticleHeading from '../ArticleHeading';
 import Quote from '../../ui/Quote';
-
-const LayoutWrap = styled.div`
-  overflow: hidden;
-  overflow-y: auto;
-`;
-
-const MainWrap = styled.main`
-  // height of the <Header />
-  padding-top: 5rem;
-`;
+import { LayoutWrap, MainWrap } from './styles';
 
 const Layout = ({ location, children }) => {
   const { theme } = useContext(ThemeContext);
+  const mainRef = useRef();
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <LayoutWrap>
-        <Header />
-        <MainWrap aria-label='Main content'>
+        <Header location={location} />
+        <MainWrap
+          id='main'
+          tabIndex='-1'
+          aria-label='Main content'
+          ref={mainRef}
+        >
           <MDXProvider
             components={{
               h1: (props) => <Heading level={1} {...props} />,
@@ -116,6 +114,10 @@ const Layout = ({ location, children }) => {
       </LayoutWrap>
     </ThemeProvider>
   );
+};
+
+Layout.propTypes = {
+  location: PropTypes.object.isRequired,
 };
 
 export default Layout;

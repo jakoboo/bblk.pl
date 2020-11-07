@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 import Tippy from '@tippyjs/react';
@@ -66,7 +67,7 @@ const ThemeToggleButton = styled(Button)`
   }
 `;
 
-const DesktopMenu = () => {
+const DesktopMenu = ({ location }) => {
   const { themeName, setTheme } = useContext(ThemeContext);
   const [visible, setVisibility] = useState(true);
 
@@ -83,6 +84,10 @@ const DesktopMenu = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const toggleTheme = () => {
+    setTheme(themeName === 'light' ? 'dark' : 'light');
+  };
 
   return visible ? (
     <DesktopMenuWrap>
@@ -130,7 +135,7 @@ const DesktopMenu = () => {
         <ThemeToggleButton
           unstyled
           aria-label='Theme toggle button'
-          onClick={() => setTheme(themeName === 'light' ? 'dark' : 'light')}
+          onClick={toggleTheme}
         >
           <Tippy
             key={themeName}
@@ -147,6 +152,10 @@ const DesktopMenu = () => {
       </SiteTools>
     </DesktopMenuWrap>
   ) : null;
+};
+
+DesktopMenu.propTypes = {
+  location: PropTypes.object.isRequired,
 };
 
 export default DesktopMenu;

@@ -9,7 +9,6 @@ export const ArticleWrap = styled.article``;
 export const AnimatedArticleWrap = animated(ArticleWrap);
 export const ArticleContentWrap = styled(ContentWrap)`
   max-width: 680px;
-  overflow: hidden;
 `;
 export const ArticleHeader = styled.header``;
 export const ArticleTags = styled.div``;
