@@ -19,10 +19,6 @@ const Layout = ({ location, children }) => {
   const { theme } = useContext(ThemeContext);
   const mainRef = useRef();
 
-  useEffect(() => {
-    alert('test');
-  });
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
