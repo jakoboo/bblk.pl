@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 import Tippy from '@tippyjs/react';
-import { breakpoints } from '../../../ui/variables';
+import { breakpoints } from '../../../ui/theme';
 import Link from '../../../ui/Link';
 import Text from '../../../ui/Text';
 import Spaced from '../../../ui/Spaced';
 import Button from '../../../ui/Button';
-import { useTheme } from '../../../ui/ThemeContext';
+import { ThemeContext } from '../../Root';
 
 import { Sun, Moon } from '@styled-icons/feather';
 
@@ -67,7 +67,7 @@ const ThemeToggleButton = styled(Button)`
 `;
 
 const DesktopMenu = () => {
-  const { themeName, toggle: toggleTheme } = useTheme();
+  const { themeName, setTheme } = useContext(ThemeContext);
   const [visible, setVisibility] = useState(true);
 
   useEffect(() => {
@@ -130,7 +130,7 @@ const DesktopMenu = () => {
         <ThemeToggleButton
           unstyled
           aria-label='Theme toggle button'
-          onClick={() => toggleTheme()}
+          onClick={() => setTheme(themeName === 'light' ? 'dark' : 'light')}
         >
           <Tippy
             key={themeName}

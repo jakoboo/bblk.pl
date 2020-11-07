@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import { createThemeColorsCssString } from '../utils';
+import { lightValues, darkValues } from './variables';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   *,
   *:before,
   *:after {
@@ -16,10 +16,19 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  ${createThemeColorsCssString()}
-
   :root {
     font-size: 100%;
+    ${lightValues}
+
+    [data-theme="dark"] {
+      ${darkValues}
+    }
+
+    .no-js {
+      @media (prefers-color-scheme: dark) {
+        ${darkValues}
+      }
+    }
   }
   
   body {
@@ -116,5 +125,3 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 `;
-
-export default GlobalStyle;

@@ -6,12 +6,10 @@ import 'tippy.js/animations/shift-away.css';
 import 'prismjs/themes/prism-okaidia.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-import { ContextThemeProvider } from './src/ui/ThemeContext';
+import Root from './src/components/Root';
 import Layout from './src/components/Layout';
 
-export const wrapRootElement = ({ element, props }) => (
-  <ContextThemeProvider {...props}>{element}</ContextThemeProvider>
-);
+export const wrapRootElement = ({ element }) => <Root>{element}</Root>;
 export const wrapPageElement = ({ element, props }) => (
   <Layout {...props}>{element}</Layout>
 );
