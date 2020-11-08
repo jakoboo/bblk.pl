@@ -27,6 +27,7 @@ const LayoutContent = ({ location, themeName, children, ...props }) => {
   // Fix rehydration flicker due to theme rehydration
   // return null for CSR if theme has not been set yet
   // so that SSR will work for clients with disabled JavaScript
+  console.log(themeName, hasMounted, !themeName, hasMounted && !themeName);
   if (hasMounted && !themeName) {
     return null;
   }
