@@ -145,6 +145,9 @@ module.exports = {
         icon: website.favicon,
       },
     },
-    `gatsby-plugin-offline`,
+    //`gatsby-plugin-offline`,
+    // Removed due to content flash bug with gatsby-plugin-offline
+    // (https://github.com/gatsbyjs/gatsby/issues/11006)
+    `gatsby-plugin-remove-serviceworker`,
   ],
 };
