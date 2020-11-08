@@ -42,7 +42,7 @@ const Seo = ({
     '@context': 'http://schema.org',
     '@type': 'WebPage',
     'url': seo.url,
-    'name': defaultTitle,
+    'name': seo.title,
     'headline': headline,
     'inLanguage': siteLanguage,
     'datePublished': '2020-11-01',

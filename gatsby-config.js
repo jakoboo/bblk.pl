@@ -136,7 +136,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: website.title,
+        name: website.name,
         short_name: website.shortName,
         description: website.description,
         background_color: website.backgroundColor,
