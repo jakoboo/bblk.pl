@@ -17,6 +17,7 @@ import { LayoutWrap, MainWrap } from './styles';
 
 const Layout = ({ location, children }) => {
   const { theme } = useContext(ThemeContext);
+  const mainRef = useRef();
 
   return (
     <ThemeProvider theme={theme}>
